@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Comercial — Secretária IA & Gestão para Clínicas de Estética</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #d97706;
+      --primary-light: #fbbf24;
+      --accent: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      --emerald-gradient: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Barra fixa de ações */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+    }
+
+    .top-bar .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .top-bar .brand span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .top-bar .actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-pdf {
+      background: #1e293b;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-pdf:hover {
+      background: #334155;
+    }
+
+    .btn-wa {
+      background: #25d366;
+      color: #0b2212;
+      font-weight: 700;
+    }
+
+    .btn-wa:hover {
+      background: #20ba59;
+      transform: translateY(-1px);
+    }
+
+    /* Container dos Slides */
+    .slides-container {
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .slide {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3.5rem 4rem;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      right: -150px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+
+    .badge-amber {
+      background: rgba(217, 119, 6, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(217, 119, 6, 0.3);
+    }
+
+    .badge-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .slide-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-title .highlight {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Grid de Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 1.75rem;
+    }
+
+    .card-danger {
+      border-left: 4px solid #ef4444;
+      background: rgba(239, 68, 68, 0.03);
+    }
+
+    .card-success {
+      border-left: 4px solid #10b981;
+      background: rgba(16, 185, 129, 0.03);
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Simulação de WhatsApp e Sistema */
+    .chat-preview {
+      background: #0b141a;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      line-height: 1.4;
+    }
+
+    .chat-in {
+      background: #202c33;
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+
+    .chat-out {
+      background: #005c4b;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+
+    .chat-time {
+      font-size: 0.7rem;
+      opacity: 0.6;
+      text-align: right;
+      margin-top: 0.3rem;
+    }
+
+    /* Etapas de Implantação */
+    .step-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .step-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Planos e Preço */
+    .pricing-hero {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(15, 23, 42, 0.6) 100%);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .price-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    .price-sub {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .lead-plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .lead-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .lead-card.popular {
+      border-color: #fbbf24;
+      background: rgba(217, 119, 6, 0.05);
+      position: relative;
+    }
+
+    .cta-banner {
+      background: #111827;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .cta-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .cta-contact .name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cta-contact .role {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+
+    /* Print & Exportação para PDF Perfeita (Sem quebras ou espaços em branco) */
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    @media print {
+
+      html,
+      body {
+        background: #090d16 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .top-bar {
+        display: none !important;
+      }
+
+      .slides-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        gap: 0 !important;
+      }
+
+      .slide {
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: none !important;
+        padding: 2.2rem 2.8rem !important;
+        height: 98vh !important;
+        min-height: 98vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+      }
+
+      .slide-title {
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .slide-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .grid-2 {
+        gap: 1.5rem !important;
+      }
+
+      .card {
+        padding: 1.25rem !important;
+      }
+
+      .pricing-hero {
+        padding: 1.5rem 2rem !important;
+        margin-bottom: 1.25rem !important;
+      }
+
+      .price-value {
+        font-size: 2.4rem !important;
+      }
+
+      .lead-plans {
+        gap: 1rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .cta-banner {
+        padding: 1.25rem 2rem !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        padding: 0 1rem;
+      }
+
+      .top-bar .brand {
+        font-size: 0.95rem;
+      }
+
+      .slides-container {
+        margin-top: 70px;
+        padding: 0 1rem;
+        gap: 2rem;
+      }
+
+      .slide {
+        padding: 2rem 1.25rem;
+        min-height: auto;
+      }
+
+      .slide-title {
+        font-size: 1.75rem;
+      }
+
+      .slide-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .grid-2,
+      .grid-3,
+      .lead-plans {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .pricing-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      .cta-banner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .cta-banner .btn-wa {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="brand">
+      <span>Ellegance Tech</span> &bull; Apresentação Comercial
+    </div>
+    <div class="actions">
+      <a class="btn btn-wa"
+        href="https://wa.me/5519993489405?text=Ol%C3%A1%20Kediley%2C%20vi%20a%20apresenta%C3%A7%C3%A3o%20da%20Ellegance%20Tech%20e%20gostaria%20de%20agendar%20um%20diagn%C3%B3stico%20para%20minha%20cl%C3%ADnica."
+        target="_blank">
+        💬 Falar com Kediley no WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <main class="slides-container">
+
+    <!-- SLIDE 1: A DOR REAL DA CLÍNICA -->
+    <section class="slide" id="slide-1">
+      <div>
+        <div class="slide-badge badge-amber">Diagnóstico de Mercado</div>
+        <h1 class="slide-title">Quantos pacientes sua clínica perde <span class="highlight">fora do horário
+            comercial?</span></h1>
+        <p class="slide-subtitle">
+          Pacientes de estética decidem procedimentos à noite, no almoço e nos fins de semana. Quando a resposta demora
+          mais de 5 minutos, a chance de fechamento cai em até 80%.
+        </p>
+
+        <div class="grid-2">
+          <div class="card card-danger">
+            <div class="card-title" style="color: #f87171;">⚠️ O Atendimento Tradicional</div>
+            <p class="card-desc">
+              &bull; Mensagens recebidas após as 18h só são respondidas no dia seguinte.<br>
+              &bull; A secretária física fica sobrecarregada entre atender balcão e WhatsApp.<br>
+              &bull; Paciente esfria, busca outra clínica concorrente e agenda lá.<br>
+              &bull; <strong>Resultado:</strong> Dinheiro de anúncios e indicação jogado fora.
+            </p>
+          </div>
+
+          <div class="card card-success">
+            <div class="card-title" style="color: #34d399;">⚡ Com Nossa Solução Inteligente</div>
+            <p class="card-desc">
+              &bull; Resposta humanizada e acolhedora em menos de 10 segundos, 24 horas por dia.<br>
+              &bull; A secretária virtual tira dúvidas reais sobre Botox, Harmonização e Laser.<br>
+              &bull; Quebra objeções de preço e convida com persuasão para a avaliação presencial.<br>
+              &bull; <strong>Resultado:</strong> Agenda cheia mesmo enquanto você dorme.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Slide 1 de 4 &bull; Oportunidade & Retenção de Leads</span>
+        <span>Msentação Comercial Exclusiva</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: A SOLUÇÃO (SECRETÁRIA + CRM) -->
+    <section class="slide" id="slide-2">
+      <div>
+        <div class="slide-badge badge-emerald">A Tecnologia</div>
+        <h2 class="slide-title">Atendimento Humanizado no WhatsApp & <span class="highlight">Agenda Integrada</span>
+        </h2>
+        <p class="slide-subtitle">
+          Uma secretária virtual com inteligência artificial treinada na sua clínica, sincronizada em tempo real com seu
+          sistema de gestão.
+        </p>
+
+        <div class="grid-2">
+          <!-- WhatsApp Mockup -->
+          <div class="chat-preview">
+            <div
+              style="font-weight: 700; color: #25d366; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.5rem;">
+              📱 WhatsApp da Clínica (Simulação ao Vivo)
+            </div>
+            <div class="chat-msg chat-in">
+              Oi, tudo bem? Queria saber quanto custa fazer botox na testa e se tem horário amanhã.
+              <div class="chat-time">20:42</div>
+            </div>
+            <div class="chat-msg chat-out">
+              Oi! Tudo bem? Sou a secretária aqui da clínica. 😊<br><br>
+              O botox é maravilhoso para suavizar linhas de expressão com total naturalidade! O valor exato depende de
+              quantas unidades serão ideais para você, por isso fazemos uma <strong>avaliação presencial
+                gratuita</strong> com nossa profissional.<br><br>
+              Amanhã temos horário livre às 15:00 ou às 17:30. Qual fica melhor para você vir tomar um café com a gente?
+              ✨
+              <div class="chat-time">20:42</div>
+            </div>
+          </div>
+
+          <!-- Benefícios do Sistema -->
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="card">
+              <div class="card-title">🗓️ Agenda & CRM Próprios</div>
+              <p class="card-desc">Todos os agendamentos caem direto no painel da clínica, com horários, profissionais e
+                status em tempo real.</p>
+            </div>
+            <div class="card">
+              <div class="card-title">🧠 Memória do Paciente</div>
+              <p class="card-desc">A IA lembra o nome, o histórico e o que a cliente perguntou em conversas anteriores,
+                criando conexão real.</p>
+            </div>
+            <div class="card">
+              <div class="card-title">🔒 Transbordo Humano</div>
+              <p class="card-desc">Se a cliente pedir para falar com um humano, a IA pausa na hora e avisa a recepção no
+                painel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Slide 2 de 4 &bull; Inteligência Artificial com Empatia Humana</span>
+        <span>Tecnologia Validada</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: O PROCESSO DE IMPLANTAÇÃO -->
+    <section class="slide" id="slide-3">
+      <div>
+        <div class="slide-badge badge-amber">Método de Trabalho</div>
+        <h2 class="slide-title">Como funciona a implantação na sua clínica em <span class="highlight">3 passos
+            simples</span></h2>
+        <p class="slide-subtitle">
+          Sem complicação para sua equipe. Nós cuidamos de toda a configuração técnica, treinamento e testes.
+        </p>
+
+        <div class="grid-3">
+          <div class="step-box">
+            <div class="step-number">01</div>
+            <div class="card-title">Reunião de Diagnóstico</div>
+            <p class="card-desc">
+              Uma conversa rápida de 20 minutos para entender sua clínica: quais procedimentos você mais vende, quais
+              profissionais atendem, horários de funcionamento e regras da agenda.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-number">02</div>
+            <div class="card-title">Personalização & IA</div>
+            <p class="card-desc">
+              Configuramos a secretária com o tom de voz da sua clínica, cadastramos seus serviços, preparamos as
+              respostas e conectamos ao seu número de WhatsApp oficial.
+            </p>
+          </div>
+
+          <div class="step-box">
+            <div class="step-number">03</div>
+            <div class="card-title">Entrega & Início</div>
+            <p class="card-desc">
+              Apresentação final com testes assistidos. Sua equipe recebe acesso ao painel de controle e a secretária
+              assume o WhatsApp imediatamente para fechar consultas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Slide 3 de 4 &bull; Implantação Assistida & Acompanhamento</span>
+        <span>Prazo Seguro & Transparência</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: VALORES E CONTATO -->
+    <section class="slide" id="slide-4">
+      <div>
+        <div class="slide-badge badge-emerald">Investimento</div>
+        <h2 class="slide-title">O que está incluso na <span class="highlight">implantação da sua clínica</span></h2>
+        <p class="slide-subtitle">
+          Tudo configurado sob medida para sua rotina, integrado direto no seu WhatsApp oficial sem complicação.
+        </p>
+
+        <!-- Box Projeto Sob Medida -->
+        <div class="pricing-hero">
+          <div>
+            <div
+              style="font-size: 0.9rem; text-transform: uppercase; font-weight: 700; color: #fbbf24; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+              Projeto Sob Medida & Implantação Assistida
+            </div>
+            <div class="card-desc" style="max-width: 580px;">
+              Configuramos a secretária inteligente com os procedimentos da sua clínica, conectamos ao seu WhatsApp
+              oficial e damos suporte contínuo.
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div class="price-value" style="font-size: 1.8rem; line-height: 1.2;">Diagnóstico Gratuito</div>
+            <div class="price-sub" style="color: #34d399; font-weight: 600; margin-top: 0.3rem;">✓ Análise de fluxo e
+              compatibilidade</div>
+          </div>
+        </div>
+
+        <!-- Pilares Inclusos na Entrega -->
+        <div class="lead-plans">
+          <div class="lead-card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">Atendimento 24/7 no WhatsApp
+            </div>
+            <div class="price-sub">Nunca mais perca pacientes que mandam mensagem à noite, no almoço ou nos finais de
+              semana.</div>
+          </div>
+
+          <div class="lead-card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🗓️</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">Confirmação de Agenda</div>
+            <div class="price-sub">Lembretes e confirmações automáticas para reduzir as faltas e salas vazias na
+              clínica.</div>
+          </div>
+
+          <div class="lead-card">
+            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤝</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">Suporte Sem Fidelidade</div>
+            <div class="price-sub">Acompanhamento próximo para ajustes contínuos, com total liberdade e sem contratos
+              que prendem.</div>
+          </div>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="cta-banner">
+          <div class="cta-contact">
+            <div class="name">Kediley &bull; Especialista em IA para Clínicas de Estética</div>
+            <div class="role">WhatsApp: (19) 99348-9405 &bull; Agende uma reunião de diagnóstico de 15 minutos</div>
+          </div>
+          <a class="btn btn-wa" style="padding: 0.9rem 1.75rem; font-size: 1rem;"
+            href="https://wa.me/5519993489405?text=Ol%C3%A1%20Kediley%2C%20vi%20a%20apresenta%C3%A7%C3%A3o%20da%20Ellegance%20Tech%20e%20gostaria%20de%20agendar%20um%20diagn%C3%B3stico%20para%20minha%20cl%C3%ADnica."
+            target="_blank">
+            💬 Agendar Diagnóstico no WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Slide 4 de 4 &bull; Vagas de Implantação Limitadas por Região</span>
+        <span>Contato Direto: (19) 99348-9405</span>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
