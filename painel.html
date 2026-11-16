@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,8 +18,20 @@
       --gold: #f59e0b;
       --danger: #ef4444;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 80px; line-height: 1.5; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding-bottom: 80px;
+      line-height: 1.5;
+    }
 
     header {
       background: #0a101d;
@@ -33,7 +46,13 @@
       top: 0;
       z-index: 40;
     }
-    header h1 { font-size: 18px; font-weight: 800; color: var(--accent); }
+
+    header h1 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
     header .badge-top {
       background: rgba(16, 185, 129, 0.14);
       border: 1px solid rgba(16, 185, 129, 0.4);
@@ -55,6 +74,7 @@
       top: 59px;
       z-index: 39;
     }
+
     .nav button {
       background: var(--card);
       color: var(--muted);
@@ -67,16 +87,31 @@
       white-space: nowrap;
       transition: all 0.18s;
     }
-    .nav button:hover { color: var(--text); border-color: var(--accent); }
+
+    .nav button:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
     .nav button.active {
       background: var(--accent);
       color: #06101e;
       border-color: var(--accent);
     }
 
-    .container { max-width: 1140px; margin: 26px auto; padding: 0 24px; }
-    .tab { display: none; }
-    .tab.active { display: block; }
+    .container {
+      max-width: 1140px;
+      margin: 26px auto;
+      padding: 0 24px;
+    }
+
+    .tab {
+      display: none;
+    }
+
+    .tab.active {
+      display: block;
+    }
 
     .card {
       background: var(--card);
@@ -85,6 +120,7 @@
       padding: 24px;
       margin-bottom: 20px;
     }
+
     .card h2 {
       font-size: 19px;
       margin-bottom: 8px;
@@ -93,28 +129,103 @@
       align-items: center;
       gap: 10px;
     }
+
     .card h3 {
       font-size: 15px;
       margin: 20px 0 10px;
       color: #e2e8f0;
     }
-    .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; }
 
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .sub {
+      color: var(--muted);
+      font-size: 13.5px;
+      margin-bottom: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
     @media (max-width: 860px) {
-      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-      header { padding: 14px 16px; flex-direction: column; align-items: flex-start; }
-      .nav { padding: 10px 14px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
-      .nav button { white-space: nowrap; flex-shrink: 0; }
-      .container { padding: 0 14px; margin: 16px auto; }
-      .card { padding: 16px; }
-      .deck-slide { padding: 74px 20px 96px !important; height: 100dvh; align-items: flex-start !important; gap: 20px !important; }
-      .deck-slide.active { grid-template-columns: 1fr !important; }
-      .pillar-grid, .flow-steps { grid-template-columns: 1fr !important; }
-      .slide-top-bar { top: 14px !important; left: 20px !important; right: 20px !important; font-size: 11px !important; flex-wrap: wrap; gap: 4px; }
-      .deck-controls { right: 12px !important; left: 12px !important; bottom: 14px !important; justify-content: center; }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        padding: 10px 14px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .nav button {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .container {
+        padding: 0 14px;
+        margin: 16px auto;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .deck-slide {
+        padding: 74px 20px 96px !important;
+        height: 100dvh;
+        align-items: flex-start !important;
+        gap: 20px !important;
+      }
+
+      .deck-slide.active {
+        grid-template-columns: 1fr !important;
+      }
+
+      .pillar-grid,
+      .flow-steps {
+        grid-template-columns: 1fr !important;
+      }
+
+      .slide-top-bar {
+        top: 14px !important;
+        left: 20px !important;
+        right: 20px !important;
+        font-size: 11px !important;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .deck-controls {
+        right: 12px !important;
+        left: 12px !important;
+        bottom: 14px !important;
+        justify-content: center;
+      }
     }
 
     label {
@@ -126,7 +237,11 @@
       margin-bottom: 6px;
       font-weight: 700;
     }
-    input[type="text"], input[type="number"], select, textarea {
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
       width: 100%;
       background: #080d17;
       border: 1px solid var(--border);
@@ -136,7 +251,10 @@
       font-size: 14px;
       margin-bottom: 10px;
     }
-    input:focus, select:focus, textarea:focus {
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       outline: none;
       border-color: var(--accent);
     }
@@ -151,6 +269,7 @@
       border-radius: 10px;
       margin-bottom: 14px;
     }
+
     .script-box .tag {
       display: inline-block;
       font-size: 11px;
@@ -160,7 +279,12 @@
       color: var(--accent);
       margin-bottom: 6px;
     }
-    .script-box p { font-size: 14.5px; color: #e2e8f0; white-space: pre-line; }
+
+    .script-box p {
+      font-size: 14.5px;
+      color: #e2e8f0;
+      white-space: pre-line;
+    }
 
     .btn {
       background: var(--accent);
@@ -177,20 +301,28 @@
       transition: transform 0.12s, opacity 0.12s;
       text-decoration: none;
     }
-    .btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
     .btn-outline {
       background: transparent;
       color: var(--accent);
       border: 1px solid var(--accent);
     }
+
     .btn-emerald {
       background: var(--emerald);
       color: #04130d;
     }
+
     .btn-gold {
       background: var(--gold);
       color: #0b0f0e;
     }
+
     .btn-lg {
       padding: 14px 24px;
       font-size: 15px;
@@ -205,6 +337,7 @@
       padding: 16px 18px;
       margin-bottom: 14px;
     }
+
     .q-item .q-num {
       font-size: 11px;
       font-weight: 800;
@@ -212,12 +345,14 @@
       text-transform: uppercase;
       letter-spacing: 0.6px;
     }
+
     .q-item .q-title {
       font-size: 15px;
       font-weight: 700;
       color: #fff;
       margin: 5px 0 6px;
     }
+
     .q-item .q-why {
       font-size: 12.5px;
       color: #34d399;
@@ -227,12 +362,14 @@
       border-radius: 4px;
       margin-bottom: 12px;
     }
+
     .quick-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       margin-bottom: 8px;
     }
+
     .chip {
       background: #121c2e;
       border: 1px solid var(--border);
@@ -242,7 +379,11 @@
       font-size: 12px;
       cursor: pointer;
     }
-    .chip:hover { border-color: var(--accent); color: #fff; }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
 
     /* Automatic Calculator Box */
     .calc-panel {
@@ -252,15 +393,33 @@
       padding: 22px;
       margin-top: 18px;
     }
+
     .calc-box {
       background: #080d17;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 16px;
     }
-    .calc-box .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); font-weight: 700; }
-    .calc-box .val { font-size: 26px; font-weight: 900; color: var(--emerald); margin: 4px 0; }
-    .calc-box .explain { font-size: 12px; color: #cbd5e1; }
+
+    .calc-box .lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .calc-box .val {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--emerald);
+      margin: 4px 0;
+    }
+
+    .calc-box .explain {
+      font-size: 12px;
+      color: #cbd5e1;
+    }
 
     /* Briefing Questions List */
     .briefing-list {
@@ -271,6 +430,7 @@
       max-height: 460px;
       overflow-y: auto;
     }
+
     .briefing-list h4 {
       color: var(--accent);
       margin: 16px 0 8px;
@@ -278,14 +438,26 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .briefing-list h4:first-child { margin-top: 0; }
-    .briefing-list ol { padding-left: 20px; }
+
+    .briefing-list h4:first-child {
+      margin-top: 0;
+    }
+
+    .briefing-list ol {
+      padding-left: 20px;
+    }
+
     .briefing-list li {
       margin-bottom: 8px;
       font-size: 13.5px;
       color: #e2e8f0;
     }
-    .briefing-list li span { color: var(--muted); font-size: 12.5px; display: block; }
+
+    .briefing-list li span {
+      color: var(--muted);
+      font-size: 12.5px;
+      display: block;
+    }
 
     /* =====================================================================
        PRESENTATION DECK (7 SLIDES ESSENCIAIS, PRÓPRIOS E DIRETOS)
@@ -299,7 +471,11 @@
       z-index: 9999;
       overflow: hidden;
     }
-    #deckOverlay.open { display: flex; flex-direction: column; }
+
+    #deckOverlay.open {
+      display: flex;
+      flex-direction: column;
+    }
 
     .deck-slide {
       display: none;
@@ -312,8 +488,18 @@
       position: relative;
       overflow-y: auto;
     }
-    .deck-slide.active { display: grid; grid-template-columns: 1.05fr 0.95fr; }
-    .deck-slide.single-col.active { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+
+    .deck-slide.active {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .deck-slide.single-col.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
     .slide-top-bar {
       position: absolute;
@@ -325,7 +511,7 @@
       align-items: center;
       font-size: 12px;
       color: #64748b;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       padding-bottom: 12px;
     }
 
@@ -351,9 +537,18 @@
       color: #ffffff;
       margin-bottom: 20px;
     }
-    .s-h1 .hl { color: var(--accent); }
-    .s-h1 .hl-green { color: var(--emerald); }
-    .s-h1 .hl-gold { color: var(--gold); }
+
+    .s-h1 .hl {
+      color: var(--accent);
+    }
+
+    .s-h1 .hl-green {
+      color: var(--emerald);
+    }
+
+    .s-h1 .hl-gold {
+      color: var(--gold);
+    }
 
     .s-sub {
       font-size: clamp(15px, 1.3vw, 19px);
@@ -367,7 +562,7 @@
       border: 1px solid #243554;
       border-radius: 18px;
       padding: 26px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
       width: 100%;
     }
 
@@ -378,8 +573,18 @@
       padding: 15px 18px;
       margin-bottom: 12px;
     }
-    .pain-box strong { display: block; color: #fff; font-size: 15.5px; margin-bottom: 3px; }
-    .pain-box span { color: #94a3b8; font-size: 14px; }
+
+    .pain-box strong {
+      display: block;
+      color: #fff;
+      font-size: 15.5px;
+      margin-bottom: 3px;
+    }
+
+    .pain-box span {
+      color: #94a3b8;
+      font-size: 14px;
+    }
 
     .pillar-grid {
       display: grid;
@@ -388,12 +593,14 @@
       width: 100%;
       margin-top: 16px;
     }
+
     .pillar-card {
       background: rgba(18, 28, 46, 0.85);
       border: 1px solid #243554;
       border-radius: 14px;
       padding: 20px;
     }
+
     .pillar-card .p-num {
       font-size: 12px;
       font-weight: 900;
@@ -402,8 +609,18 @@
       letter-spacing: 1px;
       margin-bottom: 6px;
     }
-    .pillar-card h4 { font-size: 17px; color: #fff; margin-bottom: 6px; }
-    .pillar-card p { font-size: 13.5px; color: #94a3b8; line-height: 1.45; }
+
+    .pillar-card h4 {
+      font-size: 17px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .pillar-card p {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
 
     .flow-steps {
       display: grid;
@@ -412,15 +629,31 @@
       width: 100%;
       margin-top: 18px;
     }
+
     .flow-card {
       background: #0b1220;
       border: 1px solid #243554;
       border-radius: 12px;
       padding: 18px;
     }
-    .flow-card .f-time { color: var(--emerald); font-weight: 800; font-size: 12px; margin-bottom: 6px; }
-    .flow-card h4 { color: #fff; font-size: 15.5px; margin-bottom: 6px; }
-    .flow-card p { color: #94a3b8; font-size: 13px; }
+
+    .flow-card .f-time {
+      color: var(--emerald);
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .flow-card h4 {
+      color: #fff;
+      font-size: 15.5px;
+      margin-bottom: 6px;
+    }
+
+    .flow-card p {
+      color: #94a3b8;
+      font-size: 13px;
+    }
 
     .deck-controls {
       position: fixed;
@@ -434,9 +667,16 @@
       align-items: center;
       gap: 10px;
       z-index: 10000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
-    .deck-controls span { font-size: 12px; color: #94a3b8; font-family: monospace; padding: 0 6px; }
+
+    .deck-controls span {
+      font-size: 12px;
+      color: #94a3b8;
+      font-family: monospace;
+      padding: 0 6px;
+    }
+
     .deck-controls button {
       background: transparent;
       border: none;
@@ -447,7 +687,12 @@
       padding: 6px 8px;
       border-radius: 6px;
     }
-    .deck-controls button:hover { background: #1e293b; color: var(--accent); }
+
+    .deck-controls button:hover {
+      background: #1e293b;
+      color: var(--accent);
+    }
+
     .deck-controls .close-deck {
       background: rgba(239, 68, 68, 0.2);
       color: #fca5a5;
@@ -460,6 +705,7 @@
       outline: 1px dashed rgba(56, 189, 248, 0.45);
       border-radius: 4px;
     }
+
     [contenteditable="true"]:focus {
       outline: 2px solid var(--accent);
       background: rgba(56, 189, 248, 0.06);
@@ -467,868 +713,983 @@
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div>
-    <h1>⚡ Sistema Comercial — Do WhatsApp ao Fechamento</h1>
+  <header>
+    <div>
+      <h1>⚡ Sistema Comercial — Do WhatsApp ao Fechamento</h1>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <span class="badge-top" id="topPriceBadge">Preço Calculado: R$ 3.000 + R$ 500/mês</span>
+      <button class="btn btn-outline" onclick="resetNewClient()"
+        title="Limpar dados atuais para iniciar um novo cliente">🔄 Novo Cliente</button>
+      <button class="btn" onclick="openSlideDeck()">🖥️ Abrir Slides (7 Slides Diretos)</button>
+    </div>
+  </header>
+
+  <div class="nav">
+    <button class="active" onclick="showTab(0)">1️⃣ Chegou no WhatsApp (Agendar Call)</button>
+    <button onclick="showTab(1)">2️⃣ Reunião de Diagnóstico + Cálculo Automático</button>
+    <button onclick="showTab(2)">3️⃣ Apresentação de Proposta (7 Slides)</button>
+    <button onclick="showTab(3)">4️⃣ Contrato Pós-Fechamento</button>
+    <button onclick="showTab(4)">5️⃣ Formulários de Briefing (Pós-Venda)</button>
   </div>
-  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-    <span class="badge-top" id="topPriceBadge">Preço Calculado: R$ 3.000 + R$ 500/mês</span>
-    <button class="btn btn-outline" onclick="resetNewClient()" title="Limpar dados atuais para iniciar um novo cliente">🔄 Novo Cliente</button>
-    <button class="btn" onclick="openSlideDeck()">🖥️ Abrir Slides (7 Slides Diretos)</button>
-  </div>
-</header>
 
-<div class="nav">
-  <button class="active" onclick="showTab(0)">1️⃣ Chegou no WhatsApp (Agendar Call)</button>
-  <button onclick="showTab(1)">2️⃣ Reunião de Diagnóstico + Cálculo Automático</button>
-  <button onclick="showTab(2)">3️⃣ Apresentação de Proposta (7 Slides)</button>
-  <button onclick="showTab(3)">4️⃣ Contrato Pós-Fechamento</button>
-  <button onclick="showTab(4)">5️⃣ Formulários de Briefing (Pós-Venda)</button>
-</div>
+  <div class="container">
 
-<div class="container">
-
-  <!-- ===================================================================
+    <!-- ===================================================================
        ABA 1: CHEGOU NO WHATSAPP (SÓ AGENDAR A REUNIÃO DE DIAGNÓSTICO)
        =================================================================== -->
-  <div class="tab active">
-    <div class="card">
-      <h2>1️⃣ Cliente Chamou no WhatsApp (Marcar a Reunião de Diagnóstico)</h2>
-      <p class="sub">
-        O único objetivo aqui é pegar o nome/ramo da empresa e marcar a reunião de diagnóstico.
-      </p>
+    <div class="tab active">
+      <div class="card">
+        <h2>1️⃣ Cliente Chamou no WhatsApp (Marcar a Reunião de Diagnóstico)</h2>
+        <p class="sub">
+          O único objetivo aqui é pegar o nome/ramo da empresa e marcar a reunião de diagnóstico.
+        </p>
 
-      <div class="grid-2" style="margin-bottom: 14px;">
-        <div>
-          <label>Nome da Empresa / Clínica</label>
-          <input type="text" id="companyName" value="Clínica Belle Vie" oninput="syncAll()" />
+        <div class="grid-2" style="margin-bottom: 14px;">
+          <div>
+            <label>Nome da Empresa / Clínica</label>
+            <input type="text" id="companyName" value="Clínica Belle Vie" oninput="syncAll()" />
+          </div>
+          <div>
+            <label>Ramo da Empresa</label>
+            <input type="text" id="companyNiche" value="Estética Facial e Corporal" oninput="syncAll()" />
+          </div>
         </div>
-        <div>
-          <label>Ramo da Empresa</label>
-          <input type="text" id="companyNiche" value="Estética Facial e Corporal" oninput="syncAll()" />
-        </div>
-      </div>
 
-      <div class="script-box">
-        <div class="tag">Mensagem 1 — Assim que a pessoa chamar</div>
-        <p id="msgWa1">Oi, tudo certo? Para marcarmos a reunião de diagnóstico, preciso que você me diga o nome da empresa e o ramo.</p>
-        <div style="margin-top:10px;">
-          <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem 1</button>
+        <div class="script-box">
+          <div class="tag">Mensagem 1 — Assim que a pessoa chamar</div>
+          <p id="msgWa1">Oi, tudo certo? Para marcarmos a reunião de diagnóstico, preciso que você me diga o nome da
+            empresa e o ramo.</p>
+          <div style="margin-top:10px;">
+            <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem 1</button>
+          </div>
         </div>
-      </div>
 
-      <div class="script-box">
-        <div class="tag">Mensagem 2 — Assim que responder o nome da empresa e o ramo</div>
-        <p id="msgWa2">Vamos marcar uma reunião de diagnóstico para entender como vocês funcionam hoje e definir o que precisa ser feito. Fica melhor hoje às 15h ou amanhã às 10h?</p>
-        <div style="margin-top:10px;">
-          <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem 2</button>
+        <div class="script-box">
+          <div class="tag">Mensagem 2 — Assim que responder o nome da empresa e o ramo</div>
+          <p id="msgWa2">Vamos marcar uma reunião de diagnóstico para entender como vocês funcionam hoje e definir o que
+            precisa ser feito. Fica melhor hoje às 15h ou amanhã às 10h?</p>
+          <div style="margin-top:10px;">
+            <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem 2</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===================================================================
+    <!-- ===================================================================
        ABA 2: REUNIÃO DE DIAGNÓSTICO (8 PERGUNTAS ÚTEIS + CÁLCULO AUTOMÁTICO)
        =================================================================== -->
-  <div class="tab">
-    <div class="card">
-      <h2>2️⃣ Reunião de Diagnóstico + Proposta na Mesma Chamada (15 a 20 min)</h2>
-      <p class="sub">
-        <strong>Como funciona (Sem precisar decorar nada):</strong> Nos primeiros 10 minutos você só lê as 7 perguntas abaixo e clica/digita as respostas. Quando chegar no final (Passo 8), os <strong>7 slides da proposta já estarão prontos automaticamente</strong> — aí é só clicar no botão verde ali mesmo e ler os 7 slides na mesma chamada (mais 5 a 10 minutos).
-      </p>
-
-      <!-- PERGUNTA 1 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 01 • Serviço Principal e Ticket Médio</div>
-        <div class="q-title">"Qual é o procedimento ou serviço carro-chefe que vocês mais vendem hoje e qual é o valor médio (ticket médio) que um cliente gasta aí?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> Todo dono sabe quanto custa o serviço dele. Esse valor alimenta a calculadora para mostrar que recuperar apenas 2 ou 3 clientes no mês já paga todo o seu sistema.</div>
-        <div class="grid-2">
-          <div>
-            <label>Procedimento / Serviço Carro-Chefe</label>
-            <input type="text" id="mainService" value="protocolos faciais e corporais" oninput="syncAll()" />
-          </div>
-          <div>
-            <label>Ticket Médio por Cliente (R$)</label>
-            <input type="number" id="avgTicket" value="1800" step="100" oninput="syncAll()" />
-          </div>
-        </div>
-      </div>
-
-      <!-- PERGUNTA 2 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 02 • Investimento em Anúncios</div>
-        <div class="q-title">"Hoje vocês já colocam dinheiro em anúncio pago (Instagram/Google) para atrair clientes ou vêm mais por indicação e orgânico?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> Se ele já paga tráfego, cada pessoa que demora para ser respondida no WhatsApp é dinheiro de anúncio jogado no lixo.</div>
-        <div class="quick-chips">
-          <button type="button" class="chip" onclick="setVal('leadSource', 'Investe em anúncios pagos (Meta / Google Ads)')">Já investe em Anúncios Pagos</button>
-          <button type="button" class="chip" onclick="setVal('leadSource', 'Instagram orgânico e indicações')">Só Orgânico / Indicação</button>
-        </div>
-        <input type="text" id="leadSource" value="Investe em anúncios pagos (Meta / Google Ads)" oninput="syncAll()" />
-      </div>
-
-      <!-- PERGUNTA 3 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 03 • Volume Diário de Mensagens</div>
-        <div class="q-title">"Em média, quantas pessoas novas chamam no WhatsApp de vocês por dia pedindo informação ou preço?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> Define o tamanho da operação. Quanto mais gente chama por dia, mais mensagens a IA processa e maior é o valor automático da sua implantação e mensalidade.</div>
-        <div class="quick-chips">
-          <button type="button" class="chip" onclick="setLeadsDay(8)">~5 a 10 por dia</button>
-          <button type="button" class="chip" onclick="setLeadsDay(15)">~15 por dia</button>
-          <button type="button" class="chip" onclick="setLeadsDay(25)">~25 por dia</button>
-          <button type="button" class="chip" onclick="setLeadsDay(45)">40+ por dia</button>
-        </div>
-        <div class="grid-2">
-          <div>
-            <label>Novos Contatos por Dia</label>
-            <input type="number" id="leadsPerDay" value="15" oninput="syncLeads('day')" />
-          </div>
-          <div>
-            <label>Total Estimado no Mês (x30 dias)</label>
-            <input type="number" id="leadsPerMonth" value="450" oninput="syncLeads('month')" />
-          </div>
-        </div>
-      </div>
-
-      <!-- PERGUNTA 4 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 04 • Quem Atende Hoje + Quantidade de Agendas</div>
-        <div class="q-title">"Quem responde o WhatsApp hoje fica só por conta disso ou acumula recepção e outras coisas? E para quantos profissionais/agendas diferentes precisa marcar horário?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> 1) Mostra que a recepcionista está sobrecarregada; 2) Saber o número de agendas/profissionais ajusta automaticamente o preço do seu trabalho (configurar 4 agendas dá mais trabalho que 1).</div>
-        <div class="grid-2">
-          <div>
-            <label>Quem responde hoje</label>
-            <input type="text" id="whoAnswers" value="Recepcionista acumula WhatsApp com atendimento presencial" oninput="syncAll()" />
-          </div>
-          <div>
-            <label>Quantidade de Agendas / Profissionais na Empresa</label>
-            <input type="number" id="numAgendas" value="2" min="1" max="30" oninput="syncAll()" />
-          </div>
-        </div>
-      </div>
-
-      <!-- PERGUNTA 5 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 05 • Demora no Horário de Pico, Noite e Fim de Semana</div>
-        <div class="q-title">"Quando chega mensagem na correria da tarde, no almoço, à noite (ex: 21h) ou fim de semana, quanto tempo a pessoa costuma esperar até receber resposta?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> Faz o dono confessar a dor principal: quem chama à noite ou espera horas acaba fechando com outro lugar que respondeu rápido.</div>
-        <div class="quick-chips">
-          <button type="button" class="chip" onclick="setVal('waitTime', 'Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte')">1 a 3h de dia / À noite só no dia seguinte</button>
-          <button type="button" class="chip" onclick="setVal('waitTime', 'Mais de 4 horas em dias cheios e ninguém atende fora do horário comercial')">Mais de 4h em dias cheios</button>
-        </div>
-        <input type="text" id="waitTime" value="Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte" oninput="syncAll()" />
-      </div>
-
-      <!-- PERGUNTA 6 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 06 • Falta de Acompanhamento (Follow-up)</div>
-        <div class="q-title">"E quando a pessoa pergunta o valor, fala 'vou pensar' e some: vocês conseguem chamar todo mundo de novo nos dias seguintes ou na correria esses contatos acabam ficando pra trás?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> É aqui que está a maior perda de dinheiro. Todo empresário admite que não dá tempo de fazer follow-up em quem sumiu — e o seu sistema faz isso 100% no automático.</div>
-        <div class="quick-chips">
-          <button type="button" class="chip" onclick="setVal('followupPain', 'Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno')">Ficam sem retorno na correria</button>
-          <button type="button" class="chip" onclick="setVal('followupPain', 'Tenta chamar uma vez quando lembra, mas sem rotina fixa de acompanhamento')">Tenta quando lembra, sem rotina</button>
-        </div>
-        <input type="text" id="followupPain" value="Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno" oninput="syncAll()" />
-      </div>
-
-      <!-- PERGUNTA 7 -->
-      <div class="q-item">
-        <div class="q-num">Pergunta 07 • Controle e Risco de Dependência</div>
-        <div class="q-title">"Hoje você tem um painel que te mostra na hora quantos contatos entraram e quantos agendaram, ou fica tudo solto nas conversas do WhatsApp dependendo da pessoa que atende?"</div>
-        <div class="q-why">🎯 <strong>Para que serve:</strong> Justifica por que o seu sistema já entrega CRM + Painel de Controle prontos (sem depender da memória ou presença de um funcionário).</div>
-        <div class="quick-chips">
-          <button type="button" class="chip" onclick="setVal('controlPain', 'Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende')">Tudo solto no WhatsApp sem painel</button>
-          <button type="button" class="chip" onclick="setVal('controlPain', 'Anota manualmente em planilha/caderno, dando retrabalho e sem visão em tempo real')">Planilha/caderno manual</button>
-        </div>
-        <input type="text" id="controlPain" value="Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende" oninput="syncAll()" />
-      </div>
-
-      <!-- PASSO 8: ABRIR A PROPOSTA NA MESMA CHAMADA -->
-      <div class="q-item" style="border-color: var(--emerald);">
-        <div class="q-num" style="color:var(--emerald);">Passo 08 • Apresentar a Proposta Agora (Na Mesma Reunião)</div>
-        <div class="q-title">Assim que terminar a Pergunta 7, leia exatamente isto e abra os slides:</div>
-        <p style="font-size:14.5px; color:#d1fae5; margin-top:6px; margin-bottom:14px;">
-          "Perfeito, já entendi como funciona a rotina de vocês hoje. Eu já joguei esses números aqui na minha tela e o plano de implantação com o valor já está pronto. Vou compartilhar minha tela rapidinho (leva 5 minutos) pra você ver a proposta, beleza?"
+    <div class="tab">
+      <div class="card">
+        <h2>2️⃣ Reunião de Diagnóstico + Proposta na Mesma Chamada (15 a 20 min)</h2>
+        <p class="sub">
+          <strong>Como funciona (Sem precisar decorar nada):</strong> Nos primeiros 10 minutos você só lê as 7 perguntas
+          abaixo e clica/digita as respostas. Quando chegar no final (Passo 8), os <strong>7 slides da proposta já
+            estarão prontos automaticamente</strong> — aí é só clicar no botão verde ali mesmo e ler os 7 slides na
+          mesma chamada (mais 5 a 10 minutos).
         </p>
-        <button type="button" class="btn btn-emerald btn-lg" onclick="openSlideDeck()">🖥️ Abrir os 7 Slides da Proposta Agora</button>
-      </div>
-    </div>
 
-    <!-- =================================================================
+        <!-- PERGUNTA 1 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 01 • Serviço Principal e Ticket Médio</div>
+          <div class="q-title">"Qual é o procedimento ou serviço carro-chefe que vocês mais vendem hoje e qual é o valor
+            médio (ticket médio) que um cliente gasta aí?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> Todo dono sabe quanto custa o serviço dele. Esse valor
+            alimenta a calculadora para mostrar que recuperar apenas 2 ou 3 clientes no mês já paga todo o seu sistema.
+          </div>
+          <div class="grid-2">
+            <div>
+              <label>Procedimento / Serviço Carro-Chefe</label>
+              <input type="text" id="mainService" value="protocolos faciais e corporais" oninput="syncAll()" />
+            </div>
+            <div>
+              <label>Ticket Médio por Cliente (R$)</label>
+              <input type="number" id="avgTicket" value="1800" step="100" oninput="syncAll()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 2 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 02 • Investimento em Anúncios</div>
+          <div class="q-title">"Hoje vocês já colocam dinheiro em anúncio pago (Instagram/Google) para atrair clientes
+            ou vêm mais por indicação e orgânico?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> Se ele já paga tráfego, cada pessoa que demora para ser
+            respondida no WhatsApp é dinheiro de anúncio jogado no lixo.</div>
+          <div class="quick-chips">
+            <button type="button" class="chip"
+              onclick="setVal('leadSource', 'Investe em anúncios pagos (Meta / Google Ads)')">Já investe em Anúncios
+              Pagos</button>
+            <button type="button" class="chip" onclick="setVal('leadSource', 'Instagram orgânico e indicações')">Só
+              Orgânico / Indicação</button>
+          </div>
+          <input type="text" id="leadSource" value="Investe em anúncios pagos (Meta / Google Ads)"
+            oninput="syncAll()" />
+        </div>
+
+        <!-- PERGUNTA 3 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 03 • Volume Diário de Mensagens</div>
+          <div class="q-title">"Em média, quantas pessoas novas chamam no WhatsApp de vocês por dia pedindo informação
+            ou preço?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> Define o tamanho da operação. Quanto mais gente chama
+            por dia, mais mensagens a IA processa e maior é o valor automático da sua implantação e mensalidade.</div>
+          <div class="quick-chips">
+            <button type="button" class="chip" onclick="setLeadsDay(8)">~5 a 10 por dia</button>
+            <button type="button" class="chip" onclick="setLeadsDay(15)">~15 por dia</button>
+            <button type="button" class="chip" onclick="setLeadsDay(25)">~25 por dia</button>
+            <button type="button" class="chip" onclick="setLeadsDay(45)">40+ por dia</button>
+          </div>
+          <div class="grid-2">
+            <div>
+              <label>Novos Contatos por Dia</label>
+              <input type="number" id="leadsPerDay" value="15" oninput="syncLeads('day')" />
+            </div>
+            <div>
+              <label>Total Estimado no Mês (x30 dias)</label>
+              <input type="number" id="leadsPerMonth" value="450" oninput="syncLeads('month')" />
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 4 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 04 • Quem Atende Hoje + Quantidade de Agendas</div>
+          <div class="q-title">"Quem responde o WhatsApp hoje fica só por conta disso ou acumula recepção e outras
+            coisas? E para quantos profissionais/agendas diferentes precisa marcar horário?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> 1) Mostra que a recepcionista está sobrecarregada; 2)
+            Saber o número de agendas/profissionais ajusta automaticamente o preço do seu trabalho (configurar 4 agendas
+            dá mais trabalho que 1).</div>
+          <div class="grid-2">
+            <div>
+              <label>Quem responde hoje</label>
+              <input type="text" id="whoAnswers" value="Recepcionista acumula WhatsApp com atendimento presencial"
+                oninput="syncAll()" />
+            </div>
+            <div>
+              <label>Quantidade de Agendas / Profissionais na Empresa</label>
+              <input type="number" id="numAgendas" value="2" min="1" max="30" oninput="syncAll()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 5 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 05 • Demora no Horário de Pico, Noite e Fim de Semana</div>
+          <div class="q-title">"Quando chega mensagem na correria da tarde, no almoço, à noite (ex: 21h) ou fim de
+            semana, quanto tempo a pessoa costuma esperar até receber resposta?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> Faz o dono confessar a dor principal: quem chama à
+            noite ou espera horas acaba fechando com outro lugar que respondeu rápido.</div>
+          <div class="quick-chips">
+            <button type="button" class="chip"
+              onclick="setVal('waitTime', 'Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte')">1
+              a 3h de dia / À noite só no dia seguinte</button>
+            <button type="button" class="chip"
+              onclick="setVal('waitTime', 'Mais de 4 horas em dias cheios e ninguém atende fora do horário comercial')">Mais
+              de 4h em dias cheios</button>
+          </div>
+          <input type="text" id="waitTime"
+            value="Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte"
+            oninput="syncAll()" />
+        </div>
+
+        <!-- PERGUNTA 6 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 06 • Falta de Acompanhamento (Follow-up)</div>
+          <div class="q-title">"E quando a pessoa pergunta o valor, fala 'vou pensar' e some: vocês conseguem chamar
+            todo mundo de novo nos dias seguintes ou na correria esses contatos acabam ficando pra trás?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> É aqui que está a maior perda de dinheiro. Todo
+            empresário admite que não dá tempo de fazer follow-up em quem sumiu — e o seu sistema faz isso 100% no
+            automático.</div>
+          <div class="quick-chips">
+            <button type="button" class="chip"
+              onclick="setVal('followupPain', 'Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno')">Ficam
+              sem retorno na correria</button>
+            <button type="button" class="chip"
+              onclick="setVal('followupPain', 'Tenta chamar uma vez quando lembra, mas sem rotina fixa de acompanhamento')">Tenta
+              quando lembra, sem rotina</button>
+          </div>
+          <input type="text" id="followupPain"
+            value="Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno"
+            oninput="syncAll()" />
+        </div>
+
+        <!-- PERGUNTA 7 -->
+        <div class="q-item">
+          <div class="q-num">Pergunta 07 • Controle e Risco de Dependência</div>
+          <div class="q-title">"Hoje você tem um painel que te mostra na hora quantos contatos entraram e quantos
+            agendaram, ou fica tudo solto nas conversas do WhatsApp dependendo da pessoa que atende?"</div>
+          <div class="q-why">🎯 <strong>Para que serve:</strong> Justifica por que o seu sistema já entrega CRM + Painel
+            de Controle prontos (sem depender da memória ou presença de um funcionário).</div>
+          <div class="quick-chips">
+            <button type="button" class="chip"
+              onclick="setVal('controlPain', 'Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende')">Tudo
+              solto no WhatsApp sem painel</button>
+            <button type="button" class="chip"
+              onclick="setVal('controlPain', 'Anota manualmente em planilha/caderno, dando retrabalho e sem visão em tempo real')">Planilha/caderno
+              manual</button>
+          </div>
+          <input type="text" id="controlPain"
+            value="Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende"
+            oninput="syncAll()" />
+        </div>
+
+        <!-- PASSO 8: ABRIR A PROPOSTA NA MESMA CHAMADA -->
+        <div class="q-item" style="border-color: var(--emerald);">
+          <div class="q-num" style="color:var(--emerald);">Passo 08 • Apresentar a Proposta Agora (Na Mesma Reunião)
+          </div>
+          <div class="q-title">Assim que terminar a Pergunta 7, leia exatamente isto e abra os slides:</div>
+          <p style="font-size:14.5px; color:#d1fae5; margin-top:6px; margin-bottom:14px;">
+            "Perfeito, já entendi como funciona a rotina de vocês hoje. Eu já joguei esses números aqui na minha tela e
+            o plano de implantação com o valor já está pronto. Vou compartilhar minha tela rapidinho (leva 5 minutos)
+            pra você ver a proposta, beleza?"
+          </p>
+          <button type="button" class="btn btn-emerald btn-lg" onclick="openSlideDeck()">🖥️ Abrir os 7 Slides da
+            Proposta Agora</button>
+        </div>
+      </div>
+
+      <!-- =================================================================
          CALCULADORA AUTOMÁTICA DE IMPACTO E PRECIFICAÇÃO DO SEU SISTEMA
          ================================================================= -->
-    <div class="card">
-      <h2>🧮 Calculadora Automática (Dinheiro na Mesa + Quanto Cobrar Pelo Seu Sistema)</h2>
-      <p class="sub">
-        Você <strong>não</strong> precisa perguntar pro cliente quantos fechamentos ele perde. O sistema calcula automaticamente abaixo com base nos dados reais que você preencheu acima (Ticket Médio, Leads/dia e Nº de Agendas) usando uma premissa super conservadora.
-      </p>
+      <div class="card">
+        <h2>🧮 Calculadora Automática (Dinheiro na Mesa + Quanto Cobrar Pelo Seu Sistema)</h2>
+        <p class="sub">
+          Você <strong>não</strong> precisa perguntar pro cliente quantos fechamentos ele perde. O sistema calcula
+          automaticamente abaixo com base nos dados reais que você preencheu acima (Ticket Médio, Leads/dia e Nº de
+          Agendas) usando uma premissa super conservadora.
+        </p>
 
-      <div class="grid-3">
-        <div>
-          <label>Nível do Gargalo Diagnosticado</label>
-          <select id="lossRateSelect" onchange="syncAll()">
-            <option value="0.02">Conservador — Recuperar só 2% dos leads do mês</option>
-            <option value="0.03" selected>Padrão — Recuperar 3% dos leads (demora + sem follow-up)</option>
-            <option value="0.045">Alto — Recuperar 4,5% dos leads (muito volume perdido)</option>
-          </select>
+        <div class="grid-3">
+          <div>
+            <label>Nível do Gargalo Diagnosticado</label>
+            <select id="lossRateSelect" onchange="syncAll()">
+              <option value="0.02">Conservador — Recuperar só 2% dos leads do mês</option>
+              <option value="0.03" selected>Padrão — Recuperar 3% dos leads (demora + sem follow-up)</option>
+              <option value="0.045">Alto — Recuperar 4,5% dos leads (muito volume perdido)</option>
+            </select>
+          </div>
+          <div>
+            <label>Clientes Recuperados / Mês (Automático ou ajuste)</label>
+            <input type="number" id="extraClients" value="14" min="1" oninput="syncManualExtra()" />
+          </div>
+          <div>
+            <label>Prazo de Implantação (Dias)</label>
+            <input type="number" id="deliveryDays" value="30" oninput="syncAll()" />
+          </div>
         </div>
-        <div>
-          <label>Clientes Recuperados / Mês (Automático ou ajuste)</label>
-          <input type="number" id="extraClients" value="14" min="1" oninput="syncManualExtra()" />
-        </div>
-        <div>
-          <label>Prazo de Implantação (Dias)</label>
-          <input type="number" id="deliveryDays" value="30" oninput="syncAll()" />
-        </div>
-      </div>
 
-      <div class="calc-panel">
-        <div class="grid-2" style="margin-bottom:16px;">
-          <div class="calc-box">
-            <div class="lbl">1. Dinheiro que o Cliente Deixa na Mesa (Vai para o Slide 3)</div>
-            <div class="val" id="calcMonthlyLoss">R$ 25.200 / mês</div>
-            <div class="explain" id="calcLossExplain">
-              De 450 contatos/mês, recuperar apenas <strong>14 clientes/mês</strong> (3%) com ticket médio de R$ 1.800 gera <strong>R$ 25.200/mês</strong> (ou <strong>R$ 302.400/ano</strong>).
+        <div class="calc-panel">
+          <div class="grid-2" style="margin-bottom:16px;">
+            <div class="calc-box">
+              <div class="lbl">1. Dinheiro que o Cliente Deixa na Mesa (Vai para o Slide 3)</div>
+              <div class="val" id="calcMonthlyLoss">R$ 25.200 / mês</div>
+              <div class="explain" id="calcLossExplain">
+                De 450 contatos/mês, recuperar apenas <strong>14 clientes/mês</strong> (3%) com ticket médio de R$ 1.800
+                gera <strong>R$ 25.200/mês</strong> (ou <strong>R$ 302.400/ano</strong>).
+              </div>
+            </div>
+
+            <div class="calc-box" style="border-color: var(--accent);">
+              <div class="lbl" style="color: var(--accent);">2. Preço Calculado p/ Você Cobrar (Vai para o Slide 6)
+              </div>
+              <div class="val" style="color: var(--accent);" id="calcRecommendedPrice">R$ 4.200 + R$ 750/mês</div>
+              <div class="explain" id="calcPriceFormula">
+                Calculado automaticamente pelo volume de leads/dia, nº de agendas e retorno do cliente. Com apenas
+                <strong>3 clientes recuperados</strong> no 1º mês ele já paga toda a implantação!
+              </div>
             </div>
           </div>
 
-          <div class="calc-box" style="border-color: var(--accent);">
-            <div class="lbl" style="color: var(--accent);">2. Preço Calculado p/ Você Cobrar (Vai para o Slide 6)</div>
-            <div class="val" style="color: var(--accent);" id="calcRecommendedPrice">R$ 4.200 + R$ 750/mês</div>
-            <div class="explain" id="calcPriceFormula">
-              Calculado automaticamente pelo volume de leads/dia, nº de agendas e retorno do cliente. Com apenas <strong>3 clientes recuperados</strong> no 1º mês ele já paga toda a implantação!
+          <div class="grid-2">
+            <div>
+              <label>Valor Final da Implantação / Setup (R$) — Piso Mínimo R$ 3.000</label>
+              <input type="number" id="setupPrice" value="4200" min="3000" step="100" oninput="syncManualPrice()" />
+            </div>
+            <div>
+              <label>Valor Final da Mensalidade (R$/mês) — Piso Mínimo R$ 500</label>
+              <input type="number" id="monthlyPrice" value="750" min="500" step="50" oninput="syncManualPrice()" />
             </div>
           </div>
-        </div>
-
-        <div class="grid-2">
-          <div>
-            <label>Valor Final da Implantação / Setup (R$) — Piso Mínimo R$ 3.000</label>
-            <input type="number" id="setupPrice" value="4200" min="3000" step="100" oninput="syncManualPrice()" />
-          </div>
-          <div>
-            <label>Valor Final da Mensalidade (R$/mês) — Piso Mínimo R$ 500</label>
-            <input type="number" id="monthlyPrice" value="750" min="500" step="50" oninput="syncManualPrice()" />
+          <div
+            style="margin-top:6px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+            <span style="font-size:12.5px; color:#94a3b8;">💡 Os valores mudam sozinhos conforme você altera Leads/dia,
+              Ticket Médio e Nº de Agendas (ou você pode digitar acima se quiser fixar outro valor).</span>
+            <button type="button" class="btn btn-outline" onclick="resetAutoPrice()">🔄 Recalcular Preço
+              Automático</button>
           </div>
         </div>
-        <div style="margin-top:6px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-          <span style="font-size:12.5px; color:#94a3b8;">💡 Os valores mudam sozinhos conforme você altera Leads/dia, Ticket Médio e Nº de Agendas (ou você pode digitar acima se quiser fixar outro valor).</span>
-          <button type="button" class="btn btn-outline" onclick="resetAutoPrice()">🔄 Recalcular Preço Automático</button>
-        </div>
-      </div>
 
-      <div style="margin-top: 18px; display:flex; gap:12px; flex-wrap:wrap;">
-        <button class="btn btn-lg" onclick="openSlideDeck()">🖥️ Abrir Apresentação Enxuta (7 Slides Prontos)</button>
-        <button class="btn btn-outline btn-lg" onclick="downloadStandaloneDeck()">💾 Baixar Arquivo dos Slides (.HTML)</button>
+        <div style="margin-top: 18px; display:flex; gap:12px; flex-wrap:wrap;">
+          <button class="btn btn-lg" onclick="openSlideDeck()">🖥️ Abrir Apresentação Enxuta (7 Slides Prontos)</button>
+          <button class="btn btn-outline btn-lg" onclick="downloadStandaloneDeck()">💾 Baixar Arquivo dos Slides
+            (.HTML)</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===================================================================
+    <!-- ===================================================================
        ABA 3: APRESENTAÇÃO DE PROPOSTA (7 SLIDES ESSENCIAIS)
        =================================================================== -->
-  <div class="tab">
-    <div class="card">
-      <h2>3️⃣ Apresentação de Proposta Enxuta (7 Slides Diretos e Sem Enrolação)</h2>
-      <p class="sub">
-        Em vez de 14 slides longos e cansativos, esta apresentação tem apenas os <strong>7 slides essenciais</strong> que conectam o problema diagnosticado, o dinheiro que fica na mesa, o seu sistema completo integrado e o investimento.
-      </p>
+    <div class="tab">
+      <div class="card">
+        <h2>3️⃣ Apresentação de Proposta Enxuta (7 Slides Diretos e Sem Enrolação)</h2>
+        <p class="sub">
+          Em vez de 14 slides longos e cansativos, esta apresentação tem apenas os <strong>7 slides essenciais</strong>
+          que conectam o problema diagnosticado, o dinheiro que fica na mesa, o seu sistema completo integrado e o
+          investimento.
+        </p>
 
-      <div style="display:flex; gap:14px; flex-wrap:wrap; margin: 20px 0;">
-        <button class="btn btn-lg" onclick="openSlideDeck()">🖥️ ABRIR OS 7 SLIDES EM TELA CHEIA</button>
-        <button class="btn btn-outline btn-lg" onclick="downloadStandaloneDeck()">💾 BAIXAR APRESENTAÇÃO DESTE CLIENTE (.HTML)</button>
-        <a href="apresentacao.html" target="_blank" class="btn btn-outline btn-lg">📊 Abrir Apresentação Detalhada (14 Slides)</a>
-      </div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap; margin: 20px 0;">
+          <button class="btn btn-lg" onclick="openSlideDeck()">🖥️ ABRIR OS 7 SLIDES EM TELA CHEIA</button>
+          <button class="btn btn-outline btn-lg" onclick="downloadStandaloneDeck()">💾 BAIXAR APRESENTAÇÃO DESTE CLIENTE
+            (.HTML)</button>
+          <a href="apresentacao.html" target="_blank" class="btn btn-outline btn-lg">📊 Abrir Apresentação Detalhada (14
+            Slides)</a>
+        </div>
 
-      <div class="script-box">
-        <div class="tag">Estrutura dos 7 Slides Essenciais</div>
-        <p><strong>Slide 1 — Capa:</strong> Nome da empresa do cliente + Estrutura de Atendimento e Agendamento com IA.
-<strong>Slide 2 — O Cenário Atual:</strong> Os 3 gargalos reais anotados no diagnóstico (demora fora de hora/pico, falta de follow-up em quem some e falta de controle).
-<strong>Slide 3 — O Impacto Financeiro:</strong> Quanto dinheiro fica na mesa por mês e por ano perdendo apenas alguns clientes por falta de velocidade/acompanhamento.
-<strong>Slide 4 — A Solução Completa (Tudo Integrado):</strong> Mostra em 1 único slide forte todo o seu sistema (Secretária IA 24h + Agenda Automática + CRM/Painel + Suporte Contínuo).
-<strong>Slide 5 — Como Funciona na Prática + Prazo:</strong> O exemplo real do cliente atendido às 21h40 + Entrega completa em até 30 dias.
-<strong>Slide 6 — Comparativo de Custo & Investimento:</strong> Custo tradicional (R$ 3.500 a R$ 6.000/mês) vs. Seu Investimento (mostrando que 2 ou 3 clientes recuperados já pagam tudo).
-<strong>Slide 7 — Próximos Passos:</strong> Aprovação Hoje → Contrato → Briefing → Sistema no Ar.</p>
+        <div class="script-box">
+          <div class="tag">💡 Guia Rápido — O que explicar com suas palavras em cada Slide (Sem parecer robô)</div>
+          <p><strong>Slide 1 (Capa):</strong> Apresenta o resumo do diagnóstico e o plano de implantação da empresa.
+
+<strong>Slide 2 (O Cenário Atual):</strong> Aponta os 3 gargalos que a pessoa te falou na conversa: demora para responder nos horários de pico/noite, falta de retorno em quem diz "vou pensar" e falta de controle manual no WhatsApp.
+
+<strong>Slide 3 (O Impacto Financeiro):</strong> Mostra a conta: dos contatos que entram no mês, recuperando apenas os poucos clientes que hoje esfriam pela demora ou falta de follow-up, gera esse faturamento extra mensal.
+
+<strong>Slide 4 (A Solução Completa):</strong> Explica as 4 entregas funcionando juntas: 1) IA atendendo 24h no WhatsApp + follow-up automático; 2) Agendamento automático na agenda; 3) CRM e Painel de controle; 4) Suporte contínuo.
+
+<strong>Slide 5 (Na Prática + Prazo):</strong> Mostra o exemplo do cliente chamando às 21h40 (atendido e agendado em 4 minutos) e confirma o prazo de entrega de até 30 dias.
+
+<strong>Slide 6 (Investimento):</strong> Compara com o custo tradicional (mais de R$ 3.100/mês) e apresenta o valor dividido em 2x (50% no contrato e 50% só após a entrega), com a 1ª mensalidade apenas 30 dias após a entrega.
+
+<strong>Slide 7 (Próximos Passos):</strong> Explica os 4 passos para começar hoje: aprovação, contrato digital, preenchimento do formulário de briefing e sistema no ar em até 30 dias.</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===================================================================
+    <!-- ===================================================================
        ABA 4: CONTRATO PÓS-FECHAMENTO
        =================================================================== -->
-  <div class="tab">
-    <div class="card">
-      <h2>4️⃣ Pós-Fechamento: Dados Jurídicos do Contrato + Briefing</h2>
-      <p class="sub">
-        Quando o cliente aprovar a proposta, mande esta mensagem no WhatsApp pedindo apenas os dados jurídicos para o Contrato e o link do Formulário de Briefing.
-      </p>
+    <div class="tab">
+      <div class="card">
+        <h2>4️⃣ Pós-Fechamento: Dados Jurídicos do Contrato + Briefing</h2>
+        <p class="sub">
+          Quando o cliente aprovar a proposta, mande esta mensagem no WhatsApp pedindo apenas os dados jurídicos para o
+          Contrato e o link do Formulário de Briefing.
+        </p>
 
-      <div class="script-box">
-        <div class="tag">Mensagem no WhatsApp — Pós-Fechamento</div>
-        <p id="msgPostClose"></p>
-        <div style="margin-top:10px;">
-          <button class="btn btn-outline" onclick="copyText('msgPostClose')">📋 Copiar Mensagem de Pós-Fechamento</button>
+        <div class="script-box">
+          <div class="tag">Mensagem no WhatsApp — Pós-Fechamento</div>
+          <p id="msgPostClose"></p>
+          <div style="margin-top:10px;">
+            <button class="btn btn-outline" onclick="copyText('msgPostClose')">📋 Copiar Mensagem de
+              Pós-Fechamento</button>
+          </div>
         </div>
-      </div>
 
-      <h3>Dados Recebidos para Emitir o Contrato</h3>
-      <div class="grid-3">
-        <div>
-          <label>Nome do Responsável Legal + CPF/CNPJ</label>
-          <input type="text" id="clientDoc" placeholder="Ex: Maria Silva - CNPJ 12.345.678/0001-90" oninput="syncAll()" />
+        <h3>Dados Recebidos para Emitir o Contrato</h3>
+        <div class="grid-3">
+          <div>
+            <label>Nome do Responsável Legal + CPF/CNPJ</label>
+            <input type="text" id="clientDoc" placeholder="Ex: Maria Silva - CNPJ 12.345.678/0001-90"
+              oninput="syncAll()" />
+          </div>
+          <div>
+            <label>Endereço Completo com CEP</label>
+            <input type="text" id="clientAddress" placeholder="Rua, Número, Bairro, Cidade/UF, CEP"
+              oninput="syncAll()" />
+          </div>
+          <div>
+            <label>E-mail para Assinatura</label>
+            <input type="text" id="clientEmail" placeholder="contato@empresa.com.br" oninput="syncAll()" />
+          </div>
         </div>
-        <div>
-          <label>Endereço Completo com CEP</label>
-          <input type="text" id="clientAddress" placeholder="Rua, Número, Bairro, Cidade/UF, CEP" oninput="syncAll()" />
-        </div>
-        <div>
-          <label>E-mail para Assinatura</label>
-          <input type="text" id="clientEmail" placeholder="contato@empresa.com.br" oninput="syncAll()" />
-        </div>
-      </div>
 
-      <div class="script-box" style="border-left-color: var(--gold);">
-        <div class="tag" style="color: var(--gold);">Comando Pronto para Gerar o Contrato e Cronograma</div>
-        <p id="promptContract"></p>
-        <div style="margin-top:10px;">
-          <button class="btn btn-gold" onclick="copyText('promptContract')">📋 Copiar Comando para Gerar Contrato</button>
+        <div class="script-box" style="border-left-color: var(--gold);">
+          <div class="tag" style="color: var(--gold);">Comando Pronto para Gerar o Contrato e Cronograma</div>
+          <p id="promptContract"></p>
+          <div style="margin-top:10px;">
+            <button class="btn btn-gold" onclick="copyText('promptContract')">📋 Copiar Comando para Gerar
+              Contrato</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===================================================================
+    <!-- ===================================================================
        ABA 5: FORMULÁRIOS DE BRIEFING OFICIAIS (PÓS-VENDA)
        =================================================================== -->
-  <div class="tab">
-    <div class="card">
-      <h2>5️⃣ Formulários Oficiais de Briefing (Enviados Após o Fechamento)</h2>
-      <p class="sub">
-        É aqui no pós-venda que o cliente preenche os procedimentos, dúvidas repetidas dos pacientes, objeções, convênios e regras de agenda para você configurar a IA.
-      </p>
+    <div class="tab">
+      <div class="card">
+        <h2>5️⃣ Formulários Oficiais de Briefing (Enviados Após o Fechamento)</h2>
+        <p class="sub">
+          É aqui no pós-venda que o cliente preenche os procedimentos, dúvidas repetidas dos pacientes, objeções,
+          convênios e regras de agenda para você configurar a IA.
+        </p>
 
-      <div class="grid-2">
-        <!-- FORM 01: ESTÉTICA / SAÚDE -->
-        <div class="card" style="background:#0a101d; margin-bottom:0;">
-          <h3 style="margin-top:0; color:var(--accent);">📄 Modelo 01: Clínicas de Estética e Saúde</h3>
-          <p class="sub" style="margin-bottom:12px;">Formulário completo para Clínicas de Estética</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
-            <a href="https://forms.gle/6R8GMbKJXNDemV8z9" target="_blank" class="btn">🔗 Abrir Google Forms 01</a>
-            <button class="btn btn-outline" onclick="copyText('form1Questions')">📋 Copiar Perguntas</button>
+        <div class="grid-2">
+          <!-- FORM 01: ESTÉTICA / SAÚDE -->
+          <div class="card" style="background:#0a101d; margin-bottom:0;">
+            <h3 style="margin-top:0; color:var(--accent);">📄 Modelo 01: Clínicas de Estética e Saúde</h3>
+            <p class="sub" style="margin-bottom:12px;">Formulário completo para Clínicas de Estética</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+              <a href="https://forms.gle/6R8GMbKJXNDemV8z9" target="_blank" class="btn">🔗 Abrir Google Forms 01</a>
+              <button class="btn btn-outline" onclick="copyText('form1Questions')">📋 Copiar Perguntas</button>
+            </div>
+
+            <div class="briefing-list" id="form1Questions">
+              <h4>Seção 1 — Dados da Clínica e Agendas</h4>
+              <ol>
+                <li>Qual o seu nome e sobrenome?</li>
+                <li>Qual o nome da sua clínica?</li>
+                <li>Qual o endereço completo da clínica (com CEP, bairro e cidade)?</li>
+                <li>Qual o horário de funcionamento (dias e horários)?</li>
+                <li>Qual é o principal canal de onde vêm os pacientes hoje?</li>
+                <li>Em média, quantos pacientes agenda com os leads atuais?</li>
+                <li>Quantas agendas diferentes a clínica possui?</li>
+                <li>Qual o Instagram e site da clínica?</li>
+                <li>Qual o nome que você quer dar para a sua secretária de IA?</li>
+              </ol>
+
+              <h4>Seção 2 — 💉 Procedimentos e Tecnologias</h4>
+              <ol start="10">
+                <li>Quais procedimentos faciais oferece?</li>
+                <li>Quais procedimentos corporais oferece?</li>
+                <li>Quais procedimentos de depilação e clareamento oferece?</li>
+                <li>Quais protocolos especiais e integrados oferece?</li>
+                <li>Qual é o procedimento carro-chefe da clínica?</li>
+                <li>Quais tecnologias/aparelhos a clínica utiliza?</li>
+                <li>Observações adicionais sobre os procedimentos.</li>
+              </ol>
+
+              <h4>Seção 3 — 💬 Dúvidas Repetidas, Objeções, Convênios e Sinal</h4>
+              <ol start="17">
+                <li>Quais são as dúvidas mais comuns sobre os procedimentos (dói, sessões, recuperação,
+                  contraindicações, duração)?</li>
+                <li>Quais objeções mais escuta antes do paciente marcar?</li>
+                <li>Quais perguntas costumam fazer sobre valores, avaliação e formas de pagamento?</li>
+                <li>Atende convênios? Quais planos e quais documentos o paciente precisa enviar?</li>
+                <li>Que dúvidas surgem sobre agendamento, sábados e remarcação?</li>
+                <li>Cobra valor de sinal para confirmar agendamento? Se sim, qual valor ou %?</li>
+                <li>Observações extras sobre dúvidas ou regras específicas da clínica.</li>
+              </ol>
+            </div>
           </div>
 
-          <div class="briefing-list" id="form1Questions">
-            <h4>Seção 1 — Dados da Clínica e Agendas</h4>
-            <ol>
-              <li>Qual o seu nome e sobrenome?</li>
-              <li>Qual o nome da sua clínica?</li>
-              <li>Qual o endereço completo da clínica (com CEP, bairro e cidade)?</li>
-              <li>Qual o horário de funcionamento (dias e horários)?</li>
-              <li>Qual é o principal canal de onde vêm os pacientes hoje?</li>
-              <li>Em média, quantos pacientes agenda com os leads atuais?</li>
-              <li>Quantas agendas diferentes a clínica possui?</li>
-              <li>Qual o Instagram e site da clínica?</li>
-              <li>Qual o nome que você quer dar para a sua secretária de IA?</li>
-            </ol>
+          <!-- FORM 02: ESCRITÓRIOS / SERVIÇOS -->
+          <div class="card" style="background:#0a101d; margin-bottom:0;">
+            <h3 style="margin-top:0; color:var(--accent);">📄 Modelo 02: Escritórios / Advocacia / Serviços</h3>
+            <p class="sub" style="margin-bottom:12px;">Formulário completo para Escritórios e Prestadores de Serviço</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+              <a href="https://forms.gle/ymMd7BYotuuVwoDv7" target="_blank" class="btn">🔗 Abrir Google Forms 02</a>
+              <button class="btn btn-outline" onclick="copyText('form2Questions')">📋 Copiar Perguntas</button>
+            </div>
 
-            <h4>Seção 2 — 💉 Procedimentos e Tecnologias</h4>
-            <ol start="10">
-              <li>Quais procedimentos faciais oferece?</li>
-              <li>Quais procedimentos corporais oferece?</li>
-              <li>Quais procedimentos de depilação e clareamento oferece?</li>
-              <li>Quais protocolos especiais e integrados oferece?</li>
-              <li>Qual é o procedimento carro-chefe da clínica?</li>
-              <li>Quais tecnologias/aparelhos a clínica utiliza?</li>
-              <li>Observações adicionais sobre os procedimentos.</li>
-            </ol>
+            <div class="briefing-list" id="form2Questions">
+              <h4>Seção 1 — Dados do Escritório e Qualificação</h4>
+              <ol>
+                <li>Qual o seu nome e o nome do escritório/empresa?</li>
+                <li>Endereço completo (CEP, bairro, cidade/UF) e horário de atendimento?</li>
+                <li>Atende presencial, online ou ambos?</li>
+                <li>Principal canal de entrada de leads, média de contratos/mês e ticket médio?</li>
+                <li>Quantas agendas diferentes o escritório possui?</li>
+                <li>Instagram, site e nome escolhido para a secretária de IA?</li>
+                <li>Como funciona hoje o fluxo desde o 1º contato até o agendamento?</li>
+                <li>Em que momento exato um cliente é considerado qualificado para agendar reunião?</li>
+              </ol>
 
-            <h4>Seção 3 — 💬 Dúvidas Repetidas, Objeções, Convênios e Sinal</h4>
-            <ol start="17">
-              <li>Quais são as dúvidas mais comuns sobre os procedimentos (dói, sessões, recuperação, contraindicações, duração)?</li>
-              <li>Quais objeções mais escuta antes do paciente marcar?</li>
-              <li>Quais perguntas costumam fazer sobre valores, avaliação e formas de pagamento?</li>
-              <li>Atende convênios? Quais planos e quais documentos o paciente precisa enviar?</li>
-              <li>Que dúvidas surgem sobre agendamento, sábados e remarcação?</li>
-              <li>Cobra valor de sinal para confirmar agendamento? Se sim, qual valor ou %?</li>
-              <li>Observações extras sobre dúvidas ou regras específicas da clínica.</li>
-            </ol>
-          </div>
-        </div>
+              <h4>Seção 2 — ⚖️ Serviços, Público e Honorários</h4>
+              <ol start="9">
+                <li>Quais áreas de atuação e tipos de demandas mais comuns atende?</li>
+                <li>Quem é o público principal e qual o principal diferencial da empresa?</li>
+                <li>Existem áreas ou demandas que NÃO atende (para a IA filtrar e descartar)?</li>
+                <li>Como funcionam os valores/faixas de honorários e pacotes mensais?</li>
+              </ol>
 
-        <!-- FORM 02: ESCRITÓRIOS / SERVIÇOS -->
-        <div class="card" style="background:#0a101d; margin-bottom:0;">
-          <h3 style="margin-top:0; color:var(--accent);">📄 Modelo 02: Escritórios / Advocacia / Serviços</h3>
-          <p class="sub" style="margin-bottom:12px;">Formulário completo para Escritórios e Prestadores de Serviço</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
-            <a href="https://forms.gle/ymMd7BYotuuVwoDv7" target="_blank" class="btn">🔗 Abrir Google Forms 02</a>
-            <button class="btn btn-outline" onclick="copyText('form2Questions')">📋 Copiar Perguntas</button>
-          </div>
-
-          <div class="briefing-list" id="form2Questions">
-            <h4>Seção 1 — Dados do Escritório e Qualificação</h4>
-            <ol>
-              <li>Qual o seu nome e o nome do escritório/empresa?</li>
-              <li>Endereço completo (CEP, bairro, cidade/UF) e horário de atendimento?</li>
-              <li>Atende presencial, online ou ambos?</li>
-              <li>Principal canal de entrada de leads, média de contratos/mês e ticket médio?</li>
-              <li>Quantas agendas diferentes o escritório possui?</li>
-              <li>Instagram, site e nome escolhido para a secretária de IA?</li>
-              <li>Como funciona hoje o fluxo desde o 1º contato até o agendamento?</li>
-              <li>Em que momento exato um cliente é considerado qualificado para agendar reunião?</li>
-            </ol>
-
-            <h4>Seção 2 — ⚖️ Serviços, Público e Honorários</h4>
-            <ol start="9">
-              <li>Quais áreas de atuação e tipos de demandas mais comuns atende?</li>
-              <li>Quem é o público principal e qual o principal diferencial da empresa?</li>
-              <li>Existem áreas ou demandas que NÃO atende (para a IA filtrar e descartar)?</li>
-              <li>Como funcionam os valores/faixas de honorários e pacotes mensais?</li>
-            </ol>
-
-            <h4>Seção 3 — 💬 Dúvidas Repetidas, Objeções e Sinal</h4>
-            <ol start="13">
-              <li>Quais objeções mais escuta antes do fechamento?</li>
-              <li>Quais perguntas fazem sobre valores da consulta e pagamento?</li>
-              <li>Quais as dúvidas mais comuns dos clientes sobre prazos e documentos?</li>
-              <li>Cobra valor de consulta/sinal para agendar? Se sim, qual valor?</li>
-              <li>Ciência de uso de número de WhatsApp dedicado para a IA.</li>
-            </ol>
+              <h4>Seção 3 — 💬 Dúvidas Repetidas, Objeções e Sinal</h4>
+              <ol start="13">
+                <li>Quais objeções mais escuta antes do fechamento?</li>
+                <li>Quais perguntas fazem sobre valores da consulta e pagamento?</li>
+                <li>Quais as dúvidas mais comuns dos clientes sobre prazos e documentos?</li>
+                <li>Cobra valor de consulta/sinal para agendar? Se sim, qual valor?</li>
+                <li>Ciência de uso de número de WhatsApp dedicado para a IA.</li>
+              </ol>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 
-</div>
-
-<!-- =====================================================================
+  <!-- =====================================================================
      APRESENTAÇÃO DE PROPOSTA ENXUTA (7 SLIDES ESSENCIAIS E PRÓPRIOS)
      ===================================================================== -->
-<div id="deckOverlay">
+  <div id="deckOverlay">
 
-  <!-- SLIDE 1: CAPA -->
-  <section class="deck-slide single-col active" data-slide="1">
-    <div class="slide-top-bar">
-      <span>APRESENTAÇÃO DE PROPOSTA</span>
-      <span>SLIDE 01 / 07</span>
-    </div>
-    <div class="s-tag" contenteditable="true">DIAGNÓSTICO & PLANO DE IMPLANTAÇÃO</div>
-    <h1 class="s-h1" id="s1_company" style="font-size:clamp(40px, 5vw, 68px);" contenteditable="true">Clínica Belle Vie</h1>
-    <p class="s-sub" contenteditable="true">
-      Estruturação de Atendimento Imediato 24h com Inteligência Artificial, Agendamento Automático, CRM e Painel de Conversão para <strong id="s1_niche" style="color:#fff;">Estética Facial e Corporal</strong>.
-    </p>
-  </section>
-
-  <!-- SLIDE 2: O CENÁRIO ATUAL -->
-  <section class="deck-slide" data-slide="2">
-    <div class="slide-top-bar">
-      <span>01 • O CENÁRIO ATUAL</span>
-      <span>SLIDE 02 / 07</span>
-    </div>
-    <div>
-      <div class="s-tag" contenteditable="true">O QUE DIAGNOSTICAMOS</div>
-      <h1 class="s-h1" contenteditable="true">Onde as oportunidades escapam hoje na <span class="hl" id="s2_company">Clínica Belle Vie</span></h1>
+    <!-- SLIDE 1: CAPA -->
+    <section class="deck-slide single-col active" data-slide="1">
+      <div class="slide-top-bar">
+        <span>APRESENTAÇÃO DE PROPOSTA</span>
+        <span>SLIDE 01 / 07</span>
+      </div>
+      <div class="s-tag" contenteditable="true">DIAGNÓSTICO & PLANO DE IMPLANTAÇÃO</div>
+      <h1 class="s-h1" id="s1_company" style="font-size:clamp(40px, 5vw, 68px);" contenteditable="true">Clínica Belle
+        Vie</h1>
       <p class="s-sub" contenteditable="true">
-        A empresa já atrai interessados todos os dias, mas o processo manual no WhatsApp cria 3 gargalos diretos no faturamento:
+        Estruturação de Atendimento Imediato 24h com Inteligência Artificial, Agendamento Automático, CRM e Painel de
+        Conversão para <strong id="s1_niche" style="color:#fff;">Estética Facial e Corporal</strong>.
       </p>
-    </div>
-    <div class="s-panel">
-      <div class="pain-box">
-        <strong contenteditable="true">1. Tempo de espera nos horários de pico e fora de hora</strong>
-        <span id="s2_pain1" contenteditable="true">Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte.</span>
-      </div>
-      <div class="pain-box">
-        <strong contenteditable="true">2. Clientes que dizem "vou pensar" e ficam sem acompanhamento</strong>
-        <span id="s2_pain2" contenteditable="true">Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno.</span>
-      </div>
-      <div class="pain-box" style="margin-bottom:0;">
-        <strong contenteditable="true">3. Sobrecarga operacional e falta de controle em tempo real</strong>
-        <span id="s2_pain3" contenteditable="true">Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende.</span>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 3: O IMPACTO FINANCEIRO -->
-  <section class="deck-slide" data-slide="3">
-    <div class="slide-top-bar">
-      <span>02 • O CUSTO INVISÍVEL</span>
-      <span>SLIDE 03 / 07</span>
-    </div>
-    <div>
-      <div class="s-tag" contenteditable="true">IMPACTO NO CAIXA</div>
-      <h1 class="s-h1" contenteditable="true">
-        <span class="hl-green" id="s3_monthly">R$ 25,2 mil/mês</span> que ficam na mesa.<br>
-        <span class="hl-gold" id="s3_yearly" style="font-size:0.75em;">R$ 302,4 mil em 12 meses.</span>
-      </h1>
-      <p class="s-sub" contenteditable="true">
-        Mesmo em um cenário super conservador, responder cada contato em menos de 1 minuto (24h/dia) e fazer follow-up automático recupera vendas que hoje já estão pagas no tráfego.
-      </p>
-    </div>
-    <div class="s-panel">
-      <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #243554;">
-        <span style="color:#94a3b8;" contenteditable="true">Novos contatos que chegam no WhatsApp</span>
-        <strong id="s3_leads" style="color:#fff;" contenteditable="true">15/dia (450/mês)</strong>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #243554;">
-        <span style="color:#94a3b8;" contenteditable="true">Ticket médio por cliente</span>
-        <strong id="s3_ticket" style="color:#fff;" contenteditable="true">R$ 1.800</strong>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #243554;">
-        <span style="color:#94a3b8;" contenteditable="true">Meta conservadora de recuperação (resposta rápida + follow-up)</span>
-        <strong id="s3_extra" style="color:var(--emerald);" contenteditable="true">+14 clientes/mês</strong>
-      </div>
-      <div style="background:rgba(16,185,129,0.12); border:1px solid var(--emerald); border-radius:10px; padding:16px; margin-top:16px; text-align:center;">
-        <div style="font-size:12px; color:#a7f3d0; text-transform:uppercase; font-weight:800;" contenteditable="true">Faturamento Recuperado Estimado</div>
-        <div style="font-size:28px; font-weight:900; color:var(--emerald); margin-top:4px;" id="s3_totalBox" contenteditable="true">+ R$ 25.200 todos os meses</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 4: A SOLUÇÃO COMPLETA (TUDO INTEGRADO EM 1 SLIDE) -->
-  <section class="deck-slide single-col" data-slide="4">
-    <div class="slide-top-bar">
-      <span>03 • A SOLUÇÃO COMPLETA</span>
-      <span>SLIDE 04 / 07</span>
-    </div>
-    <div class="s-tag" contenteditable="true">ECOSSISTEMA COMPLETO</div>
-    <h1 class="s-h1" style="margin-bottom:8px; font-size:clamp(28px, 3.2vw, 44px);" contenteditable="true">
-      Tudo o que vamos implantar na <span class="hl" id="s4_company">Clínica Belle Vie</span>
-    </h1>
-    <p class="s-sub" style="margin-bottom:10px;" contenteditable="true">
-      Você não recebe ferramentas soltas. Entregamos o sistema completo funcionando junto, 24 horas por dia:
-    </p>
-    <div class="pillar-grid">
-      <div class="pillar-card">
-        <div class="p-num">01 • ATENDIMENTO IMEDIATO 24/7</div>
-        <h4 contenteditable="true">Secretária de IA Humanizada no WhatsApp</h4>
-        <p contenteditable="true">Atende em segundos a qualquer hora (inclusive noite, almoço e domingo), tira dúvidas sobre <span id="s4_service">protocolos faciais e corporais</span>, quebra objeções e reativa automaticamente quem parou de responder (Follow-up).</p>
-      </div>
-      <div class="pillar-card">
-        <div class="p-num">02 • ZERO RETRABALHO NA RECEPÇÃO</div>
-        <h4 contenteditable="true">Agendamento Automático (<span id="s4_agendas">2</span> Agendas)</h4>
-        <p contenteditable="true">Consulta os horários disponíveis em tempo real, marca o atendimento sem conflitos e dispara lembretes automáticos antes da consulta para evitar faltas.</p>
-      </div>
-      <div class="pillar-card">
-        <div class="p-num">03 • ORGANIZAÇÃO E MÉTRICAS</div>
-        <h4 contenteditable="true">CRM Comercial + Painel de Resultados</h4>
-        <p contenteditable="true">Todos os contatos salvos automaticamente em um funil visual (Novo → Qualificado → Agendado → Fechado) + Dashboard em tempo real com taxas de conversão.</p>
-      </div>
-      <div class="pillar-card">
-        <div class="p-num">04 • TRANQUILIDADE TOTAL</div>
-        <h4 contenteditable="true">Suporte, Monitoramento e Ajustes Contínuos</h4>
-        <p contenteditable="true">Monitoramento 24h da operação, atualização da IA sempre que entrarem novas campanhas/procedimentos e acompanhamento mensal de performance.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 5: NA PRÁTICA + PRAZO -->
-  <section class="deck-slide single-col" data-slide="5">
-    <div class="slide-top-bar">
-      <span>04 • FUNCIONAMENTO E PRAZO</span>
-      <span>SLIDE 05 / 07</span>
-    </div>
-    <div class="s-tag" contenteditable="true">NA PRÁTICA + CRONOGRAMA</div>
-    <h1 class="s-h1" style="font-size:clamp(28px, 3.2vw, 44px);" contenteditable="true">
-      Como funciona para o seu cliente • Entrega em até <span class="hl-green"><span id="s5_days">30</span> dias</span>
-    </h1>
-    <div class="flow-steps">
-      <div class="flow-card">
-        <div class="f-time">TERÇA • 21H40</div>
-        <h4 contenteditable="true">1. Cliente Chama</h4>
-        <p contenteditable="true">Vê o anúncio à noite e manda mensagem no WhatsApp querendo saber valores e horários.</p>
-      </div>
-      <div class="flow-card">
-        <div class="f-time">TERÇA • 21H41</div>
-        <h4 contenteditable="true">2. IA Atende e Qualifica</h4>
-        <p contenteditable="true">Responde em segundos de forma natural, entende o objetivo do cliente e explica o procedimento.</p>
-      </div>
-      <div class="flow-card">
-        <div class="f-time">TERÇA • 21H44</div>
-        <h4 contenteditable="true">3. Horário Agendado</h4>
-        <p contenteditable="true">Oferece os horários vagos da agenda, confirma a vaga, salva no CRM e programa o lembrete.</p>
-      </div>
-      <div class="flow-card" style="border-color:var(--emerald);">
-        <div class="f-time">EM ATÉ <span id="s5_days2">30</span> DIAS</div>
-        <h4 contenteditable="true">4. Sistema 100% no Ar</h4>
-        <p contenteditable="true">Configuração da IA sob medida, integração das agendas e CRM, testes completos e operação rodando em até 30 dias.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 6: COMPARATIVO E INVESTIMENTO -->
-  <section class="deck-slide" data-slide="6">
-    <div class="slide-top-bar">
-      <span>05 • INVESTIMENTO E RETORNO</span>
-      <span>SLIDE 06 / 07</span>
-    </div>
-    <div class="s-panel" style="border-color: rgba(245, 158, 11, 0.4);">
-      <div style="font-size:12px; font-weight:800; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;" contenteditable="true">QUANTO CUSTARIA NO MODELO TRADICIONAL</div>
-      <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #243554; font-size:14px;">
-        <span style="color:#94a3b8;" contenteditable="true">1 Atendente dedicado (salário + encargos)</span>
-        <strong contenteditable="true">R$ 2.500 a 3.200/mês</strong>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #243554; font-size:14px;">
-        <span style="color:#94a3b8;" contenteditable="true">Assinaturas de CRM + Agendamento + Automação</span>
-        <strong contenteditable="true">R$ 600 a 1.500/mês</strong>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:12px 0; font-size:16px; color:var(--gold);">
-        <strong contenteditable="true">Custo Tradicional Mensal</strong>
-        <strong contenteditable="true">R$ 3.100 a 4.700 / mês</strong>
-      </div>
-      <p style="font-size:12.5px; color:#94a3b8; margin-top:8px;" contenteditable="true">
-        ❌ E mesmo assim não atende à noite/domingo e se o funcionário sair você perde o processo.
-      </p>
-    </div>
-
-    <div class="s-panel" style="border: 2px solid var(--emerald); background: linear-gradient(145deg, rgba(16,185,129,0.12), rgba(18,28,46,0.95));">
-      <div style="font-size:12px; font-weight:800; color:var(--emerald); text-transform:uppercase; letter-spacing:1px;" contenteditable="true">SEU INVESTIMENTO NO SISTEMA COMPLETO</div>
-      <div style="margin: 16px 0; padding-bottom: 16px; border-bottom: 1px solid #243554;">
-        <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Implantação Completa (Setup Único)</div>
-        <div style="font-size:42px; font-weight:900; color:#fff; line-height:1.1;" id="s6_setup" contenteditable="true">R$ 4.200</div>
-        <div style="font-size:13.5px; color:var(--emerald); font-weight:700; margin-top:4px;" id="s6_split" contenteditable="true">Em 2x de R$ 2.100 (50% na assinatura e 50% só após a entrega)</div>
+    <!-- SLIDE 2: O CENÁRIO ATUAL -->
+    <section class="deck-slide" data-slide="2">
+      <div class="slide-top-bar">
+        <span>01 • O CENÁRIO ATUAL</span>
+        <span>SLIDE 02 / 07</span>
       </div>
       <div>
-        <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Manutenção, IA e Suporte Contínuo 24h</div>
-        <div style="font-size:34px; font-weight:900; color:var(--accent); line-height:1.1;"><span id="s6_monthly" contenteditable="true">R$ 750</span> <span style="font-size:16px; color:#94a3b8; font-weight:600;">/ mês</span></div>
-        <div style="font-size:13px; color:#cbd5e1; margin-top:4px;" contenteditable="true">1ª mensalidade somente <strong>30 dias após o sistema entregue no ar</strong> • Sem fidelidade.</div>
+        <div class="s-tag" contenteditable="true">O QUE DIAGNOSTICAMOS</div>
+        <h1 class="s-h1" contenteditable="true">Onde as oportunidades escapam hoje na <span class="hl"
+            id="s2_company">Clínica Belle Vie</span></h1>
+        <p class="s-sub" contenteditable="true">
+          A empresa já atrai interessados todos os dias, mas o processo manual no WhatsApp cria 3 gargalos diretos no
+          faturamento:
+        </p>
       </div>
-      <div style="margin-top:14px; background:rgba(16,185,129,0.16); padding:10px 14px; border-radius:8px; font-size:13px; color:#d1fae5; font-weight:700;" id="s6_roiNote" contenteditable="true">
-        💡 Com apenas 3 clientes recuperados no 1º mês, todo o investimento de implantação já está 100% pago.
+      <div class="s-panel">
+        <div class="pain-box">
+          <strong contenteditable="true">1. Tempo de espera nos horários de pico e fora de hora</strong>
+          <span id="s2_pain1" contenteditable="true">Demora de 1 a 3 horas na correria; à noite e fim de semana só
+            responde no dia seguinte.</span>
+        </div>
+        <div class="pain-box">
+          <strong contenteditable="true">2. Clientes que dizem "vou pensar" e ficam sem acompanhamento</strong>
+          <span id="s2_pain2" contenteditable="true">Na correria só atende quem chama na hora; quem diz que vai pensar
+            acaba ficando sem retorno.</span>
+        </div>
+        <div class="pain-box" style="margin-bottom:0;">
+          <strong contenteditable="true">3. Sobrecarga operacional e falta de controle em tempo real</strong>
+          <span id="s2_pain3" contenteditable="true">Fica tudo solto no histórico do WhatsApp sem painel de conversão e
+            dependente de quem atende.</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 7: PRÓXIMOS PASSOS -->
-  <section class="deck-slide single-col" data-slide="7">
-    <div class="slide-top-bar">
-      <span>06 • PRÓXIMOS PASSOS</span>
-      <span>SLIDE 07 / 07</span>
-    </div>
-    <div class="s-tag" contenteditable="true">COMO COMEÇAMOS HOJE</div>
-    <h1 class="s-h1" style="font-size:clamp(30px, 3.6vw, 48px);" contenteditable="true">
-      Do "sim" ao sistema rodando na <span class="hl" id="s7_company">Clínica Belle Vie</span>
-    </h1>
-    <div class="flow-steps">
-      <div class="flow-card" style="border-color:var(--accent);">
-        <div class="f-time" style="color:var(--accent);">PASSO 01 • HOJE</div>
-        <h4 contenteditable="true">Aprovação</h4>
-        <p contenteditable="true">Confirmação da proposta e envio dos dados básicos para emissão do contrato.</p>
+    <!-- SLIDE 3: O IMPACTO FINANCEIRO -->
+    <section class="deck-slide" data-slide="3">
+      <div class="slide-top-bar">
+        <span>02 • O CUSTO INVISÍVEL</span>
+        <span>SLIDE 03 / 07</span>
       </div>
-      <div class="flow-card">
-        <div class="f-time">PASSO 02 • HOJE</div>
-        <h4 contenteditable="true">Contrato Digital</h4>
-        <p contenteditable="true">Assinatura eletrônica com garantia de entrega e pagamento da 1ª parcela (50%).</p>
+      <div>
+        <div class="s-tag" contenteditable="true">IMPACTO NO CAIXA</div>
+        <h1 class="s-h1" contenteditable="true">
+          <span class="hl-green" id="s3_monthly">R$ 25,2 mil/mês</span> que ficam na mesa.<br>
+          <span class="hl-gold" id="s3_yearly" style="font-size:0.75em;">R$ 302,4 mil em 12 meses.</span>
+        </h1>
+        <p class="s-sub" contenteditable="true">
+          Mesmo em um cenário super conservador, responder cada contato em menos de 1 minuto (24h/dia) e fazer follow-up
+          automático recupera vendas que hoje já estão pagas no tráfego.
+        </p>
       </div>
-      <div class="flow-card">
-        <div class="f-time">PASSO 03 • DIA 1</div>
-        <h4 contenteditable="true">Briefing Oficial</h4>
-        <p contenteditable="true">Preenchimento do formulário rápido com seus procedimentos, regras e dúvidas frequentes.</p>
+      <div class="s-panel">
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #243554;">
+          <span style="color:#94a3b8;" contenteditable="true">Novos contatos que chegam no WhatsApp</span>
+          <strong id="s3_leads" style="color:#fff;" contenteditable="true">15/dia (450/mês)</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #243554;">
+          <span style="color:#94a3b8;" contenteditable="true">Ticket médio por cliente</span>
+          <strong id="s3_ticket" style="color:#fff;" contenteditable="true">R$ 1.800</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #243554;">
+          <span style="color:#94a3b8;" contenteditable="true">Meta conservadora de recuperação (resposta rápida +
+            follow-up)</span>
+          <strong id="s3_extra" style="color:var(--emerald);" contenteditable="true">+14 clientes/mês</strong>
+        </div>
+        <div
+          style="background:rgba(16,185,129,0.12); border:1px solid var(--emerald); border-radius:10px; padding:16px; margin-top:16px; text-align:center;">
+          <div style="font-size:12px; color:#a7f3d0; text-transform:uppercase; font-weight:800;" contenteditable="true">
+            Faturamento Recuperado Estimado</div>
+          <div style="font-size:28px; font-weight:900; color:var(--emerald); margin-top:4px;" id="s3_totalBox"
+            contenteditable="true">+ R$ 25.200 todos os meses</div>
+        </div>
       </div>
-      <div class="flow-card" style="border-color:var(--emerald);">
-        <div class="f-time">PASSO 04 • EM ATÉ <span id="s7_days">30</span> DIAS</div>
-        <h4 contenteditable="true">Sistema no Ar</h4>
-        <p contenteditable="true">Validação final, ativação oficial no WhatsApp e início do acompanhamento 24h.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTROLES FLUTUANTES -->
-  <div class="deck-controls">
-    <button onclick="changeSlide(-1)" title="Slide Anterior (Seta Esquerda)">◀</button>
-    <span id="slideCounter">1 / 7</span>
-    <button onclick="changeSlide(1)" title="Próximo Slide (Seta Direita)">▶</button>
-    <button onclick="toggleFullScreen()" title="Tela Cheia">⛶</button>
-    <button class="close-deck" onclick="closeSlideDeck()">✕ Fechar Slides</button>
+    <!-- SLIDE 4: A SOLUÇÃO COMPLETA (TUDO INTEGRADO EM 1 SLIDE) -->
+    <section class="deck-slide single-col" data-slide="4">
+      <div class="slide-top-bar">
+        <span>03 • A SOLUÇÃO COMPLETA</span>
+        <span>SLIDE 04 / 07</span>
+      </div>
+      <div class="s-tag" contenteditable="true">ECOSSISTEMA COMPLETO</div>
+      <h1 class="s-h1" style="margin-bottom:8px; font-size:clamp(28px, 3.2vw, 44px);" contenteditable="true">
+        Tudo o que vamos implantar na <span class="hl" id="s4_company">Clínica Belle Vie</span>
+      </h1>
+      <p class="s-sub" style="margin-bottom:10px;" contenteditable="true">
+        Você não recebe ferramentas soltas. Entregamos o sistema completo funcionando junto, 24 horas por dia:
+      </p>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="p-num">01 • ATENDIMENTO IMEDIATO 24/7</div>
+          <h4 contenteditable="true">Secretária de IA Humanizada no WhatsApp</h4>
+          <p contenteditable="true">Atende em segundos a qualquer hora (inclusive noite, almoço e domingo), tira dúvidas
+            sobre <span id="s4_service">protocolos faciais e corporais</span>, quebra objeções e reativa automaticamente
+            quem parou de responder (Follow-up).</p>
+        </div>
+        <div class="pillar-card">
+          <div class="p-num">02 • ZERO RETRABALHO NA RECEPÇÃO</div>
+          <h4 contenteditable="true">Agendamento Automático (<span id="s4_agendas">2</span> Agendas)</h4>
+          <p contenteditable="true">Consulta os horários disponíveis em tempo real, marca o atendimento sem conflitos e
+            dispara lembretes automáticos antes do horário marcado para evitar faltas.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="p-num">03 • ORGANIZAÇÃO E MÉTRICAS</div>
+          <h4 contenteditable="true">CRM Comercial + Painel de Resultados</h4>
+          <p contenteditable="true">Todos os contatos salvos automaticamente em um funil visual (Novo → Qualificado →
+            Agendado → Fechado) + Dashboard em tempo real com taxas de conversão.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="p-num">04 • TRANQUILIDADE TOTAL</div>
+          <h4 contenteditable="true">Suporte, Monitoramento e Ajustes Contínuos</h4>
+          <p contenteditable="true">Monitoramento 24h da operação, atualização da IA sempre que entrarem novas
+            campanhas ou serviços e acompanhamento mensal de performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: NA PRÁTICA + PRAZO -->
+    <section class="deck-slide single-col" data-slide="5">
+      <div class="slide-top-bar">
+        <span>04 • FUNCIONAMENTO E PRAZO</span>
+        <span>SLIDE 05 / 07</span>
+      </div>
+      <div class="s-tag" contenteditable="true">NA PRÁTICA + CRONOGRAMA</div>
+      <h1 class="s-h1" style="font-size:clamp(28px, 3.2vw, 44px);" contenteditable="true">
+        Como funciona para o seu cliente • Entrega em até <span class="hl-green"><span id="s5_days">30</span>
+          dias</span>
+      </h1>
+      <div class="flow-steps">
+        <div class="flow-card">
+          <div class="f-time">TERÇA • 21H40</div>
+          <h4 contenteditable="true">1. Cliente Chama</h4>
+          <p contenteditable="true">Vê o anúncio à noite e manda mensagem no WhatsApp querendo saber valores e horários.
+          </p>
+        </div>
+        <div class="flow-card">
+          <div class="f-time">TERÇA • 21H41</div>
+          <h4 contenteditable="true">2. IA Atende e Qualifica</h4>
+          <p contenteditable="true">Responde em segundos de forma natural, entende o objetivo do cliente e explica como funciona o serviço.</p>
+        </div>
+        <div class="flow-card">
+          <div class="f-time">TERÇA • 21H44</div>
+          <h4 contenteditable="true">3. Horário Agendado</h4>
+          <p contenteditable="true">Oferece os horários vagos da agenda, confirma a vaga, salva no CRM e programa o
+            lembrete.</p>
+        </div>
+        <div class="flow-card" style="border-color:var(--emerald);">
+          <div class="f-time">EM ATÉ <span id="s5_days2">30</span> DIAS</div>
+          <h4 contenteditable="true">4. Sistema 100% no Ar</h4>
+          <p contenteditable="true">Configuração da IA sob medida, integração das agendas e CRM, testes completos e
+            operação rodando em até 30 dias.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: COMPARATIVO E INVESTIMENTO -->
+    <section class="deck-slide" data-slide="6">
+      <div class="slide-top-bar">
+        <span>05 • INVESTIMENTO E RETORNO</span>
+        <span>SLIDE 06 / 07</span>
+      </div>
+      <div class="s-panel" style="border-color: rgba(245, 158, 11, 0.4);">
+        <div
+          style="font-size:12px; font-weight:800; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;"
+          contenteditable="true">QUANTO CUSTARIA NO MODELO TRADICIONAL</div>
+        <div
+          style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #243554; font-size:14px;">
+          <span style="color:#94a3b8;" contenteditable="true">1 Atendente dedicado (salário + encargos)</span>
+          <strong contenteditable="true">R$ 2.500 a 3.200/mês</strong>
+        </div>
+        <div
+          style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #243554; font-size:14px;">
+          <span style="color:#94a3b8;" contenteditable="true">Assinaturas de CRM + Agendamento + Automação</span>
+          <strong contenteditable="true">R$ 600 a 1.500/mês</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; font-size:16px; color:var(--gold);">
+          <strong contenteditable="true">Custo Tradicional Mensal</strong>
+          <strong contenteditable="true">R$ 3.100 a 4.700 / mês</strong>
+        </div>
+        <p style="font-size:12.5px; color:#94a3b8; margin-top:8px;" contenteditable="true">
+          ❌ E mesmo assim não atende à noite/domingo e se o funcionário sair você perde o processo.
+        </p>
+      </div>
+
+      <div class="s-panel"
+        style="border: 2px solid var(--emerald); background: linear-gradient(145deg, rgba(16,185,129,0.12), rgba(18,28,46,0.95));">
+        <div
+          style="font-size:12px; font-weight:800; color:var(--emerald); text-transform:uppercase; letter-spacing:1px;"
+          contenteditable="true">SEU INVESTIMENTO NO SISTEMA COMPLETO</div>
+        <div style="margin: 16px 0; padding-bottom: 16px; border-bottom: 1px solid #243554;">
+          <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Implantação
+            Completa (Setup Único)</div>
+          <div style="font-size:42px; font-weight:900; color:#fff; line-height:1.1;" id="s6_setup"
+            contenteditable="true">R$ 4.200</div>
+          <div style="font-size:13.5px; color:var(--emerald); font-weight:700; margin-top:4px;" id="s6_split"
+            contenteditable="true">Em 2x de R$ 2.100 (50% na assinatura e 50% só após a entrega)</div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Manutenção, IA e
+            Suporte Contínuo 24h</div>
+          <div style="font-size:34px; font-weight:900; color:var(--accent); line-height:1.1;"><span id="s6_monthly"
+              contenteditable="true">R$ 750</span> <span style="font-size:16px; color:#94a3b8; font-weight:600;">/
+              mês</span></div>
+          <div style="font-size:13px; color:#cbd5e1; margin-top:4px;" contenteditable="true">1ª mensalidade somente
+            <strong>30 dias após o sistema entregue no ar</strong> • Sem fidelidade.</div>
+        </div>
+        <div
+          style="margin-top:14px; background:rgba(16,185,129,0.16); padding:10px 14px; border-radius:8px; font-size:13px; color:#d1fae5; font-weight:700;"
+          id="s6_roiNote" contenteditable="true">
+          💡 Com apenas 3 clientes recuperados no 1º mês, todo o investimento de implantação já está 100% pago.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: PRÓXIMOS PASSOS -->
+    <section class="deck-slide single-col" data-slide="7">
+      <div class="slide-top-bar">
+        <span>06 • PRÓXIMOS PASSOS</span>
+        <span>SLIDE 07 / 07</span>
+      </div>
+      <div class="s-tag" contenteditable="true">COMO COMEÇAMOS HOJE</div>
+      <h1 class="s-h1" style="font-size:clamp(30px, 3.6vw, 48px);" contenteditable="true">
+        Do "sim" ao sistema rodando na <span class="hl" id="s7_company">Clínica Belle Vie</span>
+      </h1>
+      <div class="flow-steps">
+        <div class="flow-card" style="border-color:var(--accent);">
+          <div class="f-time" style="color:var(--accent);">PASSO 01 • HOJE</div>
+          <h4 contenteditable="true">Aprovação</h4>
+          <p contenteditable="true">Confirmação da proposta e envio dos dados básicos para emissão do contrato.</p>
+        </div>
+        <div class="flow-card">
+          <div class="f-time">PASSO 02 • HOJE</div>
+          <h4 contenteditable="true">Contrato Digital</h4>
+          <p contenteditable="true">Assinatura eletrônica com garantia de entrega e pagamento da 1ª parcela (50%).</p>
+        </div>
+        <div class="flow-card">
+          <div class="f-time">PASSO 03 • DIA 1</div>
+          <h4 contenteditable="true">Briefing Oficial</h4>
+          <p contenteditable="true">Preenchimento do formulário rápido com seus serviços, regras e dúvidas
+            frequentes.</p>
+        </div>
+        <div class="flow-card" style="border-color:var(--emerald);">
+          <div class="f-time">PASSO 04 • EM ATÉ <span id="s7_days">30</span> DIAS</div>
+          <h4 contenteditable="true">Sistema no Ar</h4>
+          <p contenteditable="true">Validação final, ativação oficial no WhatsApp e início do acompanhamento 24h.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTROLES FLUTUANTES -->
+    <div class="deck-controls">
+      <button onclick="changeSlide(-1)" title="Slide Anterior (Seta Esquerda)">◀</button>
+      <span id="slideCounter">1 / 7</span>
+      <button onclick="changeSlide(1)" title="Próximo Slide (Seta Direita)">▶</button>
+      <button onclick="toggleFullScreen()" title="Tela Cheia">⛶</button>
+      <button class="close-deck" onclick="closeSlideDeck()">✕ Fechar Slides</button>
+    </div>
   </div>
-</div>
 
-<script>
-  let manualExtraOverride = false;
-  let manualPriceOverride = false;
+  <script>
+    let manualExtraOverride = false;
+    let manualPriceOverride = false;
 
-  function showTab(index) {
-    const tabs = document.querySelectorAll('.tab');
-    const btns = document.querySelectorAll('.nav button');
-    tabs.forEach((t, i) => t.classList.toggle('active', i === index));
-    btns.forEach((b, i) => b.classList.toggle('active', i === index));
-  }
-
-  function copyText(elementId) {
-    const el = document.getElementById(elementId);
-    const text = el.innerText || el.textContent;
-    navigator.clipboard.writeText(text.trim());
-    alert('Copiado!');
-  }
-
-  function setVal(id, val) {
-    document.getElementById(id).value = val;
-    syncAll();
-  }
-
-  function setLeadsDay(n) {
-    document.getElementById('leadsPerDay').value = n;
-    document.getElementById('leadsPerMonth').value = n * 30;
-    manualExtraOverride = false;
-    manualPriceOverride = false;
-    syncAll();
-  }
-
-  function syncLeads(source) {
-    const dayEl = document.getElementById('leadsPerDay');
-    const monthEl = document.getElementById('leadsPerMonth');
-    if (source === 'day') {
-      monthEl.value = (parseInt(dayEl.value) || 0) * 30;
-    } else {
-      dayEl.value = Math.round((parseInt(monthEl.value) || 0) / 30);
-    }
-    manualExtraOverride = false;
-    manualPriceOverride = false;
-    syncAll();
-  }
-
-  function syncManualExtra() {
-    manualExtraOverride = true;
-    syncAll();
-  }
-
-  function syncManualPrice() {
-    manualPriceOverride = true;
-    syncAll();
-  }
-
-  function resetAutoPrice() {
-    manualExtraOverride = false;
-    manualPriceOverride = false;
-    syncAll();
-  }
-
-  function formatBRL(num) {
-    return Number(num || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-  }
-
-  function formatK(num) {
-    if (num >= 1000) {
-      const k = num / 1000;
-      return 'R$ ' + (Number.isInteger(k) ? k : k.toFixed(1).replace('.', ',')) + ' mil';
-    }
-    return formatBRL(num);
-  }
-
-  // Cálculo automático de Impacto do Cliente + Precificação Recomendada do Sistema
-  function syncAll() {
-    const companyName = document.getElementById('companyName').value || 'Sua Empresa';
-    const companyNiche = document.getElementById('companyNiche').value || 'Atendimento Comercial';
-    const mainService = document.getElementById('mainService').value || 'seus serviços';
-    const avgTicket = Math.max(100, parseFloat(document.getElementById('avgTicket').value) || 0);
-    const leadsPerDay = Math.max(1, parseInt(document.getElementById('leadsPerDay').value) || 0);
-    const leadsPerMonth = Math.max(1, parseInt(document.getElementById('leadsPerMonth').value) || 0);
-    const numAgendas = Math.max(1, parseInt(document.getElementById('numAgendas').value) || 1);
-    const waitTime = document.getElementById('waitTime').value || '';
-    const followupPain = document.getElementById('followupPain').value || '';
-    const controlPain = document.getElementById('controlPain').value || '';
-    const lossRate = parseFloat(document.getElementById('lossRateSelect').value) || 0.03;
-    const deliveryDays = parseInt(document.getElementById('deliveryDays').value) || 30;
-
-    // 1. Cálculo automático de clientes recuperados/mês (se não tiver sido editado manualmente)
-    let extraClients = parseInt(document.getElementById('extraClients').value) || 2;
-    if (!manualExtraOverride) {
-      extraClients = Math.max(2, Math.round(leadsPerMonth * lossRate));
-      document.getElementById('extraClients').value = extraClients;
+    function showTab(index) {
+      const tabs = document.querySelectorAll('.tab');
+      const btns = document.querySelectorAll('.nav button');
+      tabs.forEach((t, i) => t.classList.toggle('active', i === index));
+      btns.forEach((b, i) => b.classList.toggle('active', i === index));
     }
 
-    const monthlyLoss = extraClients * avgTicket;
-    const yearlyLoss = monthlyLoss * 12;
-
-    // 2. Fórmula Automática de Precificação do Seu Sistema (Piso R$ 3.000 setup + R$ 500/mês)
-    // - Base: R$ 3.000 setup / R$ 500 mensal
-    // - Adicional por volume de leads/dia:
-    let volumeSetupAdd = 0;
-    let volumeMonthlyAdd = 0;
-    if (leadsPerDay > 10 && leadsPerDay <= 20) {
-      volumeSetupAdd = 600;
-      volumeMonthlyAdd = 150;
-    } else if (leadsPerDay > 20 && leadsPerDay <= 35) {
-      volumeSetupAdd = 1500;
-      volumeMonthlyAdd = 300;
-    } else if (leadsPerDay > 35) {
-      volumeSetupAdd = 3000;
-      volumeMonthlyAdd = 500;
+    function copyText(elementId) {
+      const el = document.getElementById(elementId);
+      const text = el.innerText || el.textContent;
+      navigator.clipboard.writeText(text.trim());
+      alert('Copiado!');
     }
 
-    // - Adicional por quantidade de agendas/profissionais além da 1ª:
-    const agendaSetupAdd = Math.max(0, numAgendas - 1) * 400;
-    const agendaMonthlyAdd = Math.max(0, numAgendas - 1) * 80;
-
-    // - Adicional por porte de Ticket Médio / ROI:
-    let roiSetupAdd = 0;
-    if (avgTicket >= 2500) roiSetupAdd = 600;
-    if (avgTicket >= 5000) roiSetupAdd = 1500;
-
-    const autoSetup = Math.round((3000 + volumeSetupAdd + agendaSetupAdd + roiSetupAdd) / 100) * 100;
-    const autoMonthly = Math.round((500 + volumeMonthlyAdd + agendaMonthlyAdd) / 50) * 50;
-
-    if (!manualPriceOverride) {
-      document.getElementById('setupPrice').value = autoSetup;
-      document.getElementById('monthlyPrice').value = autoMonthly;
+    function setVal(id, val) {
+      document.getElementById(id).value = val;
+      syncAll();
     }
 
-    const setupPrice = Math.max(3000, parseFloat(document.getElementById('setupPrice').value) || 3000);
-    const monthlyPrice = Math.max(500, parseFloat(document.getElementById('monthlyPrice').value) || 500);
+    function setLeadsDay(n) {
+      document.getElementById('leadsPerDay').value = n;
+      document.getElementById('leadsPerMonth').value = n * 30;
+      manualExtraOverride = false;
+      manualPriceOverride = false;
+      syncAll();
+    }
 
-    // Quantos clientes recuperados pagam toda a implantação:
-    const clientsToPayback = Math.max(1, Math.ceil(setupPrice / avgTicket));
+    function syncLeads(source) {
+      const dayEl = document.getElementById('leadsPerDay');
+      const monthEl = document.getElementById('leadsPerMonth');
+      if (source === 'day') {
+        monthEl.value = (parseInt(dayEl.value) || 0) * 30;
+      } else {
+        dayEl.value = Math.round((parseInt(monthEl.value) || 0) / 30);
+      }
+      manualExtraOverride = false;
+      manualPriceOverride = false;
+      syncAll();
+    }
 
-    // Atualiza painel da Calculadora na Aba 2
-    document.getElementById('calcMonthlyLoss').innerText = `${formatBRL(monthlyLoss)} / mês`;
-    document.getElementById('calcLossExplain').innerHTML =
-      `De <strong>${leadsPerMonth} contatos/mês</strong>, recuperar apenas <strong>${extraClients} clientes/mês</strong> com ticket médio de ${formatBRL(avgTicket)} representa <strong>${formatBRL(monthlyLoss)}/mês</strong> (ou <strong>${formatBRL(yearlyLoss)}/ano</strong>) que hoje ficam na mesa.`;
+    function syncManualExtra() {
+      manualExtraOverride = true;
+      syncAll();
+    }
 
-    document.getElementById('calcRecommendedPrice').innerText = `${formatBRL(setupPrice)} + ${formatBRL(monthlyPrice)}/mês`;
-    document.getElementById('calcPriceFormula').innerHTML =
-      `Piso R$ 3.000 + porte de <strong>${leadsPerDay} leads/dia</strong> + <strong>${numAgendas} agenda(s)</strong>. Com apenas <strong>${clientsToPayback} cliente(s) recuperado(s)</strong> no 1º mês, o cliente já paga 100% da implantação!`;
+    function syncManualPrice() {
+      manualPriceOverride = true;
+      syncAll();
+    }
 
-    document.getElementById('topPriceBadge').innerText = `Preço: ${formatBRL(setupPrice)} + ${formatBRL(monthlyPrice)}/mês`;
+    function resetAutoPrice() {
+      manualExtraOverride = false;
+      manualPriceOverride = false;
+      syncAll();
+    }
 
-    // Atualiza os 7 Slides
-    document.getElementById('s1_company').innerText = companyName;
-    document.getElementById('s1_niche').innerText = companyNiche;
+    function formatBRL(num) {
+      return Number(num || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+    }
 
-    document.getElementById('s2_company').innerText = companyName;
-    document.getElementById('s2_pain1').innerText = waitTime;
-    document.getElementById('s2_pain2').innerText = followupPain;
-    document.getElementById('s2_pain3').innerText = controlPain;
+    function formatK(num) {
+      if (num >= 1000) {
+        const k = num / 1000;
+        return 'R$ ' + (Number.isInteger(k) ? k : k.toFixed(1).replace('.', ',')) + ' mil';
+      }
+      return formatBRL(num);
+    }
 
-    document.getElementById('s3_monthly').innerText = `${formatK(monthlyLoss)}/mês`;
-    document.getElementById('s3_yearly').innerText = `${formatK(yearlyLoss)} em 12 meses.`;
-    document.getElementById('s3_leads').innerText = `${leadsPerDay}/dia (${leadsPerMonth}/mês)`;
-    document.getElementById('s3_ticket').innerText = formatBRL(avgTicket);
-    document.getElementById('s3_extra').innerText = `+${extraClients} clientes/mês`;
-    document.getElementById('s3_totalBox').innerText = `+ ${formatBRL(monthlyLoss)} todos os meses`;
+    // Cálculo automático de Impacto do Cliente + Precificação Recomendada do Sistema
+    function syncAll() {
+      const companyName = document.getElementById('companyName').value || 'Sua Empresa';
+      const companyNiche = document.getElementById('companyNiche').value || 'Atendimento Comercial';
+      const mainService = document.getElementById('mainService').value || 'seus serviços';
+      const avgTicket = Math.max(100, parseFloat(document.getElementById('avgTicket').value) || 0);
+      const leadsPerDay = Math.max(1, parseInt(document.getElementById('leadsPerDay').value) || 0);
+      const leadsPerMonth = Math.max(1, parseInt(document.getElementById('leadsPerMonth').value) || 0);
+      const numAgendas = Math.max(1, parseInt(document.getElementById('numAgendas').value) || 1);
+      const waitTime = document.getElementById('waitTime').value || '';
+      const followupPain = document.getElementById('followupPain').value || '';
+      const controlPain = document.getElementById('controlPain').value || '';
+      const lossRate = parseFloat(document.getElementById('lossRateSelect').value) || 0.03;
+      const deliveryDays = parseInt(document.getElementById('deliveryDays').value) || 30;
 
-    document.getElementById('s4_company').innerText = companyName;
-    document.getElementById('s4_service').innerText = mainService;
-    document.getElementById('s4_agendas').innerText = numAgendas;
+      // 1. Cálculo automático de clientes recuperados/mês (se não tiver sido editado manualmente)
+      let extraClients = parseInt(document.getElementById('extraClients').value) || 2;
+      if (!manualExtraOverride) {
+        extraClients = Math.max(2, Math.round(leadsPerMonth * lossRate));
+        document.getElementById('extraClients').value = extraClients;
+      }
 
-    document.getElementById('s5_days').innerText = deliveryDays;
-    document.getElementById('s5_days2').innerText = deliveryDays;
+      const monthlyLoss = extraClients * avgTicket;
+      const yearlyLoss = monthlyLoss * 12;
 
-    document.getElementById('s6_setup').innerText = formatBRL(setupPrice);
-    document.getElementById('s6_split').innerText = `Em 2x de ${formatBRL(setupPrice / 2)} (50% na assinatura e 50% só após a entrega)`;
-    document.getElementById('s6_monthly').innerText = formatBRL(monthlyPrice);
-    document.getElementById('s6_roiNote').innerText =
-      `💡 Com apenas ${clientsToPayback} cliente(s) recuperado(s) no 1º mês (de ${formatBRL(avgTicket)}), todo o investimento de implantação já está 100% pago.`;
+      // 2. Fórmula Automática de Precificação do Seu Sistema (Piso R$ 3.000 setup + R$ 500/mês)
+      // - Base: R$ 3.000 setup / R$ 500 mensal
+      // - Adicional por volume de leads/dia:
+      let volumeSetupAdd = 0;
+      let volumeMonthlyAdd = 0;
+      if (leadsPerDay > 10 && leadsPerDay <= 20) {
+        volumeSetupAdd = 600;
+        volumeMonthlyAdd = 150;
+      } else if (leadsPerDay > 20 && leadsPerDay <= 35) {
+        volumeSetupAdd = 1500;
+        volumeMonthlyAdd = 300;
+      } else if (leadsPerDay > 35) {
+        volumeSetupAdd = 3000;
+        volumeMonthlyAdd = 500;
+      }
 
-    document.getElementById('s7_company').innerText = companyName;
-    document.getElementById('s7_days').innerText = deliveryDays;
+      // - Adicional por quantidade de agendas/profissionais além da 1ª:
+      const agendaSetupAdd = Math.max(0, numAgendas - 1) * 400;
+      const agendaMonthlyAdd = Math.max(0, numAgendas - 1) * 80;
 
-    // Atualiza Aba 4 (Pós-Fechamento)
-    const docVal = document.getElementById('clientDoc').value || '[A definir]';
-    const addrVal = document.getElementById('clientAddress').value || '[A definir]';
-    const emailVal = document.getElementById('clientEmail').value || '[A definir]';
+      // - Adicional por porte de Ticket Médio / ROI:
+      let roiSetupAdd = 0;
+      if (avgTicket >= 2500) roiSetupAdd = 600;
+      if (avgTicket >= 5000) roiSetupAdd = 1500;
 
-    document.getElementById('msgPostClose').innerText =
-`Maravilha! Seja muito bem-vindo(a)! 🚀
+      const autoSetup = Math.round((3000 + volumeSetupAdd + agendaSetupAdd + roiSetupAdd) / 100) * 100;
+      const autoMonthly = Math.round((500 + volumeMonthlyAdd + agendaMonthlyAdd) / 50) * 50;
+
+      if (!manualPriceOverride) {
+        document.getElementById('setupPrice').value = autoSetup;
+        document.getElementById('monthlyPrice').value = autoMonthly;
+      }
+
+      const setupPrice = Math.max(3000, parseFloat(document.getElementById('setupPrice').value) || 3000);
+      const monthlyPrice = Math.max(500, parseFloat(document.getElementById('monthlyPrice').value) || 500);
+
+      // Quantos clientes recuperados pagam toda a implantação:
+      const clientsToPayback = Math.max(1, Math.ceil(setupPrice / avgTicket));
+
+      // Atualiza painel da Calculadora na Aba 2
+      document.getElementById('calcMonthlyLoss').innerText = `${formatBRL(monthlyLoss)} / mês`;
+      document.getElementById('calcLossExplain').innerHTML =
+        `De <strong>${leadsPerMonth} contatos/mês</strong>, recuperar apenas <strong>${extraClients} clientes/mês</strong> com ticket médio de ${formatBRL(avgTicket)} representa <strong>${formatBRL(monthlyLoss)}/mês</strong> (ou <strong>${formatBRL(yearlyLoss)}/ano</strong>) que hoje ficam na mesa.`;
+
+      document.getElementById('calcRecommendedPrice').innerText = `${formatBRL(setupPrice)} + ${formatBRL(monthlyPrice)}/mês`;
+      document.getElementById('calcPriceFormula').innerHTML =
+        `Piso R$ 3.000 + porte de <strong>${leadsPerDay} leads/dia</strong> + <strong>${numAgendas} agenda(s)</strong>. Com apenas <strong>${clientsToPayback} cliente(s) recuperado(s)</strong> no 1º mês, o cliente já paga 100% da implantação!`;
+
+      document.getElementById('topPriceBadge').innerText = `Preço: ${formatBRL(setupPrice)} + ${formatBRL(monthlyPrice)}/mês`;
+
+      // Atualiza os 7 Slides
+      document.getElementById('s1_company').innerText = companyName;
+      document.getElementById('s1_niche').innerText = companyNiche;
+
+      document.getElementById('s2_company').innerText = companyName;
+      document.getElementById('s2_pain1').innerText = waitTime;
+      document.getElementById('s2_pain2').innerText = followupPain;
+      document.getElementById('s2_pain3').innerText = controlPain;
+
+      document.getElementById('s3_monthly').innerText = `${formatK(monthlyLoss)}/mês`;
+      document.getElementById('s3_yearly').innerText = `${formatK(yearlyLoss)} em 12 meses.`;
+      document.getElementById('s3_leads').innerText = `${leadsPerDay}/dia (${leadsPerMonth}/mês)`;
+      document.getElementById('s3_ticket').innerText = formatBRL(avgTicket);
+      document.getElementById('s3_extra').innerText = `+${extraClients} clientes/mês`;
+      document.getElementById('s3_totalBox').innerText = `+ ${formatBRL(monthlyLoss)} todos os meses`;
+
+      document.getElementById('s4_company').innerText = companyName;
+      document.getElementById('s4_service').innerText = mainService;
+      document.getElementById('s4_agendas').innerText = numAgendas;
+
+      document.getElementById('s5_days').innerText = deliveryDays;
+      document.getElementById('s5_days2').innerText = deliveryDays;
+
+      document.getElementById('s6_setup').innerText = formatBRL(setupPrice);
+      document.getElementById('s6_split').innerText = `Em 2x de ${formatBRL(setupPrice / 2)} (50% na assinatura e 50% só após a entrega)`;
+      document.getElementById('s6_monthly').innerText = formatBRL(monthlyPrice);
+      document.getElementById('s6_roiNote').innerText =
+        `💡 Com apenas ${clientsToPayback} cliente(s) recuperado(s) no 1º mês (de ${formatBRL(avgTicket)}), todo o investimento de implantação já está 100% pago.`;
+
+      document.getElementById('s7_company').innerText = companyName;
+      document.getElementById('s7_days').innerText = deliveryDays;
+
+      // Atualiza Aba 4 (Pós-Fechamento)
+      const docVal = document.getElementById('clientDoc').value || '[A definir]';
+      const addrVal = document.getElementById('clientAddress').value || '[A definir]';
+      const emailVal = document.getElementById('clientEmail').value || '[A definir]';
+
+      document.getElementById('msgPostClose').innerText =
+        `Maravilha! Seja muito bem-vindo(a)! 🚀
 
 Para eu emitir o Contrato de Prestação de Serviços da ${companyName} (Implantação de ${formatBRL(setupPrice)} em 2x de ${formatBRL(setupPrice / 2)} + Mensalidade de ${formatBRL(monthlyPrice)}/mês iniciando só 30 dias após a entrega), me confirma apenas estes 3 dados:
 
@@ -1339,8 +1700,8 @@ Para eu emitir o Contrato de Prestação de Serviços da ${companyName} (Implant
 E para já iniciarmos o treinamento da sua Secretária de IA, preencha nosso Formulário Oficial de Briefing neste link:
 👉 https://forms.gle/6R8GMbKJXNDemV8z9`;
 
-    document.getElementById('promptContract').innerText =
-`Gere o protocolo pós-fechamento completo (Contrato e Cronograma) para:
+      document.getElementById('promptContract').innerText =
+        `Gere o protocolo pós-fechamento completo (Contrato e Cronograma) para:
 - Empresa: ${companyName} (${companyNiche})
 - Responsável / CPF-CNPJ: ${docVal}
 - Endereço: ${addrVal}
@@ -1349,148 +1710,148 @@ E para já iniciarmos o treinamento da sua Secretária de IA, preencha nosso For
 - Implantação: ${formatBRL(setupPrice)} (50% na assinatura e 50% na entrega em até ${deliveryDays} dias)
 - Mensalidade: ${formatBRL(monthlyPrice)}/mês (iniciando 30 dias após a entrega).`;
 
-    savePainelState();
-  }
-
-  const PAINEL_STORAGE_KEY = 'PAINEL_COMERCIAL_STATE_V1';
-  const PAINEL_FIELD_IDS = [
-    'companyName', 'companyNiche', 'mainService', 'avgTicket', 'leadSource',
-    'leadsPerDay', 'leadsPerMonth', 'whoAnswers', 'numAgendas', 'waitTime',
-    'followupPain', 'controlPain', 'lossRateSelect', 'extraClients',
-    'deliveryDays', 'setupPrice', 'monthlyPrice', 'clientDoc', 'clientAddress', 'clientEmail'
-  ];
-  let isLoadedState = false;
-
-  function savePainelState() {
-    if (!isLoadedState) return;
-    try {
-      const data = { manualExtraOverride, manualPriceOverride, fields: {} };
-      PAINEL_FIELD_IDS.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) data.fields[id] = el.value;
-      });
-      localStorage.setItem(PAINEL_STORAGE_KEY, JSON.stringify(data));
-    } catch (e) {}
-  }
-
-  function loadPainelState() {
-    try {
-      const raw = localStorage.getItem(PAINEL_STORAGE_KEY);
-      if (raw) {
-        const data = JSON.parse(raw);
-        if (data && data.fields) {
-          manualExtraOverride = !!data.manualExtraOverride;
-          manualPriceOverride = !!data.manualPriceOverride;
-          if (data.fields.deliveryDays === '10') data.fields.deliveryDays = '30';
-          PAINEL_FIELD_IDS.forEach(id => {
-            if (data.fields[id] !== undefined && document.getElementById(id)) {
-              document.getElementById(id).value = data.fields[id];
-            }
-          });
-        }
-      }
-    } catch (e) {}
-    isLoadedState = true;
-  }
-
-  function resetNewClient() {
-    if (!confirm('Deseja limpar os dados atuais para iniciar o diagnóstico de um novo cliente?')) return;
-    localStorage.removeItem(PAINEL_STORAGE_KEY);
-    document.getElementById('companyName').value = 'Clínica Belle Vie';
-    document.getElementById('companyNiche').value = 'Estética Facial e Corporal';
-    document.getElementById('mainService').value = 'protocolos faciais e corporais';
-    document.getElementById('avgTicket').value = '1800';
-    document.getElementById('leadSource').value = 'Investe em anúncios pagos (Meta / Google Ads)';
-    document.getElementById('leadsPerDay').value = '15';
-    document.getElementById('leadsPerMonth').value = '450';
-    document.getElementById('whoAnswers').value = 'Recepcionista acumula WhatsApp com atendimento presencial';
-    document.getElementById('numAgendas').value = '2';
-    document.getElementById('waitTime').value = 'Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte';
-    document.getElementById('followupPain').value = 'Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno';
-    document.getElementById('controlPain').value = 'Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende';
-    document.getElementById('lossRateSelect').value = '0.03';
-    document.getElementById('deliveryDays').value = '30';
-    document.getElementById('clientDoc').value = '';
-    document.getElementById('clientAddress').value = '';
-    document.getElementById('clientEmail').value = '';
-    manualExtraOverride = false;
-    manualPriceOverride = false;
-    syncAll();
-  }
-
-  // Controle dos 7 Slides
-  let currentSlideIdx = 0;
-
-  function getSlides() {
-    return Array.from(document.querySelectorAll('#deckOverlay .deck-slide'));
-  }
-
-  function openSlideDeck() {
-    syncAll();
-    currentSlideIdx = 0;
-    document.getElementById('deckOverlay').classList.add('open');
-    renderSlidePosition();
-  }
-
-  function closeSlideDeck() {
-    document.getElementById('deckOverlay').classList.remove('open');
-    if (document.fullscreenElement) {
-      document.exitFullscreen().catch(() => {});
+      savePainelState();
     }
-  }
 
-  function renderSlidePosition() {
-    const slides = getSlides();
-    slides.forEach((s, i) => s.classList.toggle('active', i === currentSlideIdx));
-    document.getElementById('slideCounter').innerText = `${currentSlideIdx + 1} / ${slides.length}`;
-  }
+    const PAINEL_STORAGE_KEY = 'PAINEL_COMERCIAL_STATE_V1';
+    const PAINEL_FIELD_IDS = [
+      'companyName', 'companyNiche', 'mainService', 'avgTicket', 'leadSource',
+      'leadsPerDay', 'leadsPerMonth', 'whoAnswers', 'numAgendas', 'waitTime',
+      'followupPain', 'controlPain', 'lossRateSelect', 'extraClients',
+      'deliveryDays', 'setupPrice', 'monthlyPrice', 'clientDoc', 'clientAddress', 'clientEmail'
+    ];
+    let isLoadedState = false;
 
-  function changeSlide(delta) {
-    const slides = getSlides();
-    const next = currentSlideIdx + delta;
-    if (next >= 0 && next < slides.length) {
-      currentSlideIdx = next;
+    function savePainelState() {
+      if (!isLoadedState) return;
+      try {
+        const data = { manualExtraOverride, manualPriceOverride, fields: {} };
+        PAINEL_FIELD_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) data.fields[id] = el.value;
+        });
+        localStorage.setItem(PAINEL_STORAGE_KEY, JSON.stringify(data));
+      } catch (e) { }
+    }
+
+    function loadPainelState() {
+      try {
+        const raw = localStorage.getItem(PAINEL_STORAGE_KEY);
+        if (raw) {
+          const data = JSON.parse(raw);
+          if (data && data.fields) {
+            manualExtraOverride = !!data.manualExtraOverride;
+            manualPriceOverride = !!data.manualPriceOverride;
+            if (data.fields.deliveryDays === '10') data.fields.deliveryDays = '30';
+            PAINEL_FIELD_IDS.forEach(id => {
+              if (data.fields[id] !== undefined && document.getElementById(id)) {
+                document.getElementById(id).value = data.fields[id];
+              }
+            });
+          }
+        }
+      } catch (e) { }
+      isLoadedState = true;
+    }
+
+    function resetNewClient() {
+      if (!confirm('Deseja limpar os dados atuais para iniciar o diagnóstico de um novo cliente?')) return;
+      localStorage.removeItem(PAINEL_STORAGE_KEY);
+      document.getElementById('companyName').value = 'Clínica Belle Vie';
+      document.getElementById('companyNiche').value = 'Estética Facial e Corporal';
+      document.getElementById('mainService').value = 'protocolos faciais e corporais';
+      document.getElementById('avgTicket').value = '1800';
+      document.getElementById('leadSource').value = 'Investe em anúncios pagos (Meta / Google Ads)';
+      document.getElementById('leadsPerDay').value = '15';
+      document.getElementById('leadsPerMonth').value = '450';
+      document.getElementById('whoAnswers').value = 'Recepcionista acumula WhatsApp com atendimento presencial';
+      document.getElementById('numAgendas').value = '2';
+      document.getElementById('waitTime').value = 'Demora de 1 a 3 horas na correria; à noite e fim de semana só responde no dia seguinte';
+      document.getElementById('followupPain').value = 'Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno';
+      document.getElementById('controlPain').value = 'Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende';
+      document.getElementById('lossRateSelect').value = '0.03';
+      document.getElementById('deliveryDays').value = '30';
+      document.getElementById('clientDoc').value = '';
+      document.getElementById('clientAddress').value = '';
+      document.getElementById('clientEmail').value = '';
+      manualExtraOverride = false;
+      manualPriceOverride = false;
+      syncAll();
+    }
+
+    // Controle dos 7 Slides
+    let currentSlideIdx = 0;
+
+    function getSlides() {
+      return Array.from(document.querySelectorAll('#deckOverlay .deck-slide'));
+    }
+
+    function openSlideDeck() {
+      syncAll();
+      currentSlideIdx = 0;
+      document.getElementById('deckOverlay').classList.add('open');
       renderSlidePosition();
     }
-  }
 
-  function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
-    } else {
-      document.exitFullscreen().catch(() => {});
+    function closeSlideDeck() {
+      document.getElementById('deckOverlay').classList.remove('open');
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => { });
+      }
     }
-  }
 
-  document.addEventListener('keydown', function(e) {
-    const overlay = document.getElementById('deckOverlay');
-    if (!overlay.classList.contains('open')) return;
-    if (document.activeElement && document.activeElement.isContentEditable) return;
-
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-      e.preventDefault();
-      changeSlide(1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault();
-      changeSlide(-1);
-    } else if (e.key === 'Escape') {
-      closeSlideDeck();
+    function renderSlidePosition() {
+      const slides = getSlides();
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlideIdx));
+      document.getElementById('slideCounter').innerText = `${currentSlideIdx + 1} / ${slides.length}`;
     }
-  });
 
-  function downloadStandaloneDeck() {
-    syncAll();
-    const companySlug = (document.getElementById('companyName').value || 'cliente')
-      .toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    function changeSlide(delta) {
+      const slides = getSlides();
+      const next = currentSlideIdx + delta;
+      if (next >= 0 && next < slides.length) {
+        currentSlideIdx = next;
+        renderSlidePosition();
+      }
+    }
 
-    const styles = document.querySelector('style').innerHTML;
-    const deckClone = document.getElementById('deckOverlay').cloneNode(true);
-    const closeBtn = deckClone.querySelector('.close-deck');
-    if (closeBtn) closeBtn.remove();
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => { });
+      } else {
+        document.exitFullscreen().catch(() => { });
+      }
+    }
 
-    const standaloneHtml = `<!DOCTYPE html>
+    document.addEventListener('keydown', function (e) {
+      const overlay = document.getElementById('deckOverlay');
+      if (!overlay.classList.contains('open')) return;
+      if (document.activeElement && document.activeElement.isContentEditable) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        changeSlide(-1);
+      } else if (e.key === 'Escape') {
+        closeSlideDeck();
+      }
+    });
+
+    function downloadStandaloneDeck() {
+      syncAll();
+      const companySlug = (document.getElementById('companyName').value || 'cliente')
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+      const styles = document.querySelector('style').innerHTML;
+      const deckClone = document.getElementById('deckOverlay').cloneNode(true);
+      const closeBtn = deckClone.querySelector('.close-deck');
+      if (closeBtn) closeBtn.remove();
+
+      const standaloneHtml = `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
@@ -1529,16 +1890,17 @@ renderSlidePosition();
 </body>
 </html>`;
 
-    const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `proposta-${companySlug || 'comercial'}.html`;
-    a.click();
-  }
+      const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `proposta-${companySlug || 'comercial'}.html`;
+      a.click();
+    }
 
-  loadPainelState();
-  syncAll();
-</script>
+    loadPainelState();
+    syncAll();
+  </script>
 
 </body>
+
 </html>
