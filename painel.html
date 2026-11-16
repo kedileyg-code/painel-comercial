@@ -497,7 +497,7 @@
     <div class="card">
       <h2>1️⃣ Cliente Chamou no WhatsApp (Marcar a Reunião de Diagnóstico)</h2>
       <p class="sub">
-        Aqui no WhatsApp você <strong>não vai qualificar nem explicar tecnologia</strong>. O único objetivo dessas 2 mensagens é saber o nome/ramo da empresa e marcar a chamada de 15 minutos (onde aí sim acontece o diagnóstico).
+        O único objetivo aqui é pegar o nome/ramo da empresa e marcar a reunião de diagnóstico.
       </p>
 
       <div class="grid-2" style="margin-bottom: 14px;">
@@ -512,20 +512,16 @@
       </div>
 
       <div class="script-box">
-        <div class="tag">Mensagem 1 — Assim que a pessoa chamar pelo anúncio</div>
-        <p id="msgWa1">Opa, tudo bem? Prazer! Vi que você chamou pelo nosso anúncio sobre o Sistema de Atendimento e Agendamento com IA no WhatsApp.
-
-Qual é o nome da sua empresa/clínica e qual é o ramo de vocês hoje?</p>
+        <div class="tag">Mensagem 1 — Assim que a pessoa chamar</div>
+        <p id="msgWa1">Oi, tudo certo? Para marcarmos a reunião de diagnóstico, preciso que você me diga o nome da empresa e o ramo.</p>
         <div style="margin-top:10px;">
           <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem 1</button>
         </div>
       </div>
 
       <div class="script-box">
-        <div class="tag">Mensagem 2 — Assim que responder o nome da empresa e ramo (Agendar os 15 min)</div>
-        <p id="msgWa2">Show! Como o volume de mensagens e a rotina mudam de empresa pra empresa, o próximo passo é batermos um papo rápido de 15 minutos por vídeo (Google Meet) pra eu entender como funciona o atendimento de vocês hoje e te mostrar como o sistema se aplica aí.
-
-Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
+        <div class="tag">Mensagem 2 — Assim que responder o nome da empresa e o ramo</div>
+        <p id="msgWa2">Vamos marcar uma reunião de diagnóstico para entender como vocês funcionam hoje e definir o que precisa ser feito. Fica melhor hoje às 15h ou amanhã às 10h?</p>
         <div style="margin-top:10px;">
           <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem 2</button>
         </div>
@@ -654,8 +650,8 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
         <div class="q-num" style="color:var(--emerald);">Pergunta 08 • Fechamento da Call e Agendamento da Proposta (Com Decisor)</div>
         <div class="q-title">Fale isso para encerrar a Reunião de Diagnóstico (sem falar de preço agora):</div>
         <p style="font-size:14.5px; color:#d1fae5; margin-top:6px;">
-          "Ficou 100% claro como funciona a operação de vocês hoje. Eu vou montar uma apresentação bem objetiva mostrando o impacto desses gargalos e como o nosso sistema completo vai funcionar aí dentro.<br><br>
-          Vamos marcar 20 minutinhos amanhã às <strong>[Horário]</strong> pra eu te mostrar na tela? Ah, e se você tiver <strong>sócio(a) ou cônjuge que decide junto com você</strong>, já coloca na chamada também pra gente alinhar tudo de uma vez, combinado?"
+          "Entendi como funciona a operação de vocês hoje. Com base nisso, vou montar a proposta com o que precisa ser feito.<br><br>
+          Vamos marcar amanhã às <strong>[Horário]</strong> para eu te passar a proposta? E se você tiver <strong>sócio(a) ou cônjuge que decide junto com você</strong>, já coloca na chamada também para alinharmos tudo de uma vez, combinado?"
         </p>
       </div>
     </div>
@@ -683,8 +679,8 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
           <input type="number" id="extraClients" value="14" min="1" oninput="syncManualExtra()" />
         </div>
         <div>
-          <label>Prazo de Implantação (Dias Úteis)</label>
-          <input type="number" id="deliveryDays" value="10" oninput="syncAll()" />
+          <label>Prazo de Implantação (Dias)</label>
+          <input type="number" id="deliveryDays" value="30" oninput="syncAll()" />
         </div>
       </div>
 
@@ -752,7 +748,7 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
 <strong>Slide 2 — O Cenário Atual:</strong> Os 3 gargalos reais anotados no diagnóstico (demora fora de hora/pico, falta de follow-up em quem some e falta de controle).
 <strong>Slide 3 — O Impacto Financeiro:</strong> Quanto dinheiro fica na mesa por mês e por ano perdendo apenas alguns clientes por falta de velocidade/acompanhamento.
 <strong>Slide 4 — A Solução Completa (Tudo Integrado):</strong> Mostra em 1 único slide forte todo o seu sistema (Secretária IA 24h + Agenda Automática + CRM/Painel + Suporte Contínuo).
-<strong>Slide 5 — Como Funciona na Prática + Prazo:</strong> O exemplo real do cliente atendido às 21h40 + Entrega completa em até 10 dias úteis.
+<strong>Slide 5 — Como Funciona na Prática + Prazo:</strong> O exemplo real do cliente atendido às 21h40 + Entrega completa em até 30 dias.
 <strong>Slide 6 — Comparativo de Custo & Investimento:</strong> Custo tradicional (R$ 3.500 a R$ 6.000/mês) vs. Seu Investimento (mostrando que 2 ou 3 clientes recuperados já pagam tudo).
 <strong>Slide 7 — Próximos Passos:</strong> Aprovação Hoje → Contrato → Briefing → Sistema no Ar.</p>
       </div>
@@ -1035,7 +1031,7 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
     </div>
     <div class="s-tag" contenteditable="true">NA PRÁTICA + CRONOGRAMA</div>
     <h1 class="s-h1" style="font-size:clamp(28px, 3.2vw, 44px);" contenteditable="true">
-      Como funciona para o seu cliente • Entrega em até <span class="hl-green"><span id="s5_days">10</span> dias úteis</span>
+      Como funciona para o seu cliente • Entrega em até <span class="hl-green"><span id="s5_days">30</span> dias</span>
     </h1>
     <div class="flow-steps">
       <div class="flow-card">
@@ -1054,9 +1050,9 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
         <p contenteditable="true">Oferece os horários vagos da agenda, confirma a vaga, salva no CRM e programa o lembrete.</p>
       </div>
       <div class="flow-card" style="border-color:var(--emerald);">
-        <div class="f-time">ATÉ O DIA <span id="s5_days2">10</span></div>
+        <div class="f-time">EM ATÉ <span id="s5_days2">30</span> DIAS</div>
         <h4 contenteditable="true">4. Sistema 100% no Ar</h4>
-        <p contenteditable="true">Dia 1 a 5: Treinamento da IA • Dia 6 a 8: CRM e Agendas • Dia 10: Painel ativo e operação rodando.</p>
+        <p contenteditable="true">Configuração da IA sob medida, integração das agendas e CRM, testes completos e operação rodando em até 30 dias.</p>
       </div>
     </div>
   </section>
@@ -1131,7 +1127,7 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
         <p contenteditable="true">Preenchimento do formulário rápido com seus procedimentos, regras e dúvidas frequentes.</p>
       </div>
       <div class="flow-card" style="border-color:var(--emerald);">
-        <div class="f-time">PASSO 04 • ATÉ O DIA <span id="s7_days">10</span></div>
+        <div class="f-time">PASSO 04 • EM ATÉ <span id="s7_days">30</span> DIAS</div>
         <h4 contenteditable="true">Sistema no Ar</h4>
         <p contenteditable="true">Validação final, ativação oficial no WhatsApp e início do acompanhamento 24h.</p>
       </div>
@@ -1233,7 +1229,7 @@ Fica melhor pra você hoje às 15h ou amanhã às 10h?</p>
     const followupPain = document.getElementById('followupPain').value || '';
     const controlPain = document.getElementById('controlPain').value || '';
     const lossRate = parseFloat(document.getElementById('lossRateSelect').value) || 0.03;
-    const deliveryDays = parseInt(document.getElementById('deliveryDays').value) || 10;
+    const deliveryDays = parseInt(document.getElementById('deliveryDays').value) || 30;
 
     // 1. Cálculo automático de clientes recuperados/mês (se não tiver sido editado manualmente)
     let extraClients = parseInt(document.getElementById('extraClients').value) || 2;
@@ -1351,7 +1347,7 @@ E para já iniciarmos o treinamento da sua Secretária de IA, preencha nosso For
 - Endereço: ${addrVal}
 - E-mail: ${emailVal}
 - Escopo Completo: Secretária de IA 24h no WhatsApp + Follow-up Automático, Integração de ${numAgendas} Agenda(s), CRM Comercial, Painel de Resultados e Suporte Contínuo.
-- Implantação: ${formatBRL(setupPrice)} (50% na assinatura e 50% na entrega em até ${deliveryDays} dias úteis)
+- Implantação: ${formatBRL(setupPrice)} (50% na assinatura e 50% na entrega em até ${deliveryDays} dias)
 - Mensalidade: ${formatBRL(monthlyPrice)}/mês (iniciando 30 dias após a entrega).`;
 
     savePainelState();
@@ -1386,6 +1382,7 @@ E para já iniciarmos o treinamento da sua Secretária de IA, preencha nosso For
         if (data && data.fields) {
           manualExtraOverride = !!data.manualExtraOverride;
           manualPriceOverride = !!data.manualPriceOverride;
+          if (data.fields.deliveryDays === '10') data.fields.deliveryDays = '30';
           PAINEL_FIELD_IDS.forEach(id => {
             if (data.fields[id] !== undefined && document.getElementById(id)) {
               document.getElementById(id).value = data.fields[id];
@@ -1413,7 +1410,7 @@ E para já iniciarmos o treinamento da sua Secretária de IA, preencha nosso For
     document.getElementById('followupPain').value = 'Na correria só atende quem chama na hora; quem diz que vai pensar acaba ficando sem retorno';
     document.getElementById('controlPain').value = 'Fica tudo solto no histórico do WhatsApp sem painel de conversão e dependente de quem atende';
     document.getElementById('lossRateSelect').value = '0.03';
-    document.getElementById('deliveryDays').value = '10';
+    document.getElementById('deliveryDays').value = '30';
     document.getElementById('clientDoc').value = '';
     document.getElementById('clientAddress').value = '';
     document.getElementById('clientEmail').value = '';
