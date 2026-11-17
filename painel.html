@@ -2315,10 +2315,12 @@ renderSlidePosition();
         stage: 'WAITING_OWNER_TIME',
         companyInfo: '',
         scheduledTime: '',
-        lastMessage: 'Olá! Vi o anúncio e quero agendar uma reunião de diagnóstico.',
+        lastMessage: 'Vamos então marcar um diagnóstico!',
         updatedAt: new Date().toISOString()
       };
-      sendCloudCommand({ type: 'simulate_lead' });
+      fetch('http://localhost:3030/api/simulate', { method: 'POST' }).catch(() => {
+        sendCloudCommand({ type: 'simulate_lead' });
+      });
       triggerInstantAlert(
         '🔔 NOVO CLIENTE QUERENDO MARCAR REUNIÃO!',
         'Carlos (+5519998887766) mandou mensagem pelo anúncio. Dá pra fazer agora, escolher horário ou deixar para as 15h?',
