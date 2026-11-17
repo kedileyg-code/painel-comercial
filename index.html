@@ -828,23 +828,26 @@
           </div>
         </div>
 
-        <h3>Contatos do Anúncio & Decisão Rápida</h3>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin: 18px 0 10px;">
+          <h3 style="margin:0;">Contatos do Anúncio & Decisão Rápida</h3>
+          <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="clearAllCloudLeads()">🗑️ Limpar Contatos de Teste</button>
+        </div>
         <div id="cloudLeadsBox" style="background:#080d17; border:1px solid var(--border); border-radius:10px; padding:14px; margin-bottom:16px;">
           <div style="color:#64748b; font-size:13.5px;">Nenhum contato aguardando resposta no momento.</div>
         </div>
 
-        <h3>O que o Robô fala com o Cliente (Curto e Direto — Vai direto pro agendamento de 15 min)</h3>
+        <h3>O que o Robô fala com o Cliente (Natural, Curto e Direto)</h3>
         <div class="script-box">
-          <div class="tag">1A. Se você clicar em "⚡ Fazer Agora"</div>
-          <p id="msgWaNow">Oi, tudo certo? Vamos marcar sim! A reunião de diagnóstico leva uns 15 minutos pra eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito. Consigo fazer agora mesmo, pode ser?</p>
-        </div>
-
-        <div class="script-box">
-          <div class="tag">1B. Se for às 15h (ou outro horário escolhido)</div>
-          <p id="msgWa1">Oi, tudo certo? Vamos marcar sim! A reunião de diagnóstico leva uns 15 minutos pra eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito. Consegue hoje às 15h ou prefere outro horário?</p>
+          <div class="tag">1A. Primeira Mensagem — Horário Padrão (15h) ou Horário Escolhido</div>
+          <p id="msgWa1">Oi, tudo bem? Prazer, sou o Kediley! Para eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito, fazemos uma chamada rápida de diagnóstico (leva uns 15 minutos). Fica bom pra você hoje às 15h ou prefere outro horário?</p>
           <div style="margin-top:10px;">
             <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem</button>
           </div>
+        </div>
+
+        <div class="script-box">
+          <div class="tag">1B. Se você clicar em "⚡ Fazer Agora"</div>
+          <p id="msgWaNow">Oi, tudo bem? Prazer, sou o Kediley! Para eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito, fazemos uma chamada rápida de diagnóstico (leva uns 15 minutos). Consigo fazer agora mesmo, pode ser?</p>
         </div>
 
         <div class="script-box">
@@ -2308,10 +2311,11 @@ renderSlidePosition();
     }
 
     function simulateNewClientNotif() {
-      const fakePhone = '5519998887766';
+      const fakePhone = 'SIMULACAO_TESTE';
       cloudState.leads[fakePhone] = {
         phone: fakePhone,
-        name: 'Carlos (Anúncio Facebook)',
+        name: 'Cliente de Teste (Apenas Simulação Visual)',
+        isSimulation: true,
         stage: 'WAITING_OWNER_TIME',
         companyInfo: '',
         scheduledTime: '',
@@ -2322,8 +2326,8 @@ renderSlidePosition();
         sendCloudCommand({ type: 'simulate_lead' });
       });
       triggerInstantAlert(
-        '🔔 NOVO CLIENTE QUERENDO MARCAR REUNIÃO!',
-        'Carlos (+5519998887766) mandou mensagem pelo anúncio. Dá pra fazer agora, escolher horário ou deixar para as 15h?',
+        '🔔 SIMULAÇÃO: CLIENTE QUERENDO MARCAR REUNIÃO!',
+        'Cliente de Teste mandou mensagem. Escolha se dá pra fazer agora, escolher horário ou deixar para as 15h:',
         'action_needed',
         fakePhone
       );
@@ -2331,14 +2335,31 @@ renderSlidePosition();
     }
 
     function simulateScheduledNotif() {
-      const fakePhone = '5519998887766';
-      addAgendaItem('Reunião Diagnóstico — Carlos (Anúncio)', 'Hoje às 15h', fakePhone);
+      const fakePhone = 'SIMULACAO_TESTE';
+      addAgendaItem('Reunião Diagnóstico — Cliente de Teste (Simulação)', 'Hoje às 15h', fakePhone);
       triggerInstantAlert(
-        '✅ COMPROMISSO AGENDADO NA SUA AGENDA!',
-        'Reunião marcada para Hoje às 15h com Carlos (+5519998887766). Já está salvo na sua Agenda abaixo!',
+        '✅ SIMULAÇÃO: COMPROMISSO AGENDADO NA SUA AGENDA!',
+        'Reunião marcada para Hoje às 15h. Veja ela salva na sua Agenda abaixo (você pode clicar em Concluir/Remover para limpar)!',
         'scheduled',
         fakePhone
       );
+    }
+
+    function deleteCloudLead(phone) {
+      if (cloudState.leads) delete cloudState.leads[phone];
+      localNotifs = localNotifs.filter(n => n.phone !== phone);
+      if (cloudState.notifications) cloudState.notifications = cloudState.notifications.filter(n => n.phone !== phone);
+      sendCloudCommand({ type: 'delete_lead', phone });
+      renderCloudState();
+    }
+
+    function clearAllCloudLeads() {
+      cloudState.leads = {};
+      localNotifs = [];
+      cloudState.notifications = [];
+      document.getElementById('liveNotifBanner').style.display = 'none';
+      sendCloudCommand({ type: 'clear_all_leads' });
+      renderCloudState();
     }
 
     function renderNotifications() {
@@ -2441,6 +2462,7 @@ renderSlidePosition();
                 <button type="button" class="btn btn-emerald" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'Agora mesmo')">⚡ Fazer Agora</button>
                 <button type="button" class="btn btn-gold" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'Hoje às 15h')">🕒 Marcar às 15h</button>
                 <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:12px;" onclick="promptCustomHour('${l.phone}')">✏️ Escolher Horário</button>
+                <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="deleteCloudLead('${l.phone}')">🗑️ Excluir</button>
               </div>
             </div>
           `).join('');
