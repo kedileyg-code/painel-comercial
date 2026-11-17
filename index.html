@@ -734,6 +734,7 @@
     <button onclick="showTab(2)">3️⃣ Apresentação de Proposta (7 Slides)</button>
     <button onclick="showTab(3)">4️⃣ Contrato Pós-Fechamento</button>
     <button onclick="showTab(4)">5️⃣ Formulários de Briefing (Pós-Venda)</button>
+    <button onclick="showTab(5)">6️⃣ Guia de Estudo (Como Apresentar)</button>
   </div>
 
   <!-- BANNER DE NOTIFICAÇÃO FLUTUANTE COM SOM -->
@@ -754,22 +755,18 @@
        =================================================================== -->
     <div class="tab active">
 
-      <!-- 1. CENTRAL DE NOTIFICAÇÕES -->
-      <div class="card" style="border-color: var(--emerald);">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
-          <h2 style="margin-bottom:0;">🔔 Suas Notificações (Com Alerta Sonoro + Tela + WhatsApp)</h2>
+      <!-- 1. BARRA RÁPIDA DE ALERTAS -->
+      <div class="card" style="border-color: var(--emerald); padding: 16px 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <strong style="color:#fff; font-size:15px;">🔔 Alertas de Novo Cliente (Som + Janela na Tela)</strong>
+            <div style="color:#94a3b8; font-size:12.5px; margin-top:2px;">Clique ao lado para garantir que o navegador toque som e avise quando alguém chamar.</div>
+          </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="btn btn-outline" onclick="enableBrowserNotifs()">📲 Ativar Alerta no Aparelho</button>
-            <button type="button" class="btn btn-gold" onclick="simulateNewClientNotif()">🔔 Testar Notificação: Cliente Querendo Reunião</button>
-            <button type="button" class="btn btn-emerald" onclick="simulateScheduledNotif()">✅ Testar Notificação: Reunião Agendada</button>
+            <button type="button" class="btn btn-emerald" onclick="enableBrowserNotifs()">📲 Ativar Alertas</button>
           </div>
         </div>
-        <p class="sub" style="margin-bottom:12px;">
-          Quando alguém mandar mensagem pelo anúncio (ou quando uma reunião for marcada), toca um alerta sonoro e aparece a notificação abaixo para você clicar em <strong>Fazer Agora</strong>, <strong>Marcar às 15h</strong> ou <strong>Escolher Horário</strong>:
-        </p>
-        <div id="notifListBox" style="background:#080d17; border:1px solid var(--border); border-radius:10px; padding:14px; max-height:240px; overflow-y:auto;">
-          <div style="color:#64748b; font-size:13.5px;">Nenhuma notificação ainda. Clique em <strong>"🔔 Testar Notificação"</strong> acima para ver funcionando agora!</div>
-        </div>
+        <div id="notifListBox" style="display:none;"></div>
       </div>
 
       <!-- 2. MINHA AGENDA DE REUNIÕES E COMPROMISSOS (SALVA NA NUVEM) -->
@@ -780,7 +777,7 @@
         </p>
         <div style="display:grid; grid-template-columns: 1.2fr 1fr auto; gap:10px; margin-bottom:14px;">
           <input type="text" id="newAgendaTitle" placeholder="Compromisso ou Cliente (Ex: Reunião Empresa Limpeza)" style="margin-bottom:0;" />
-          <input type="text" id="newAgendaTime" placeholder="Dia e Horário (Ex: Hoje às 15h)" style="margin-bottom:0;" />
+          <input type="text" id="newAgendaTime" placeholder="Dia e Horário (Ex: Hoje às 14h)" style="margin-bottom:0;" />
           <button type="button" class="btn btn-emerald" onclick="addAgendaItem()">➕ Agendar</button>
         </div>
         <div id="agendaListContainer" style="display:flex; flex-direction:column; gap:10px;"></div>
@@ -814,9 +811,9 @@
           <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
             <div>
               <strong style="color:#fff; font-size:14.5px; display:block;">2. Fila Automática das 14h às 16h (De 30 em 30 min: 14h, 14h30, 15h, 15h30)</strong>
-              <span style="color:#94a3b8; font-size:12.5px;">Se você não responder em 2 minutos, o robô oferece o próximo horário livre com 30 min de diferença (se 14h já estiver ocupado, marca às 14h30, depois 15h, até 15h30).</span>
+              <span style="color:#94a3b8; font-size:12.5px;">Se você não responder em <strong>7 minutos</strong>, o robô oferece o próximo horário livre com 30 min de diferença (começando às 14h, depois 14h30, 15h, até 15h30).</span>
             </div>
-            <button type="button" id="cloudBtnAuto15" class="btn btn-emerald" onclick="toggleCloudBotFlag('autoFallbackDefault')">🟢 LIGADO</button>
+            <button type="button" id="cloudBtnAuto15" class="btn btn-outline" onclick="toggleCloudBotFlag('autoFallbackDefault')">⚪ DESLIGADO</button>
           </div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
@@ -830,7 +827,7 @@
 
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin: 18px 0 10px;">
           <h3 style="margin:0;">Contatos do Anúncio & Decisão Rápida</h3>
-          <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="clearAllCloudLeads()">🗑️ Limpar Contatos de Teste</button>
+          <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="clearAllCloudLeads()">🗑️ Limpar Lista</button>
         </div>
         <div id="cloudLeadsBox" style="background:#080d17; border:1px solid var(--border); border-radius:10px; padding:14px; margin-bottom:16px;">
           <div style="color:#64748b; font-size:13.5px;">Nenhum contato aguardando resposta no momento.</div>
@@ -838,8 +835,8 @@
 
         <h3>O que o Robô fala com o Cliente (Natural, Curto e Direto)</h3>
         <div class="script-box">
-          <div class="tag">1A. Primeira Mensagem — Horário Padrão (15h) ou Horário Escolhido</div>
-          <p id="msgWa1">Oi, tudo bem? Prazer, sou o Kediley! Para eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito, fazemos uma chamada rápida de diagnóstico (leva uns 15 minutos). Fica bom pra você hoje às 15h ou prefere outro horário?</p>
+          <div class="tag">1A. Primeira Mensagem — Horário Padrão (14h) ou Horário Escolhido</div>
+          <p id="msgWa1">Oi, tudo bem? Prazer, sou o Kediley! Para eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito, fazemos uma chamada rápida de diagnóstico (leva uns 15 minutos). Fica bom pra você hoje às 14h ou prefere outro horário?</p>
           <div style="margin-top:10px;">
             <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem</button>
           </div>
@@ -860,7 +857,7 @@
 
         <div class="script-box" style="border-left-color: var(--emerald);">
           <div class="tag" style="color: var(--emerald);">3. Lembrete Automático — Enviado 30 Minutos Antes da Reunião (1 única mensagem)</div>
-          <p id="msgWaReminder">Oi! Passando pra lembrar que hoje às 15h (daqui a 30 minutos) temos nossa reunião rápida de diagnóstico. Tudo certo pra você nesse horário? Se tiver algum imprevisto é só me avisar.</p>
+          <p id="msgWaReminder">Oi! Passando pra lembrar que hoje às 14h (daqui a 30 minutos) temos nossa reunião rápida de diagnóstico. Tudo certo pra você nesse horário? Se tiver algum imprevisto é só me avisar.</p>
           <div style="margin-top:10px;">
             <button class="btn btn-outline" onclick="copyText('msgWaReminder')">📋 Copiar Mensagem de Lembrete</button>
           </div>
@@ -1324,6 +1321,118 @@
               </ol>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+       ABA 6: GUIA DE ESTUDO (COMO APRESENTAR + SLIDES + OBJEÇÕES)
+       =================================================================== -->
+    <div class="tab">
+      <div class="card" style="border-color: var(--accent);">
+        <h2>🎓 Guia Particular de Estudo — Sua Apresentação & Sistema</h2>
+        <p class="sub">
+          Leia este guia antes das reuniões para falar com 100% de confiança. O cliente <strong>não</strong> compra "código" — ele compra a solução para parar de perder clientes no WhatsApp.
+        </p>
+
+        <div class="script-box" style="border-left-color: var(--gold);">
+          <div class="tag" style="color: var(--gold);">REGRA DE OURO DA CONFIANÇA</div>
+          <p>O dono da empresa só quer saber: <strong>"Isso vai responder rápido meu cliente, agendar na minha agenda e me fazer ganhar mais dinheiro sem me dar trabalho?"</strong> A resposta é <strong>SIM</strong>.</p>
+        </div>
+
+        <h3 style="margin-top:18px;">⚙️ Os 4 Pilares que você entrega em 30 dias</h3>
+        <div class="grid-2" style="margin-top:10px;">
+          <div class="script-box" style="margin:0;">
+            <div class="tag">1. Secretária de IA 24h</div>
+            <p>Responde em menos de 10 segundos (madrugada, domingo, feriado), entende texto e áudio, tira dúvidas e conduz para o agendamento.</p>
+          </div>
+          <div class="script-box" style="margin:0;">
+            <div class="tag">2. Follow-up Automático</div>
+            <p>Quando o cliente pergunta preço e some, o sistema volta a chamar de forma educada horas/dias depois para recuperar a venda.</p>
+          </div>
+          <div class="script-box" style="margin:0;">
+            <div class="tag">3. Integração na Agenda</div>
+            <p>Consulta os horários livres de cada profissional/sala, marca sem conflito de horário e manda lembrete antes para evitar faltas.</p>
+          </div>
+          <div class="script-box" style="margin:0;">
+            <div class="tag">4. CRM & Painel de Controle</div>
+            <p>O dono vê quantos clientes chegaram pelo anúncio, quantos agendaram e quanto faturaram no mês — tudo organizado.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:20px;">⏱️ Prazo e Pagamento (Pra explicar sem gaguejar)</h3>
+        <ul style="padding-left:20px; color:#e2e8f0; font-size:14px; line-height:1.8;">
+          <li><strong>Prazo de entrega:</strong> Até <strong>30 dias</strong> (treinamento da IA, integração de agendas e testes com o cliente aprovando antes de ligar).</li>
+          <li><strong>Implantação (Setup):</strong> A partir de R$ 3.000 — em <strong>2x (50% na assinatura e 50% só quando entregarmos funcionando)</strong>.</li>
+          <li><strong>Mensalidade:</strong> A partir de R$ 500/mês — <strong>só começa a pagar 30 dias após a entrega</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🖥️ O que falar em cada Slide (Slides 1 ao 7)</h2>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">SLIDE 1 — CAPA</div>
+          <p>"Fulano, montei aqui um diagnóstico personalizado só para a [Empresa] com base no que você me passou. Vou te mostrar em 5 minutinhos onde vocês estão deixando dinheiro na mesa hoje e como resolver isso em 30 dias."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">SLIDE 2 — DIAGNÓSTICO DOS GARGALOS</div>
+          <p>"Olha o retrato do que você me contou: hoje o cliente chama e demora para ser respondido, quem não fecha na hora fica sem follow-up e você não tem clareza de conversão. Quem responde em 15 minutos já perdeu o cliente para quem respondeu em 10 segundos."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">SLIDE 3 — O DINHEIRO NA MESA (MAIS IMPORTANTE!)</div>
+          <p>"Fiz uma conta bem pé no chão: vocês recebem [X] contatos por mês. Se recuperarmos só [Y] clientes que hoje esfriam na conversa, com o seu ticket médio de R$ [Ticket], estamos falando de R$ [Valor/mês] a mais todo mês — ou R$ [Valor/ano] no ano que hoje ficam na mesa."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">SLIDE 4 — A SOLUÇÃO</div>
+          <p>"Para estancar essa perda, implementamos a Secretária de IA treinada no jeito da [Empresa] atender. Ela responde na hora 24h, tira dúvidas sobre [Serviço], agenda direto nas suas [X] agendas sem conflito e faz follow-up automático."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">SLIDE 5 — CRONOGRAMA DE 30 DIAS</div>
+          <p>"Em até 30 dias tudo entra no ar sem atrapalhar sua rotina: semana 1 mapeamos as respostas; semana 2 configuramos IA e agenda; semana 3 você testa e aprova cada frase; semana 4 viramos a chave."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--gold);">
+          <div class="tag" style="color: var(--gold);">SLIDE 6 — INVESTIMENTO (USANDO O BOTÃO DO OLHO 👁️)</div>
+          <p><strong>1º (Com o seu preço oculto):</strong> "Para ter uma pessoa atendendo 24h, uma empresa gasta mais de R$ 2.800/mês fora encargos e férias. Ou perde R$ [Perda Mensal] todo mês sem sistema."<br><br><strong>2º (Clique em "👁️ Revelar Meu Investimento"):</strong> "Com nossa estrutura completa em 30 dias, a implantação fica em R$ [Setup] (50% agora e 50% só na entrega) e a mensalidade de R$ [Mensalidade] só começa 30 dias após a entrega. Recuperando apenas [1 ou 2] clientes no mês, já se pagou."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">SLIDE 7 — FECHAMENTO</div>
+          <p>"Fulano, faz sentido para a [Empresa] parar de perder esses clientes já nos próximos 30 dias? Se fizer sentido, eu já gero o contrato com 50% agora e 50% só na entrega e te mando o link do briefing pra gente começar."</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🛡️ O que o Cliente pode dizer (Respostas Prontas)</h2>
+
+        <div class="script-box" style="border-left-color: #ef4444;">
+          <div class="tag" style="color: #fca5a5;">❌ "Achei caro / Estou sem caixa agora"</div>
+          <p>"Eu entendo total. Por isso você paga só 50% agora e os outros 50% só daqui a 30 dias quando estiver rodando. Quantos clientes de R$ [Ticket] você precisa fechar a mais por mês pro sistema se pagar? Apenas 1 ou 2. Caro mesmo é continuar perdendo esses clientes todo mês."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: #ef4444;">
+          <div class="tag" style="color: #fca5a5;">❌ "Já tenho recepcionista / secretária"</div>
+          <p>"Excelente! O sistema não vem pra substituir sua equipe, vem pra tirar o peso repetitivo dela. À noite, fim de semana, almoço ou quando chegam várias mensagens juntas, a IA responde em 5 segundos e já entrega o cliente agendado pra sua recepcionista só atender bem."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: #ef4444;">
+          <div class="tag" style="color: #fca5a5;">❌ "E se a IA falar besteira ou parecer robô?"</div>
+          <p>"A IA é treinada exatamente com os dados, preços, regras e o tom de voz da sua empresa. E antes de ligar pros clientes, na semana 3 a gente testa tudo juntos no WhatsApp — só colocamos no ar quando você aprovar 100%."</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: #ef4444;">
+          <div class="tag" style="color: #fca5a5;">❌ "Vou pensar / Preciso falar com meu sócio(a)"</div>
+          <p>"Claro! Pra te ajudar a mostrar pro seu sócio sem perder nenhum detalhe, posso te mandar o link exato desses slides personalizados com os números de vocês? E qual dúvida você acha que ele teria que eu já posso te responder agora?"</p>
+        </div>
+
+        <div class="script-box" style="border-left-color: #ef4444;">
+          <div class="tag" style="color: #fca5a5;">❌ "Como sei que vai dar resultado mesmo?"</div>
+          <p>"Por dois motivos: a segunda metade da implantação você só paga na entrega, e a mensalidade só começa a contar 30 dias depois que o sistema já estiver rodando e atendendo seus clientes. Todo o risco fica do nosso lado."</p>
         </div>
       </div>
     </div>
@@ -2287,9 +2396,13 @@ renderSlidePosition();
 
         if (type === 'action_needed') {
           actionsEl.innerHTML = `
-            <button type="button" class="btn btn-emerald" onclick="respondNotifChoice('${phone}', 'agora')">⚡ 1. Fazer Agora</button>
-            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'auto')">🕒 2. Fila 14h–16h (${nextSlotLabel})</button>
-            <button type="button" class="btn" onclick="promptCustomHour('${phone}')">✏️ 3. Escolher Horário</button>
+            <button type="button" class="btn btn-emerald" onclick="respondNotifChoice('${phone}', 'agora')">⚡ Fazer Agora</button>
+            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'hoje às 14h')">🕑 Marcar às 14h</button>
+            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'hoje às 14h30')">🕝 Às 14h30</button>
+            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'hoje às 15h')">🕒 Às 15h</button>
+            <button type="button" class="btn" onclick="promptCustomHour('${phone}')">✏️ Escolher Horário</button>
+            <button type="button" class="btn btn-emerald" style="background:#059669;" onclick="respondNotifChoice('${phone}', 'ok')">✅ Confirmar Agendamento</button>
+            <button type="button" class="btn btn-outline" style="border-color:#ef4444; color:#fca5a5;" onclick="deleteCloudLead('${phone}')">🚫 Não Agendar / Ignorar</button>
             <button type="button" class="btn btn-outline" onclick="document.getElementById('liveNotifBanner').style.display='none'">✕</button>
           `;
         } else {
@@ -2312,21 +2425,35 @@ renderSlidePosition();
 
     function respondNotifChoice(phone, choice) {
       document.getElementById('liveNotifBanner').style.display = 'none';
-      const displayTime = choice === 'auto' ? (cloudState.nextFreeSlotText || 'Próximo horário livre (14h–16h)') : (choice === 'agora' ? 'Agora mesmo' : choice);
+      const displayTime = choice === 'auto' ? (cloudState.nextFreeSlotText || 'hoje às 14h') : (choice === 'agora' ? 'Agora mesmo' : choice);
+
+      fetch('http://localhost:3030/api/local-choice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, text: choice })
+      }).catch(() => {});
       sendCloudCommand({ type: 'owner_reply', phone, text: choice });
 
-      if (cloudState.leads && cloudState.leads[phone]) {
-        cloudState.leads[phone].proposedByOwner = displayTime;
-        cloudState.leads[phone].scheduledTime = displayTime;
-        cloudState.leads[phone].stage = 'SCHEDULED';
+      if (choice === 'ok' || choice === 'confirmar') {
+        const finalTime = (cloudState.leads && cloudState.leads[phone] && (cloudState.leads[phone].clientCounterProposal || cloudState.leads[phone].proposedByOwner)) || 'Hoje às 14h';
+        if (cloudState.leads && cloudState.leads[phone]) {
+          cloudState.leads[phone].scheduledTime = finalTime;
+          cloudState.leads[phone].stage = 'SCHEDULED';
+        }
+        addAgendaItem(`Reunião Diagnóstico (${(cloudState.leads && cloudState.leads[phone] && cloudState.leads[phone].name) || phone})`, finalTime, phone);
+        triggerInstantAlert('✅ Reunião Confirmada na Sua Agenda!', `O robô enviou a confirmação final para o cliente (${finalTime}) e salvou na sua Agenda!`, 'scheduled', phone);
+      } else {
+        if (cloudState.leads && cloudState.leads[phone]) {
+          cloudState.leads[phone].proposedByOwner = displayTime;
+          cloudState.leads[phone].stage = 'WAITING_TIME';
+        }
+        triggerInstantAlert('📨 Horário Enviado para o Cliente!', `O robô enviou a mensagem para o cliente propondo "${displayTime}". Assim que ele responder confirmando, fica agendado!`, 'scheduled', phone);
       }
-      addAgendaItem(`Reunião Diagnóstico (${phone})`, displayTime, phone);
-      triggerInstantAlert('✅ Horário Enviado e Agendado!', `O robô enviou "${displayTime}" para o cliente e já salvou na sua Agenda abaixo.`, 'scheduled', phone);
       renderCloudState();
     }
 
     function promptCustomHour(phone) {
-      const h = prompt('Qual horário você quer propor para o cliente? (Ex: hoje às 17h ou amanhã às 14h)', 'hoje às 16h');
+      const h = prompt('Qual horário você quer propor para o cliente? (Ex: hoje às 14h, hoje às 15h30 ou amanhã às 14h)', 'hoje às 14h');
       if (h && h.trim()) {
         respondNotifChoice(phone, h.trim());
       }
@@ -2371,7 +2498,14 @@ renderSlidePosition();
       if (cloudState.leads) delete cloudState.leads[phone];
       localNotifs = localNotifs.filter(n => n.phone !== phone);
       if (cloudState.notifications) cloudState.notifications = cloudState.notifications.filter(n => n.phone !== phone);
-      sendCloudCommand({ type: 'delete_lead', phone });
+      const banner = document.getElementById('liveNotifBanner');
+      if (banner) banner.style.display = 'none';
+      fetch('http://localhost:3030/api/local-choice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, text: 'ignorar' })
+      }).catch(() => {});
+      sendCloudCommand({ type: 'ignore_lead', phone });
       renderCloudState();
     }
 
@@ -2414,9 +2548,13 @@ renderSlidePosition();
           </div>
           ${n.type === 'action_needed' ? `
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-emerald" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'Agora mesmo')">⚡ Fazer Agora</button>
-              <button type="button" class="btn btn-gold" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'Hoje às 15h')">🕒 Às 15h</button>
+              <button type="button" class="btn btn-emerald" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'agora')">⚡ Fazer Agora</button>
+              <button type="button" class="btn btn-gold" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'hoje às 14h')">🕑 Às 14h</button>
+              <button type="button" class="btn btn-gold" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'hoje às 14h30')">🕝 Às 14h30</button>
+              <button type="button" class="btn btn-gold" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'hoje às 15h')">🕒 Às 15h</button>
               <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:12px;" onclick="promptCustomHour('${n.phone}')">✏️ Outro Horário</button>
+              <button type="button" class="btn btn-emerald" style="padding:5px 10px; font-size:12px; background:#059669;" onclick="respondNotifChoice('${n.phone}', 'ok')">✅ Confirmar</button>
+              <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="deleteCloudLead('${n.phone}')">🚫 Não Agendar / Ignorar</button>
             </div>
           ` : ''}
         </div>
@@ -2457,8 +2595,8 @@ renderSlidePosition();
 
       const btnAuto = document.getElementById('cloudBtnAuto15');
       if (btnAuto) {
-        btnAuto.innerText = cfg.autoFallbackDefault !== false ? '🟢 LIGADO' : '⚪ DESLIGADO';
-        btnAuto.className = cfg.autoFallbackDefault !== false ? 'btn btn-emerald' : 'btn btn-outline';
+        btnAuto.innerText = cfg.autoFallbackDefault === true ? '🟢 LIGADO (7 min)' : '⚪ DESLIGADO';
+        btnAuto.className = cfg.autoFallbackDefault === true ? 'btn btn-emerald' : 'btn btn-outline';
       }
 
       const btnRem = document.getElementById('cloudBtnRem30');
@@ -2471,19 +2609,22 @@ renderSlidePosition();
       if (leadsBox) {
         const list = Object.values(cloudState.leads || {}).sort((a,b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''));
         if (list.length === 0) {
-          leadsBox.innerHTML = `<div style="color:#64748b; font-size:13.5px;">Nenhum contato aguardando decisão agora. Quando alguém chamar pelo anúncio, aparece aqui com os 3 botões!</div>`;
+          leadsBox.innerHTML = `<div style="color:#64748b; font-size:13.5px;">Nenhum contato aguardando decisão agora. Quando alguém chamar pelo anúncio, aparece aqui com os botões para você escolher!</div>`;
         } else {
           leadsBox.innerHTML = list.map(l => `
             <div style="padding:10px; border-bottom:1px solid #1e2d4a; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
               <div>
                 <strong style="color:#fff; font-size:14px;">👤 ${l.name || l.phone} (+${l.phone})</strong>
                 <div style="font-size:12.5px; color:#94a3b8;">Mensagem: "${l.lastMessage || ''}"</div>
-                <div style="font-size:12.5px; color:var(--emerald); font-weight:700;">Horário: ${l.scheduledTime || l.proposedByOwner || 'Aguardando sua escolha'}</div>
+                <div style="font-size:12.5px; color:var(--emerald); font-weight:700;">Status/Horário: ${l.scheduledTime ? '✅ Confirmado: ' + l.scheduledTime : (l.proposedByOwner ? '⏳ Proposto: ' + l.proposedByOwner + ' (aguardando resposta)' : '🔔 Aguardando sua escolha')}</div>
               </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button type="button" class="btn btn-emerald" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'Agora mesmo')">⚡ Fazer Agora</button>
-                <button type="button" class="btn btn-gold" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'Hoje às 15h')">🕒 Marcar às 15h</button>
+                <button type="button" class="btn btn-emerald" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'agora')">⚡ Fazer Agora</button>
+                <button type="button" class="btn btn-gold" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'hoje às 14h')">🕑 Marcar às 14h</button>
+                <button type="button" class="btn btn-gold" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'hoje às 14h30')">🕝 Às 14h30</button>
+                <button type="button" class="btn btn-gold" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'hoje às 15h')">🕒 Às 15h</button>
                 <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:12px;" onclick="promptCustomHour('${l.phone}')">✏️ Escolher Horário</button>
+                <button type="button" class="btn btn-emerald" style="padding:6px 10px; font-size:12px; background:#059669;" onclick="respondNotifChoice('${l.phone}', 'ok')">✅ Confirmar na Agenda</button>
                 <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="deleteCloudLead('${l.phone}')">🗑️ Excluir</button>
               </div>
             </div>
