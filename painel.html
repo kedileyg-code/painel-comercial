@@ -818,6 +818,14 @@
             </div>
             <button type="button" id="cloudBtnAuto15" class="btn btn-emerald" onclick="toggleCloudBotFlag('autoFallbackDefault')">🟢 LIGADO</button>
           </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
+            <div>
+              <strong style="color:#fff; font-size:14.5px; display:block;">3. Lembrete Automático 30 Minutos Antes da Reunião (1 Mensagem)</strong>
+              <span style="color:#94a3b8; font-size:12.5px;">Faltando 30 minutos para o horário marcado, manda 1 mensagem lembrando o cliente da reunião e te avisa.</span>
+            </div>
+            <button type="button" id="cloudBtnRem30" class="btn btn-emerald" onclick="toggleCloudBotFlag('autoReminder30Min')">🟢 LIGADO</button>
+          </div>
         </div>
 
         <h3>Contatos do Anúncio & Decisão Rápida</h3>
@@ -844,6 +852,14 @@
           <p id="msgWa2">Combinado, deixei agendado! Pouco antes do horário te mando o link da chamada por aqui.</p>
           <div style="margin-top:10px;">
             <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem</button>
+          </div>
+        </div>
+
+        <div class="script-box" style="border-left-color: var(--emerald);">
+          <div class="tag" style="color: var(--emerald);">3. Lembrete Automático — Enviado 30 Minutos Antes da Reunião (1 única mensagem)</div>
+          <p id="msgWaReminder">Oi! Passando pra lembrar que hoje às 15h (daqui a 30 minutos) temos nossa reunião rápida de diagnóstico. Tudo certo pra você nesse horário? Se tiver algum imprevisto é só me avisar.</p>
+          <div style="margin-top:10px;">
+            <button class="btn btn-outline" onclick="copyText('msgWaReminder')">📋 Copiar Mensagem de Lembrete</button>
           </div>
         </div>
       </div>
@@ -2183,8 +2199,10 @@ renderSlidePosition();
           <div>
             <div style="font-size:15px; font-weight:800; color:#fff;">📅 ${item.title}</div>
             <div style="font-size:13.5px; color:var(--emerald); font-weight:700; margin-top:3px;">⏰ Horário: ${item.time}</div>
+            <div style="font-size:12px; color:#94a3b8; margin-top:3px;">🔔 Lembrete automático no WhatsApp: <strong>30 minutos antes da reunião</strong></div>
           </div>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            ${item.phone ? `<button type="button" class="btn btn-gold" style="padding:6px 12px; font-size:12px;" onclick="sendCloudCommand({type:'send_reminder_now', phone:'${item.phone}'}); alert('Lembrete enviado para o cliente!');">⏰ Mandar Lembrete Agora</button>` : ''}
             <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px;" onclick="showTab(1)">📋 Abrir Diagnóstico</button>
             <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="removeAgendaItem('${item.id}')">🗑️ Concluir / Remover</button>
           </div>
@@ -2396,6 +2414,12 @@ renderSlidePosition();
       if (btnAuto) {
         btnAuto.innerText = cfg.autoFallbackDefault !== false ? '🟢 LIGADO' : '⚪ DESLIGADO';
         btnAuto.className = cfg.autoFallbackDefault !== false ? 'btn btn-emerald' : 'btn btn-outline';
+      }
+
+      const btnRem = document.getElementById('cloudBtnRem30');
+      if (btnRem) {
+        btnRem.innerText = cfg.autoReminder30Min !== false ? '🟢 LIGADO' : '⚪ DESLIGADO';
+        btnRem.className = cfg.autoReminder30Min !== false ? 'btn btn-emerald' : 'btn btn-outline';
       }
 
       const leadsBox = document.getElementById('cloudLeadsBox');
