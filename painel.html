@@ -729,40 +729,121 @@
   </header>
 
   <div class="nav">
-    <button class="active" onclick="showTab(0)">1️⃣ Chegou no WhatsApp (Agendar Call)</button>
+    <button class="active" onclick="showTab(0)">1️⃣ Robô WhatsApp + Agenda + Notificações</button>
     <button onclick="showTab(1)">2️⃣ Reunião de Diagnóstico + Cálculo Automático</button>
     <button onclick="showTab(2)">3️⃣ Apresentação de Proposta (7 Slides)</button>
     <button onclick="showTab(3)">4️⃣ Contrato Pós-Fechamento</button>
     <button onclick="showTab(4)">5️⃣ Formulários de Briefing (Pós-Venda)</button>
   </div>
 
+  <!-- BANNER DE NOTIFICAÇÃO FLUTUANTE COM SOM -->
+  <div id="liveNotifBanner" style="display:none; position:sticky; top:68px; z-index:999; max-width:1140px; margin:12px auto 0; padding:0 24px;">
+    <div style="background:linear-gradient(135deg, #064e3b, #0f172a); border:2px solid #10b981; border-radius:14px; padding:16px 20px; box-shadow:0 15px 40px rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
+      <div>
+        <div id="liveNotifTitle" style="font-size:16px; font-weight:900; color:#34d399; margin-bottom:4px;">🔔 NOVA NOTIFICAÇÃO</div>
+        <div id="liveNotifMsg" style="font-size:14px; color:#f8fafc;"></div>
+      </div>
+      <div id="liveNotifActions" style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;"></div>
+    </div>
+  </div>
+
   <div class="container">
 
     <!-- ===================================================================
-       ABA 1: CHEGOU NO WHATSAPP (SÓ AGENDAR A REUNIÃO DE DIAGNÓSTICO)
+       ABA 1: ROBÔ WHATSAPP + MINHA AGENDA + NOTIFICAÇÕES (NA NUVEM HTTPS)
        =================================================================== -->
     <div class="tab active">
-      <div class="card">
-        <h2>1️⃣ Cliente Chamou no WhatsApp (Ir Direto pro Agendamento)</h2>
-        <p class="sub">
-          Como a pessoa já clicou no anúncio querendo agendar o diagnóstico, <strong>vá direto para marcar o horário de 15 minutos</strong> (sem burocracia antes). Você pergunta o nome da empresa e o ramo logo nos primeiros segundos da reunião (ou depois que o horário já estiver marcado).
+
+      <!-- 1. CENTRAL DE NOTIFICAÇÕES -->
+      <div class="card" style="border-color: var(--emerald);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+          <h2 style="margin-bottom:0;">🔔 Suas Notificações (Com Alerta Sonoro + Tela + WhatsApp)</h2>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-outline" onclick="enableBrowserNotifs()">📲 Ativar Alerta no Aparelho</button>
+            <button type="button" class="btn btn-gold" onclick="simulateNewClientNotif()">🔔 Testar Notificação: Cliente Querendo Reunião</button>
+            <button type="button" class="btn btn-emerald" onclick="simulateScheduledNotif()">✅ Testar Notificação: Reunião Agendada</button>
+          </div>
+        </div>
+        <p class="sub" style="margin-bottom:12px;">
+          Quando alguém mandar mensagem pelo anúncio (ou quando uma reunião for marcada), toca um alerta sonoro e aparece a notificação abaixo para você clicar em <strong>Fazer Agora</strong>, <strong>Marcar às 15h</strong> ou <strong>Escolher Horário</strong>:
         </p>
+        <div id="notifListBox" style="background:#080d17; border:1px solid var(--border); border-radius:10px; padding:14px; max-height:240px; overflow-y:auto;">
+          <div style="color:#64748b; font-size:13.5px;">Nenhuma notificação ainda. Clique em <strong>"🔔 Testar Notificação"</strong> acima para ver funcionando agora!</div>
+        </div>
+      </div>
+
+      <!-- 2. MINHA AGENDA DE REUNIÕES E COMPROMISSOS (SALVA NA NUVEM) -->
+      <div class="card">
+        <h2>📅 Minha Agenda de Reuniões & Compromissos (Funciona no Celular e PC)</h2>
+        <p class="sub">
+          Todas as reuniões marcadas pelo robô entram aqui sozinhas. Você também pode anotar seus compromissos abaixo para receber notificação:
+        </p>
+        <div style="display:grid; grid-template-columns: 1.2fr 1fr auto; gap:10px; margin-bottom:14px;">
+          <input type="text" id="newAgendaTitle" placeholder="Compromisso ou Cliente (Ex: Reunião Empresa Limpeza)" style="margin-bottom:0;" />
+          <input type="text" id="newAgendaTime" placeholder="Dia e Horário (Ex: Hoje às 15h)" style="margin-bottom:0;" />
+          <button type="button" class="btn btn-emerald" onclick="addAgendaItem()">➕ Agendar</button>
+        </div>
+        <div id="agendaListContainer" style="display:flex; flex-direction:column; gap:10px;"></div>
+      </div>
+
+      <!-- 3. ROBÔ AUTOMÁTICO DO WHATSAPP (SINCRONIZADO NA NUVEM) -->
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+          <h2 style="margin-bottom:0;">🤖 Controle do Robô do WhatsApp (3 Opções Automáticas)</h2>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span id="cloudBotStatusBadge" class="badge-top">⏳ Verificando conexão...</span>
+            <button type="button" id="cloudBotToggleBtn" class="btn btn-outline" onclick="toggleCloudBotFlag('botEnabled')">⏸️ Pausar Robô</button>
+          </div>
+        </div>
+
+        <div id="cloudQrBox" style="display:none; text-align:center; padding:18px; background:#080d17; border:1px dashed var(--accent); border-radius:12px; margin-bottom:14px;">
+          <strong style="color:var(--accent);">📱 Leia este QR Code no seu WhatsApp (Aparelhos Conectados):</strong>
+          <div style="margin-top:10px;"><img id="cloudQrImg" src="" style="background:#fff; padding:8px; border-radius:10px; max-width:250px;" /></div>
+        </div>
+
+        <!-- OS 2 BOTÕES DE LIGAR / DESLIGAR INDEPENDENTES -->
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
+            <div>
+              <strong style="color:#fff; font-size:14.5px; display:block;">1. Me perguntar primeiro (Fazer Agora / Escolher Horário / 15h)</strong>
+              <span style="color:#94a3b8; font-size:12.5px;">Quando alguém chamar pelo anúncio, manda notificação perguntando se dá pra fazer agora, escolher horário ou deixar às 15h.</span>
+            </div>
+            <button type="button" id="cloudBtnAskMe" class="btn btn-emerald" onclick="toggleCloudBotFlag('askMeFirst')">🟢 LIGADO</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
+            <div>
+              <strong style="color:#fff; font-size:14.5px; display:block;">2. Agendar automático às 15h (Se eu não responder ou se a opção 1 estiver desligada)</strong>
+              <span style="color:#94a3b8; font-size:12.5px;">Se você estiver ocupado/fumando e não responder em 2 minutos, o robô marca sozinho para as 15h e coloca na sua Agenda acima.</span>
+            </div>
+            <button type="button" id="cloudBtnAuto15" class="btn btn-emerald" onclick="toggleCloudBotFlag('autoFallbackDefault')">🟢 LIGADO</button>
+          </div>
+        </div>
+
+        <h3>Contatos do Anúncio & Decisão Rápida</h3>
+        <div id="cloudLeadsBox" style="background:#080d17; border:1px solid var(--border); border-radius:10px; padding:14px; margin-bottom:16px;">
+          <div style="color:#64748b; font-size:13.5px;">Nenhum contato aguardando resposta no momento.</div>
+        </div>
+
+        <h3>O que o Robô fala com o Cliente (Curto e Direto — Vai direto pro agendamento de 15 min)</h3>
+        <div class="script-box">
+          <div class="tag">1A. Se você clicar em "⚡ Fazer Agora"</div>
+          <p id="msgWaNow">Oi, tudo certo? Vamos marcar sim! A reunião de diagnóstico leva uns 15 minutos pra eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito. Consigo fazer agora mesmo, pode ser?</p>
+        </div>
 
         <div class="script-box">
-          <div class="tag">Mensagem 1 — Assim que a pessoa mandar a mensagem do anúncio (Vai direto pro horário)</div>
-          <p id="msgWa1">Oi, tudo certo? Vamos marcar sim! A reunião de diagnóstico leva uns 15 minutos pra eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito.
-
-Consegue hoje às 15h ou prefere outro horário?</p>
+          <div class="tag">1B. Se for às 15h (ou outro horário escolhido)</div>
+          <p id="msgWa1">Oi, tudo certo? Vamos marcar sim! A reunião de diagnóstico leva uns 15 minutos pra eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito. Consegue hoje às 15h ou prefere outro horário?</p>
           <div style="margin-top:10px;">
-            <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem 1</button>
+            <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem</button>
           </div>
         </div>
 
         <div class="script-box">
-          <div class="tag">Mensagem 2 — Assim que a pessoa confirmar o horário</div>
+          <div class="tag">2. Quando o cliente confirmar o horário (Já confirma e pergunta a empresa)</div>
           <p id="msgWa2">Combinado, deixei agendado! Pouco antes te mando o link da chamada por aqui. Só pra eu já deixar anotado: qual é o nome da sua empresa e o ramo?</p>
           <div style="margin-top:10px;">
-            <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem 2</button>
+            <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem</button>
           </div>
         </div>
       </div>
@@ -2008,9 +2089,397 @@ renderSlidePosition();
       a.click();
     }
 
+    // =====================================================================
+    // SISTEMA DE NOTIFICAÇÕES AO VIVO + MINHA AGENDA + NUVEM SUPABASE
+    // =====================================================================
+    const SB_URL = 'https://dknapaqseabtbsjthnbz.supabase.co';
+    const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrbmFwYXFzZWFidGJzanRobmJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwODEyOTYsImV4cCI6MjA5MDY1NzI5Nn0.ESSi_0xiaID9dS50Pd4CmKkRTWwbU4-nE7KSyTuadcc';
+    const AGENDA_STORAGE_KEY = 'MINHA_AGENDA_COMERCIAL_V1';
+
+    let cloudState = {
+      connectionStatus: 'starting',
+      qr: null,
+      connectedPhone: null,
+      config: { botEnabled: true, askMeFirst: true, autoFallbackDefault: true },
+      leads: {},
+      notifications: []
+    };
+    let seenNotifIds = new Set();
+    let localNotifs = [];
+    let myAgenda = [];
+
+    function loadAgenda() {
+      try {
+        const raw = localStorage.getItem(AGENDA_STORAGE_KEY);
+        if (raw) myAgenda = JSON.parse(raw) || [];
+      } catch (e) { myAgenda = []; }
+      renderAgenda();
+    }
+
+    function saveAgenda() {
+      try {
+        localStorage.setItem(AGENDA_STORAGE_KEY, JSON.stringify(myAgenda));
+      } catch (e) {}
+      renderAgenda();
+    }
+
+    function addAgendaItem(titleArg, timeArg, phoneArg) {
+      const titleEl = document.getElementById('newAgendaTitle');
+      const timeEl = document.getElementById('newAgendaTime');
+      const title = titleArg || (titleEl ? titleEl.value.trim() : '');
+      const time = timeArg || (timeEl ? timeEl.value.trim() : '');
+      if (!title || !time) {
+        alert('Preencha o nome do compromisso/cliente e o horário!');
+        return;
+      }
+      const item = {
+        id: 'ag_' + Date.now(),
+        title,
+        time,
+        phone: phoneArg || '',
+        createdAt: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      };
+      myAgenda.unshift(item);
+      if (!titleArg && titleEl && timeEl) {
+        titleEl.value = '';
+        timeEl.value = '';
+      }
+      saveAgenda();
+      if (!titleArg) {
+        triggerInstantAlert('✅ Compromisso Adicionado na Sua Agenda!', `${title} — Horário: ${time}`, 'scheduled');
+      }
+    }
+
+    function removeAgendaItem(id) {
+      myAgenda = myAgenda.filter(i => i.id !== id);
+      saveAgenda();
+    }
+
+    function renderAgenda() {
+      const box = document.getElementById('agendaListContainer');
+      if (!box) return;
+      // Combina agendamentos do robô com os da sua agenda
+      const botScheduled = Object.values(cloudState.leads || {}).filter(l => l.stage === 'SCHEDULED' || l.stage === 'SCHEDULED_ASK_COMPANY');
+      botScheduled.forEach(l => {
+        const exists = myAgenda.some(a => a.phone === l.phone && a.phone !== '');
+        if (!exists && l.scheduledTime) {
+          myAgenda.unshift({
+            id: 'bot_' + l.phone,
+            title: `Reunião Diagnóstico: ${l.name || l.phone} ${l.companyInfo ? '(' + l.companyInfo + ')' : ''}`,
+            time: l.scheduledTime,
+            phone: l.phone,
+            createdAt: 'Automático pelo WhatsApp'
+          });
+        }
+      });
+
+      if (myAgenda.length === 0) {
+        box.innerHTML = `<div style="background:#080d17; border:1px solid var(--border); border-radius:10px; padding:14px; color:#64748b; font-size:13.5px;">Nenhum compromisso agendado ainda. Quando alguém marcar reunião (ou você adicionar acima), aparece aqui com alerta!</div>`;
+        return;
+      }
+
+      box.innerHTML = myAgenda.map(item => `
+        <div style="background:#080d17; border-left:4px solid var(--emerald); border-top:1px solid var(--border); border-right:1px solid var(--border); border-bottom:1px solid var(--border); border-radius:10px; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="font-size:15px; font-weight:800; color:#fff;">📅 ${item.title}</div>
+            <div style="font-size:13.5px; color:var(--emerald); font-weight:700; margin-top:3px;">⏰ Horário: ${item.time}</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px;" onclick="showTab(1)">📋 Abrir Diagnóstico</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:12px; border-color:#ef4444; color:#fca5a5;" onclick="removeAgendaItem('${item.id}')">🗑️ Concluir / Remover</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function playAlertSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const playTone = (freq, start, dur) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + start);
+          gain.gain.setValueAtTime(0.25, ctx.currentTime + start);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + start);
+          osc.stop(ctx.currentTime + start + dur);
+        };
+        playTone(587.33, 0, 0.18);
+        playTone(880, 0.2, 0.35);
+      } catch (e) {}
+    }
+
+    function enableBrowserNotifs() {
+      if (!('Notification' in window)) {
+        alert('O alerta sonoro e o banner na tela já estão ativos!');
+        return;
+      }
+      Notification.requestPermission().then(perm => {
+        if (perm === 'granted') {
+          new Notification('🔔 Notificações Ativadas!', { body: 'Você receberá alertas sempre que alguém quiser agendar reunião.' });
+          playAlertSound();
+        } else {
+          alert('O alerta na tela e o som já estão funcionando!');
+        }
+      });
+    }
+
+    function triggerInstantAlert(title, message, type = 'action_needed', phone = '5519999990000') {
+      playAlertSound();
+      if ('Notification' in window && Notification.permission === 'granted') {
+        try { new Notification(title, { body: message }); } catch (e) {}
+      }
+
+      const banner = document.getElementById('liveNotifBanner');
+      const titleEl = document.getElementById('liveNotifTitle');
+      const msgEl = document.getElementById('liveNotifMsg');
+      const actionsEl = document.getElementById('liveNotifActions');
+
+      if (banner && titleEl && msgEl && actionsEl) {
+        titleEl.innerText = title;
+        msgEl.innerText = message;
+        banner.style.display = 'block';
+
+        if (type === 'action_needed') {
+          actionsEl.innerHTML = `
+            <button type="button" class="btn btn-emerald" onclick="respondNotifChoice('${phone}', 'Agora mesmo')">⚡ 1. Fazer Agora</button>
+            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'Hoje às 15h')">🕒 2. Marcar às 15h</button>
+            <button type="button" class="btn" onclick="promptCustomHour('${phone}')">✏️ 3. Escolher Horário</button>
+            <button type="button" class="btn btn-outline" onclick="document.getElementById('liveNotifBanner').style.display='none'">✕</button>
+          `;
+        } else {
+          actionsEl.innerHTML = `
+            <button type="button" class="btn btn-emerald" onclick="document.getElementById('liveNotifBanner').style.display='none'">✅ OK, Entendi</button>
+          `;
+        }
+      }
+
+      localNotifs.unshift({
+        id: 'loc_' + Date.now(),
+        type,
+        title,
+        message,
+        phone,
+        time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      });
+      renderNotifications();
+    }
+
+    function respondNotifChoice(phone, choice) {
+      document.getElementById('liveNotifBanner').style.display = 'none';
+      sendCloudCommand({ type: 'owner_reply', phone, text: choice });
+
+      if (cloudState.leads && cloudState.leads[phone]) {
+        cloudState.leads[phone].proposedByOwner = choice;
+        cloudState.leads[phone].scheduledTime = choice;
+        cloudState.leads[phone].stage = 'SCHEDULED';
+      }
+      addAgendaItem(`Reunião Diagnóstico (Contato +${phone})`, choice, phone);
+      triggerInstantAlert('✅ Horário Enviado e Agendado!', `O robô enviou "${choice}" para o cliente e já salvou na sua Agenda abaixo.`, 'scheduled', phone);
+      renderCloudState();
+    }
+
+    function promptCustomHour(phone) {
+      const h = prompt('Qual horário você quer propor para o cliente? (Ex: hoje às 17h ou amanhã às 14h)', 'hoje às 16h');
+      if (h && h.trim()) {
+        respondNotifChoice(phone, h.trim());
+      }
+    }
+
+    function simulateNewClientNotif() {
+      const fakePhone = '5519998887766';
+      cloudState.leads[fakePhone] = {
+        phone: fakePhone,
+        name: 'Carlos (Anúncio Facebook)',
+        stage: 'WAITING_OWNER_TIME',
+        companyInfo: '',
+        scheduledTime: '',
+        lastMessage: 'Olá! Vi o anúncio e quero agendar uma reunião de diagnóstico.',
+        updatedAt: new Date().toISOString()
+      };
+      sendCloudCommand({ type: 'simulate_lead' });
+      triggerInstantAlert(
+        '🔔 NOVO CLIENTE QUERENDO MARCAR REUNIÃO!',
+        'Carlos (+5519998887766) mandou mensagem pelo anúncio. Dá pra fazer agora, escolher horário ou deixar para as 15h?',
+        'action_needed',
+        fakePhone
+      );
+      renderCloudState();
+    }
+
+    function simulateScheduledNotif() {
+      const fakePhone = '5519998887766';
+      addAgendaItem('Reunião Diagnóstico — Carlos (Anúncio)', 'Hoje às 15h', fakePhone);
+      triggerInstantAlert(
+        '✅ COMPROMISSO AGENDADO NA SUA AGENDA!',
+        'Reunião marcada para Hoje às 15h com Carlos (+5519998887766). Já está salvo na sua Agenda abaixo!',
+        'scheduled',
+        fakePhone
+      );
+    }
+
+    function renderNotifications() {
+      const box = document.getElementById('notifListBox');
+      if (!box) return;
+      const all = [...localNotifs];
+      (cloudState.notifications || []).forEach(n => {
+        if (!all.some(x => x.id === n.id)) {
+          all.push({
+            id: n.id,
+            type: n.type,
+            title: n.title,
+            message: n.message,
+            phone: n.phone,
+            time: new Date(n.createdAt || Date.now()).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          });
+        }
+      });
+
+      if (all.length === 0) {
+        box.innerHTML = `<div style="color:#64748b; font-size:13.5px;">Nenhuma notificação ainda. Clique no botão amarelo <strong>"🔔 Testar Notificação"</strong> acima para ver como funciona!</div>`;
+        return;
+      }
+
+      box.innerHTML = all.slice(0, 10).map(n => `
+        <div style="padding:10px 12px; border-bottom:1px solid #1e2d4a; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <strong style="color:${n.type === 'action_needed' ? '#fbbf24' : '#34d399'}; font-size:13.5px;">${n.title} <span style="color:#64748b; font-weight:400;">(${n.time})</span></strong>
+            <div style="color:#cbd5e1; font-size:13px; margin-top:2px;">${n.message}</div>
+          </div>
+          ${n.type === 'action_needed' ? `
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-emerald" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'Agora mesmo')">⚡ Fazer Agora</button>
+              <button type="button" class="btn btn-gold" style="padding:5px 10px; font-size:12px;" onclick="respondNotifChoice('${n.phone}', 'Hoje às 15h')">🕒 Às 15h</button>
+              <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:12px;" onclick="promptCustomHour('${n.phone}')">✏️ Outro Horário</button>
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    function renderCloudState() {
+      const cfg = cloudState.config || {};
+      const badge = document.getElementById('cloudBotStatusBadge');
+      const qrBox = document.getElementById('cloudQrBox');
+      const qrImg = document.getElementById('cloudQrImg');
+
+      if (badge) {
+        if (cloudState.connectionStatus === 'connected') {
+          badge.innerText = '🟢 WhatsApp Conectado (' + (cloudState.connectedPhone || '') + ')';
+        } else if (cloudState.connectionStatus === 'qr' && cloudState.qr) {
+          badge.innerText = '📱 Leia o QR Code abaixo para conectar o WhatsApp';
+          if (qrBox && qrImg) {
+            qrBox.style.display = 'block';
+            qrImg.src = cloudState.qr;
+          }
+        } else {
+          badge.innerText = '🟢 Painel Ativo na Nuvem (HTTPS)';
+        }
+        if (cloudState.connectionStatus === 'connected' && qrBox) {
+          qrBox.style.display = 'none';
+        }
+      }
+
+      const tBtn = document.getElementById('cloudBotToggleBtn');
+      if (tBtn) tBtn.innerText = cfg.botEnabled !== false ? '⏸️ Pausar Robô' : '▶️ Ligar Robô';
+
+      const btnAsk = document.getElementById('cloudBtnAskMe');
+      if (btnAsk) {
+        btnAsk.innerText = cfg.askMeFirst !== false ? '🟢 LIGADO' : '⚪ DESLIGADO';
+        btnAsk.className = cfg.askMeFirst !== false ? 'btn btn-emerald' : 'btn btn-outline';
+      }
+
+      const btnAuto = document.getElementById('cloudBtnAuto15');
+      if (btnAuto) {
+        btnAuto.innerText = cfg.autoFallbackDefault !== false ? '🟢 LIGADO' : '⚪ DESLIGADO';
+        btnAuto.className = cfg.autoFallbackDefault !== false ? 'btn btn-emerald' : 'btn btn-outline';
+      }
+
+      const leadsBox = document.getElementById('cloudLeadsBox');
+      if (leadsBox) {
+        const list = Object.values(cloudState.leads || {}).sort((a,b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''));
+        if (list.length === 0) {
+          leadsBox.innerHTML = `<div style="color:#64748b; font-size:13.5px;">Nenhum contato aguardando decisão agora. Quando alguém chamar pelo anúncio, aparece aqui com os 3 botões!</div>`;
+        } else {
+          leadsBox.innerHTML = list.map(l => `
+            <div style="padding:10px; border-bottom:1px solid #1e2d4a; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div>
+                <strong style="color:#fff; font-size:14px;">👤 ${l.name || l.phone} (+${l.phone})</strong>
+                <div style="font-size:12.5px; color:#94a3b8;">Mensagem: "${l.lastMessage || ''}"</div>
+                <div style="font-size:12.5px; color:var(--emerald); font-weight:700;">Horário: ${l.scheduledTime || l.proposedByOwner || 'Aguardando sua escolha'}</div>
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-emerald" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'Agora mesmo')">⚡ Fazer Agora</button>
+                <button type="button" class="btn btn-gold" style="padding:6px 10px; font-size:12px;" onclick="respondNotifChoice('${l.phone}', 'Hoje às 15h')">🕒 Marcar às 15h</button>
+                <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:12px;" onclick="promptCustomHour('${l.phone}')">✏️ Escolher Horário</button>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+      renderNotifications();
+      renderAgenda();
+    }
+
+    async function sendCloudCommand(cmd) {
+      try {
+        const r = await fetch(`${SB_URL}/rest/v1/robo_whatsapp_state?id=eq.commands&select=payload`, {
+          headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+        });
+        let queue = [];
+        if (r.ok) {
+          const rows = await r.json();
+          if (rows && rows[0] && Array.isArray(rows[0].payload?.queue)) queue = rows[0].payload.queue;
+        }
+        queue.push(cmd);
+        await fetch(`${SB_URL}/rest/v1/robo_whatsapp_state?id=eq.commands`, {
+          method: 'PATCH',
+          headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ payload: { queue }, updated_at: new Date().toISOString() })
+        });
+      } catch (e) {}
+    }
+
+    function toggleCloudBotFlag(key) {
+      if (!cloudState.config) cloudState.config = {};
+      cloudState.config[key] = !cloudState.config[key];
+      sendCloudCommand({ type: 'update_config', data: { [key]: cloudState.config[key] } });
+      renderCloudState();
+    }
+
+    async function pollCloudBotState() {
+      try {
+        const res = await fetch(`${SB_URL}/rest/v1/robo_whatsapp_state?id=eq.main&select=payload`, {
+          headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+        });
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows && rows[0] && rows[0].payload) {
+            const p = rows[0].payload;
+            cloudState = { ...cloudState, ...p };
+            (p.notifications || []).forEach(n => {
+              if (!seenNotifIds.has(n.id)) {
+                seenNotifIds.add(n.id);
+                if (!n.read) {
+                  triggerInstantAlert(n.title, n.message, n.type, n.phone);
+                }
+              }
+            });
+            renderCloudState();
+          }
+        }
+      } catch (e) {}
+    }
+
     loadPainelState();
+    loadAgenda();
     syncAll();
     checkUrlProposalMode();
+    pollCloudBotState();
+    setInterval(pollCloudBotState, 3500);
   </script>
 
 </body>
