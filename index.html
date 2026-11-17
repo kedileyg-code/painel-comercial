@@ -805,16 +805,16 @@
         <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
             <div>
-              <strong style="color:#fff; font-size:14.5px; display:block;">1. Me perguntar primeiro (Fazer Agora / Escolher Horário / 15h)</strong>
-              <span style="color:#94a3b8; font-size:12.5px;">Quando alguém chamar pelo anúncio, manda notificação perguntando se dá pra fazer agora, escolher horário ou deixar às 15h.</span>
+              <strong style="color:#fff; font-size:14.5px; display:block;">1. Me perguntar primeiro (Fazer Agora / Escolher Horário / Fila 14h–16h)</strong>
+              <span style="color:#94a3b8; font-size:12.5px;">Quando alguém chamar pelo anúncio, te pergunta no WhatsApp (e na tela) se dá pra fazer agora, escolher horário ou deixar no próximo horário livre das 14h às 16h.</span>
             </div>
             <button type="button" id="cloudBtnAskMe" class="btn btn-emerald" onclick="toggleCloudBotFlag('askMeFirst')">🟢 LIGADO</button>
           </div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; background:#080d17; border:1px solid var(--border); padding:14px 16px; border-radius:10px; gap:12px;">
             <div>
-              <strong style="color:#fff; font-size:14.5px; display:block;">2. Agendar automático às 15h (Se eu não responder ou se a opção 1 estiver desligada)</strong>
-              <span style="color:#94a3b8; font-size:12.5px;">Se você estiver ocupado/fumando e não responder em 2 minutos, o robô marca sozinho para as 15h e coloca na sua Agenda acima.</span>
+              <strong style="color:#fff; font-size:14.5px; display:block;">2. Fila Automática das 14h às 16h (De 30 em 30 min: 14h, 14h30, 15h, 15h30)</strong>
+              <span style="color:#94a3b8; font-size:12.5px;">Se você não responder em 2 minutos, o robô oferece o próximo horário livre com 30 min de diferença (se 14h já estiver ocupado, marca às 14h30, depois 15h, até 15h30).</span>
             </div>
             <button type="button" id="cloudBtnAuto15" class="btn btn-emerald" onclick="toggleCloudBotFlag('autoFallbackDefault')">🟢 LIGADO</button>
           </div>
@@ -2233,6 +2233,11 @@ renderSlidePosition();
       } catch (e) {}
     }
 
+    let swReg = null;
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then(r => { swReg = r; }).catch(() => {});
+    }
+
     function enableBrowserNotifs() {
       if (!('Notification' in window)) {
         alert('O alerta sonoro e o banner na tela já estão ativos!');
@@ -2240,7 +2245,15 @@ renderSlidePosition();
       }
       Notification.requestPermission().then(perm => {
         if (perm === 'granted') {
-          new Notification('🔔 Notificações Ativadas!', { body: 'Você receberá alertas sempre que alguém quiser agendar reunião.' });
+          if (swReg && swReg.showNotification) {
+            swReg.showNotification('🔔 Notificações Ativadas!', {
+              body: 'Você receberá alertas com vibração e som sempre que alguém quiser agendar reunião.',
+              vibrate: [400, 150, 400],
+              requireInteraction: true
+            });
+          } else {
+            new Notification('🔔 Notificações Ativadas!', { body: 'Você receberá alertas sempre que alguém quiser agendar reunião.' });
+          }
           playAlertSound();
         } else {
           alert('O alerta na tela e o som já estão funcionando!');
@@ -2248,12 +2261,20 @@ renderSlidePosition();
       });
     }
 
-    function triggerInstantAlert(title, message, type = 'action_needed', phone = '5519999990000') {
+    function triggerInstantAlert(title, message, type = 'action_needed', phone = 'SIMULACAO_TESTE') {
       playAlertSound();
+      try { if (navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 700]); } catch (e) {}
       if ('Notification' in window && Notification.permission === 'granted') {
-        try { new Notification(title, { body: message }); } catch (e) {}
+        try {
+          if (swReg && swReg.showNotification) {
+            swReg.showNotification(title, { body: message, vibrate: [500, 200, 500, 200, 700], requireInteraction: true });
+          } else {
+            new Notification(title, { body: message });
+          }
+        } catch (e) {}
       }
 
+      const nextSlotLabel = cloudState.nextFreeSlotText || 'Próximo Livre (14h–16h)';
       const banner = document.getElementById('liveNotifBanner');
       const titleEl = document.getElementById('liveNotifTitle');
       const msgEl = document.getElementById('liveNotifMsg');
@@ -2266,8 +2287,8 @@ renderSlidePosition();
 
         if (type === 'action_needed') {
           actionsEl.innerHTML = `
-            <button type="button" class="btn btn-emerald" onclick="respondNotifChoice('${phone}', 'Agora mesmo')">⚡ 1. Fazer Agora</button>
-            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'Hoje às 15h')">🕒 2. Marcar às 15h</button>
+            <button type="button" class="btn btn-emerald" onclick="respondNotifChoice('${phone}', 'agora')">⚡ 1. Fazer Agora</button>
+            <button type="button" class="btn btn-gold" onclick="respondNotifChoice('${phone}', 'auto')">🕒 2. Fila 14h–16h (${nextSlotLabel})</button>
             <button type="button" class="btn" onclick="promptCustomHour('${phone}')">✏️ 3. Escolher Horário</button>
             <button type="button" class="btn btn-outline" onclick="document.getElementById('liveNotifBanner').style.display='none'">✕</button>
           `;
@@ -2291,15 +2312,16 @@ renderSlidePosition();
 
     function respondNotifChoice(phone, choice) {
       document.getElementById('liveNotifBanner').style.display = 'none';
+      const displayTime = choice === 'auto' ? (cloudState.nextFreeSlotText || 'Próximo horário livre (14h–16h)') : (choice === 'agora' ? 'Agora mesmo' : choice);
       sendCloudCommand({ type: 'owner_reply', phone, text: choice });
 
       if (cloudState.leads && cloudState.leads[phone]) {
-        cloudState.leads[phone].proposedByOwner = choice;
-        cloudState.leads[phone].scheduledTime = choice;
+        cloudState.leads[phone].proposedByOwner = displayTime;
+        cloudState.leads[phone].scheduledTime = displayTime;
         cloudState.leads[phone].stage = 'SCHEDULED';
       }
-      addAgendaItem(`Reunião Diagnóstico (Contato +${phone})`, choice, phone);
-      triggerInstantAlert('✅ Horário Enviado e Agendado!', `O robô enviou "${choice}" para o cliente e já salvou na sua Agenda abaixo.`, 'scheduled', phone);
+      addAgendaItem(`Reunião Diagnóstico (${phone})`, displayTime, phone);
+      triggerInstantAlert('✅ Horário Enviado e Agendado!', `O robô enviou "${displayTime}" para o cliente e já salvou na sua Agenda abaixo.`, 'scheduled', phone);
       renderCloudState();
     }
 
