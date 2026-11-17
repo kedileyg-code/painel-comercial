@@ -743,35 +743,24 @@
        =================================================================== -->
     <div class="tab active">
       <div class="card">
-        <h2>1️⃣ Cliente Chamou no WhatsApp (Marcar a Reunião de Diagnóstico)</h2>
+        <h2>1️⃣ Cliente Chamou no WhatsApp (Ir Direto pro Agendamento)</h2>
         <p class="sub">
-          O único objetivo aqui é pegar o nome/ramo da empresa e marcar a reunião de diagnóstico.
+          Como a pessoa já clicou no anúncio querendo agendar o diagnóstico, <strong>vá direto para marcar o horário de 15 minutos</strong> (sem burocracia antes). Você pergunta o nome da empresa e o ramo logo nos primeiros segundos da reunião (ou depois que o horário já estiver marcado).
         </p>
 
-        <div class="grid-2" style="margin-bottom: 14px;">
-          <div>
-            <label>Nome da Empresa / Clínica</label>
-            <input type="text" id="companyName" value="Clínica Belle Vie" oninput="syncAll()" />
-          </div>
-          <div>
-            <label>Ramo da Empresa</label>
-            <input type="text" id="companyNiche" value="Estética Facial e Corporal" oninput="syncAll()" />
-          </div>
-        </div>
-
         <div class="script-box">
-          <div class="tag">Mensagem 1 — Assim que a pessoa chamar</div>
-          <p id="msgWa1">Oi, tudo certo? Para marcarmos a reunião de diagnóstico, preciso que você me diga o nome da
-            empresa e o ramo.</p>
+          <div class="tag">Mensagem 1 — Assim que a pessoa mandar a mensagem do anúncio (Vai direto pro horário)</div>
+          <p id="msgWa1">Oi, tudo certo? Vamos marcar sim! A reunião de diagnóstico leva uns 15 minutos pra eu entender como funciona o atendimento de vocês hoje e definir o que precisa ser feito.
+
+Consegue hoje às 15h ou prefere outro horário?</p>
           <div style="margin-top:10px;">
             <button class="btn btn-outline" onclick="copyText('msgWa1')">📋 Copiar Mensagem 1</button>
           </div>
         </div>
 
         <div class="script-box">
-          <div class="tag">Mensagem 2 — Assim que responder o nome da empresa e o ramo</div>
-          <p id="msgWa2">Vamos marcar uma reunião de diagnóstico para entender como vocês funcionam hoje e definir o que
-            precisa ser feito. Fica melhor hoje às 15h ou amanhã às 10h?</p>
+          <div class="tag">Mensagem 2 — Assim que a pessoa confirmar o horário</div>
+          <p id="msgWa2">Combinado, deixei agendado! Pouco antes te mando o link da chamada por aqui. Só pra eu já deixar anotado: qual é o nome da sua empresa e o ramo?</p>
           <div style="margin-top:10px;">
             <button class="btn btn-outline" onclick="copyText('msgWa2')">📋 Copiar Mensagem 2</button>
           </div>
@@ -791,6 +780,21 @@
             estarão prontos automaticamente</strong> — aí é só clicar no botão verde ali mesmo e ler os 7 slides na
           mesma chamada (mais 5 a 10 minutos).
         </p>
+
+        <div class="q-item" style="border-color: var(--accent);">
+          <div class="q-num">Início da Chamada • Empresa e Ramo</div>
+          <div class="q-title">"Pra gente começar, me confirma o nome da sua empresa e qual é o ramo principal de vocês hoje?"</div>
+          <div class="grid-2" style="margin-top:10px;">
+            <div>
+              <label>Nome da Empresa / Clínica</label>
+              <input type="text" id="companyName" value="Clínica Belle Vie" oninput="syncAll()" />
+            </div>
+            <div>
+              <label>Ramo da Empresa</label>
+              <input type="text" id="companyNiche" value="Estética Facial e Corporal" oninput="syncAll()" />
+            </div>
+          </div>
+        </div>
 
         <!-- PERGUNTA 1 -->
         <div class="q-item">
@@ -1431,31 +1435,49 @@
       </div>
 
       <div class="s-panel"
-        style="border: 2px solid var(--emerald); background: linear-gradient(145deg, rgba(16,185,129,0.12), rgba(18,28,46,0.95));">
-        <div
-          style="font-size:12px; font-weight:800; color:var(--emerald); text-transform:uppercase; letter-spacing:1px;"
-          contenteditable="true">SEU INVESTIMENTO NO SISTEMA COMPLETO</div>
-        <div style="margin: 16px 0; padding-bottom: 16px; border-bottom: 1px solid #243554;">
-          <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Implantação
-            Completa (Setup Único)</div>
-          <div style="font-size:42px; font-weight:900; color:#fff; line-height:1.1;" id="s6_setup"
-            contenteditable="true">R$ 4.200</div>
-          <div style="font-size:13.5px; color:var(--emerald); font-weight:700; margin-top:4px;" id="s6_split"
-            contenteditable="true">Em 2x de R$ 2.100 (50% na assinatura e 50% só após a entrega)</div>
+        style="border: 2px solid var(--emerald); background: linear-gradient(145deg, rgba(16,185,129,0.12), rgba(18,28,46,0.95)); position: relative;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+          <div
+            style="font-size:12px; font-weight:800; color:var(--emerald); text-transform:uppercase; letter-spacing:1px;"
+            contenteditable="true">SEU INVESTIMENTO NO SISTEMA COMPLETO</div>
+          <button type="button" id="eyeToggleBtn" onclick="toggleMyPrice()" title="Mostrar / Ocultar Valor"
+            style="background:rgba(16,185,129,0.18); border:1px solid var(--emerald); color:#d1fae5; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer;">
+            👁️ Mostrar Valor
+          </button>
         </div>
-        <div>
-          <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Manutenção, IA e
-            Suporte Contínuo 24h</div>
-          <div style="font-size:34px; font-weight:900; color:var(--accent); line-height:1.1;"><span id="s6_monthly"
-              contenteditable="true">R$ 750</span> <span style="font-size:16px; color:#94a3b8; font-weight:600;">/
-              mês</span></div>
-          <div style="font-size:13px; color:#cbd5e1; margin-top:4px;" contenteditable="true">1ª mensalidade somente
-            <strong>30 dias após o sistema entregue no ar</strong> • Sem fidelidade.</div>
+
+        <!-- ESTADO OCULTO (APARECE PRIMEIRO ENQUANTO VOCÊ FALA DO CUSTO TRADICIONAL) -->
+        <div id="myPriceHiddenBox" style="padding: 46px 20px; text-align: center; margin-top: 14px; border: 1px dashed rgba(16,185,129,0.4); border-radius: 12px; background: rgba(8,13,23,0.65);">
+          <div style="font-size: 28px; margin-bottom: 8px;">🔒</div>
+          <div style="font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 6px;">Proposta Sob Medida Pronta</div>
+          <div style="font-size: 12.5px; color: #94a3b8; margin-bottom: 16px;">Explique primeiro o custo do modelo tradicional ao lado e clique abaixo para revelar o seu valor:</div>
+          <button type="button" class="btn btn-emerald" onclick="toggleMyPrice()">👁️ Revelar Meu Investimento</button>
         </div>
-        <div
-          style="margin-top:14px; background:rgba(16,185,129,0.16); padding:10px 14px; border-radius:8px; font-size:13px; color:#d1fae5; font-weight:700;"
-          id="s6_roiNote" contenteditable="true">
-          💡 Com apenas 3 clientes recuperados no 1º mês, todo o investimento de implantação já está 100% pago.
+
+        <!-- ESTADO VISÍVEL (APARECE QUANDO VOCÊ CLICA NO OLHINHO) -->
+        <div id="myPriceContent" style="display:none;">
+          <div style="margin: 16px 0; padding-bottom: 16px; border-bottom: 1px solid #243554;">
+            <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Implantação
+              Completa (Setup Único)</div>
+            <div style="font-size:42px; font-weight:900; color:#fff; line-height:1.1;" id="s6_setup"
+              contenteditable="true">R$ 4.200</div>
+            <div style="font-size:13.5px; color:var(--emerald); font-weight:700; margin-top:4px;" id="s6_split"
+              contenteditable="true">Em 2x de R$ 2.100 (50% na assinatura e 50% só após a entrega)</div>
+          </div>
+          <div>
+            <div style="font-size:12px; color:#94a3b8; text-transform:uppercase;" contenteditable="true">Manutenção, IA e
+              Suporte Contínuo 24h</div>
+            <div style="font-size:34px; font-weight:900; color:var(--accent); line-height:1.1;"><span id="s6_monthly"
+                contenteditable="true">R$ 750</span> <span style="font-size:16px; color:#94a3b8; font-weight:600;">/
+                mês</span></div>
+            <div style="font-size:13px; color:#cbd5e1; margin-top:4px;" contenteditable="true">1ª mensalidade somente
+              <strong>30 dias após o sistema entregue no ar</strong> • Sem fidelidade.</div>
+          </div>
+          <div
+            style="margin-top:14px; background:rgba(16,185,129,0.16); padding:10px 14px; border-radius:8px; font-size:13px; color:#d1fae5; font-weight:700;"
+            id="s6_roiNote" contenteditable="true">
+            💡 Com apenas 3 clientes recuperados no 1º mês, todo o investimento de implantação já está 100% pago.
+          </div>
         </div>
       </div>
     </section>
@@ -1787,8 +1809,27 @@ E para já iniciarmos o treinamento da sua Secretária de IA, preencha nosso For
       return Array.from(document.querySelectorAll('#deckOverlay .deck-slide'));
     }
 
+    function toggleMyPrice(forceHide) {
+      const hiddenBox = document.getElementById('myPriceHiddenBox');
+      const contentBox = document.getElementById('myPriceContent');
+      const eyeBtn = document.getElementById('eyeToggleBtn');
+      if (!hiddenBox || !contentBox) return;
+
+      const shouldHide = forceHide === true ? true : (forceHide === false ? false : contentBox.style.display !== 'none');
+      if (shouldHide) {
+        contentBox.style.display = 'none';
+        hiddenBox.style.display = 'block';
+        if (eyeBtn) eyeBtn.innerText = '👁️ Mostrar Valor';
+      } else {
+        contentBox.style.display = 'block';
+        hiddenBox.style.display = 'none';
+        if (eyeBtn) eyeBtn.innerText = '🙈 Ocultar Valor';
+      }
+    }
+
     function openSlideDeck() {
       syncAll();
+      toggleMyPrice(true); // Sempre começa com o seu valor oculto no Slide 6!
       currentSlideIdx = 0;
       document.getElementById('deckOverlay').classList.add('open');
       renderSlidePosition();
@@ -1933,6 +1974,22 @@ function changeSlide(d) {
 function toggleFullScreen() {
   if (!document.fullscreenElement) document.documentElement.requestFullscreen();
   else document.exitFullscreen();
+}
+function toggleMyPrice(forceHide) {
+  const hiddenBox = document.getElementById('myPriceHiddenBox');
+  const contentBox = document.getElementById('myPriceContent');
+  const eyeBtn = document.getElementById('eyeToggleBtn');
+  if (!hiddenBox || !contentBox) return;
+  const shouldHide = forceHide === true ? true : (forceHide === false ? false : contentBox.style.display !== 'none');
+  if (shouldHide) {
+    contentBox.style.display = 'none';
+    hiddenBox.style.display = 'block';
+    if (eyeBtn) eyeBtn.innerText = '👁️ Mostrar Valor';
+  } else {
+    contentBox.style.display = 'block';
+    hiddenBox.style.display = 'none';
+    if (eyeBtn) eyeBtn.innerText = '🙈 Ocultar Valor';
+  }
 }
 document.addEventListener('keydown', e => {
   if (document.activeElement && document.activeElement.isContentEditable) return;
